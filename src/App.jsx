@@ -1,6 +1,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import "./App.css";
+import SolarSystemComponent from "./Components/SolarSystemComponent";
 
 function App() {
   function stillInProgress() {
@@ -12,6 +13,9 @@ function App() {
       <button onClick={() => stillInProgress()}>
         click here to see the Bransha Website
       </button>
+      <div>
+        <SolarSystemComponent />
+      </div>
     </>
   );
 }
