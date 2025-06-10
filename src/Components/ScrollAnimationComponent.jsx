@@ -106,19 +106,11 @@ export default function ScrollAnimationComponent() {
       >
         {/* Left Zone - Fixed Rectangle */}
         <div
-          className={`
-                            ${isLeftFixed ? "fixed" : "absolute"} 
-                            top-1/2 left-4 md:left-8 lg:left-16 
-                            transform -translate-y-1/2 
-                            w-72 md:w-80 lg:w-96 h-64 md:h-72 lg:h-80
-                            transition-all duration-700 ease-out
-                            ${
-                              isLeftFixed
-                                ? "opacity-100 scale-100"
-                                : "opacity-0 scale-95"
-                            }
-                            z-10
-                        `}
+          className={`${
+            isLeftFixed ? "fixed" : "absolute"
+          } z-10 top-1/2 left-4 md:left-8 lg:left-16 transform -translate-y-1/2 w-72 md:w-80 lg:w-96 h-64 md:h-72 lg:h-80transition-all duration-700 ease-out ${
+            isLeftFixed ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
         >
           <div className="w-full h-full bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl shadow-2xl p-6 md:p-8 flex flex-col justify-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -139,18 +131,13 @@ export default function ScrollAnimationComponent() {
               key={index}
               ref={(el) => (rightRectRefs.current[index] = el)}
               data-index={index}
-              className={`
-                                        w-full h-48 md:h-56 lg:h-64 rounded-2xl shadow-xl p-6 md:p-8
-                                        transition-all duration-700 ease-out transform
-                                        ${
-                                          visibleRectangles.has(index)
-                                            ? "opacity-100 translate-x-0 scale-100"
-                                            : "opacity-0 translate-x-8 scale-95"
-                                        }
-                                        ${item.color} text-white
-                                        hover:scale-105 hover:shadow-2xl
-                                        cursor-pointer
-                                    `}
+              className={`w-full h-48 md:h-56 lg:h-64 rounded-2xl shadow-xl p-6 md:p-8 transition-all duration-700 ease-out transform ${
+                visibleRectangles.has(index)
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 translate-x-8 scale-95"
+              } ${
+                item.color
+              } text-whitehover:scale-105 hover:shadow-2xl cursor-pointer`}
               style={{
                 transitionDelay: visibleRectangles.has(index)
                   ? `${index * 100}ms`
@@ -180,14 +167,11 @@ export default function ScrollAnimationComponent() {
             {rectangleData.map((_, index) => (
               <div
                 key={index}
-                className={`
-                                            w-2 h-2 rounded-full transition-all duration-300
-                                            ${
-                                              visibleRectangles.has(index)
-                                                ? "bg-indigo-600 scale-125"
-                                                : "bg-gray-300"
-                                            }
-                                        `}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  visibleRectangles.has(index)
+                    ? "bg-indigo-600 scale-125"
+                    : "bg-gray-300"
+                }`}
               />
             ))}
           </div>
