@@ -1,6 +1,8 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import "./App.css";
+import ContainerScroll from "./Components/ContainerScroll";
+import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
 import SolarSystemComponent from "./Components/SolarSystemComponent";
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
         click here to see the Bransha Website
       </button>
       <div>
+        <ContainerScroll />
         <SolarSystemComponent />
+        <ScrollAnimationComponent />
       </div>
     </>
   );
