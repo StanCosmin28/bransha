@@ -99,7 +99,7 @@ export default function HeroScrollDemo() {
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
                 {/* Scroll Animations  */}
                 {/* MUNN Smart Home */}
-                {"Direct din Palma".toUpperCase()}
+                {"Direct din Palmă".toUpperCase()}
               </span>
             </h1>
           </>
