@@ -3,6 +3,7 @@
 import "./App.css";
 import ContainerScroll from "./Components/ContainerScroll";
 import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
+import SmartHomePanel from "./Components/SmartRoomComponent";
 import SolarSystemComponent from "./Components/SolarSystemComponent";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       </button>
       <div>
         <ContainerScroll />
+        <SmartHomePanel />
         <SolarSystemComponent />
         <ScrollAnimationComponent />
       </div>

@@ -69,7 +69,7 @@ export function Card({ rotate, scale, children }) {
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="max-w-5xl -mt-12 mx-auto xs:h-[15rem] sm:h-[30rem] md:h-[35rem] lg:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+      className="max-w-5xl -mt-12 mx-auto xs:h-[15rem] sm:h-[30rem] md:h-[35rem] lg:h-[45rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
     >
       <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4">
         {children}
@@ -86,21 +86,23 @@ export default function HeroScrollDemo() {
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Unleash the power of <br />
+              {/* Unleash the power of <br /> */}
+              {"Control total".toUpperCase()} <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
                 {/* Scroll Animations  */}
-                MUNN Smart Home
+                {/* MUNN Smart Home */}
+                {"Direct din Palma".toUpperCase()}
               </span>
             </h1>
           </>
         }
       >
         <img
-          src="https://i.pinimg.com/736x/4d/36/da/4d36da974cd5440932bbfd828dabe196.jpg"
+          src="public/munn_app.jpeg"
           alt="hero"
           height={720}
           width={1400}
-          className="mx-auto rounded-2xl object-cover h-full object-left-top z-100"
+          className="mx-auto rounded-2xl object-cover h-full object-top z-100"
           draggable={false}
         />
       </ContainerScroll>
