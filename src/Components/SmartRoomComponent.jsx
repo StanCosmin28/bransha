@@ -79,7 +79,8 @@ export default function SmartHomePanel() {
   const smartFeatures = [
     {
       id: 1,
-      name: "Illuminat artificial",
+      //   name: "Illuminat artificial",
+      name: "Illuminat A.",
       icon: <Lightbulb className="w-5 h-5" />,
       active: lightBrightness > 0,
       position: "top-left",
@@ -97,7 +98,8 @@ export default function SmartHomePanel() {
     },
     {
       id: 3,
-      name: "Senzor mișcare",
+      //   name: "Senzor mișcare",
+      name: "Mișcare",
       icon: <Activity className="w-5 h-5" />,
       active: motionDetected,
       position: "bottom-left",
@@ -115,7 +117,8 @@ export default function SmartHomePanel() {
     },
     {
       id: 5,
-      name: "Senzor fereastră",
+      //   name: "Senzor fereastră",
+      name: "Fereastră",
       icon: <Eye className="w-5 h-5" />,
       active: windowStatus === "open",
       position: "right",
@@ -124,7 +127,8 @@ export default function SmartHomePanel() {
     },
     {
       id: 6,
-      name: "Illuminat natural",
+      //   name: "Illuminat natural",
+      name: "Illuminat N.",
       icon: <Sun className="w-5 h-5" />,
       active: naturalLight > 50,
       position: "bottom-right",
