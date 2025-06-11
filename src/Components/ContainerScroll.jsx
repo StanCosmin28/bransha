@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
+import Aurora from "./Aurora";
 
 export function ContainerScroll({ titleComponent, children }) {
   const containerRef = useRef(null);
@@ -81,7 +82,14 @@ export function Card({ rotate, scale, children }) {
 // Demo component showing how to use ContainerScroll
 export default function HeroScrollDemo() {
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col overflow-hidden relative">
+      <Aurora
+        // colorStops={["#DCFC00", "#DCFC00", "#DCFC00"]}
+        colorStops={["#9747FF", "#9747FF", "#9747FF"]}
+        blend={1}
+        amplitude={1}
+        speed={0.5}
+      />
       <ContainerScroll
         titleComponent={
           <>

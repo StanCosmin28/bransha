@@ -12,16 +12,16 @@ function App() {
   }
   return (
     <>
-      <h1>Bransha</h1>
+      {/* <h1>Bransha</h1>
       <button onClick={() => stillInProgress()}>
         click here to see the Bransha Website
-      </button>
-      <div>
-        <ContainerScroll />
-        <SmartHomePanel />
-        <SolarSystemComponent />
-        <ScrollAnimationComponent />
-      </div>
+      </button> */}
+      {/* <div> */}
+      <ContainerScroll />
+      <SmartHomePanel />
+      <SolarSystemComponent />
+      <ScrollAnimationComponent />
+      {/* </div> */}
     </>
   );
 }

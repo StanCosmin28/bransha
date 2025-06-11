@@ -225,7 +225,8 @@ export default function SmartHomePanel() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://www.decorilla.com/online-decorating/wp-content/uploads/2024/11/smart-home-design-by-Decorilla-designer-Mena-H-scaled.jpeg')`,
+          //   backgroundImage: `url('https://www.decorilla.com/online-decorating/wp-content/uploads/2024/11/smart-home-design-by-Decorilla-designer-Mena-H-scaled.jpeg')`,
+          backgroundImage: `url('https://rvainterior.com/cdn/shop/articles/2150794684_1.jpg?v=1723820272')`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
@@ -234,7 +235,7 @@ export default function SmartHomePanel() {
       {/* Main Container - Max 5xl width */}
       <div className="relative w-full h-full max-w-4xl mx-auto">
         {/* Floating Status Bar */}
-        <div className="absolute top-6 sm:top-4 left-4 right-4 flex flex-row justify-between items-start sm:items-center z-50 gap-2 sm:gap-0">
+        <div className="absolute top-6 sm:top-8 left-4 right-4 flex flex-row justify-between items-start sm:items-center z-50 gap-2 sm:gap-0">
           <div className="flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 border border-white/20">
             <Wifi className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
             <span className="text-white text-xs sm:text-sm font-medium">
@@ -269,8 +270,8 @@ export default function SmartHomePanel() {
           >
             <div
               onClick={() => toggleFeature(feature.id)}
-              className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
-                feature.active ? "ring-2 ring-purple-400/50" : ""
+              className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/30 hover:border-[#DCFC00]/40 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+                feature.active ? "ring-1 ring-[#DCFC00]/40" : ""
               }`}
             >
               <div className="flex items-center space-x-2 sm:space-x-3">
