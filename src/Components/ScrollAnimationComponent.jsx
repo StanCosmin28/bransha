@@ -162,7 +162,7 @@ export default function ScrollAnimationComponent() {
         </div>
 
         {/* Progress indicator */}
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        {/* <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <div className="flex space-x-2">
             {rectangleData.map((_, index) => (
               <div
@@ -175,7 +175,7 @@ export default function ScrollAnimationComponent() {
               />
             ))}
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* Spacer after section */}
