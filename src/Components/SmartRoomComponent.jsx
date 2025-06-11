@@ -235,7 +235,7 @@ export default function SmartHomePanel() {
       <div className="relative w-full h-full max-w-4xl mx-auto">
         {/* Floating Status Bar */}
         <div className="absolute top-6 sm:top-4 left-4 right-4 flex flex-row justify-between items-start sm:items-center z-50 gap-2 sm:gap-0">
-          <div className="flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-md rounded-full px-3 sm:px-4 py-2 border border-white/20">
+          <div className="flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 border border-white/20">
             <Wifi className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
             <span className="text-white text-xs sm:text-sm font-medium">
               Connected
@@ -245,7 +245,7 @@ export default function SmartHomePanel() {
               {Math.round(energyUsage * 10)}%
             </span>
           </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-full px-3 sm:px-4 py-2 border border-white/20">
+          <div className="bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 border border-white/20">
             <span className="text-white text-xs sm:text-sm font-medium">
               {currentTime.toLocaleTimeString([], {
                 hour: "2-digit",
@@ -269,7 +269,7 @@ export default function SmartHomePanel() {
           >
             <div
               onClick={() => toggleFeature(feature.id)}
-              className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+              className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
                 feature.active ? "ring-2 ring-purple-400/50" : ""
               }`}
             >
@@ -301,7 +301,7 @@ export default function SmartHomePanel() {
               : "opacity-0 scale-95 pointer-events-none"
           }`}
         >
-          <div className="bg-white/15 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-white/30 shadow-2xl mx-4">
+          <div className="bg-white/15 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-white/30 shadow-2xl mx-4">
             <div className="flex flex-col items-center space-y-4 sm:space-y-6">
               {/* Circular Temperature Display */}
               <div className="relative">
@@ -378,7 +378,7 @@ export default function SmartHomePanel() {
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          <div className="bg-white/15 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/30 text-center">
+          <div className="bg-white/15 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/30 text-center">
             <h3 className="text-white font-bold text-base sm:text-lg mb-2">
               Control complet, fără efort
             </h3>
@@ -397,7 +397,7 @@ export default function SmartHomePanel() {
           <div className="flex flex-col items-center space-y-2">
             <button
               onClick={() => setIsPanelOpen(!isPanelOpen)}
-              className={`cursor-pointer relative w-38 h-14 sm:w-40 sm:h-16 rounded-full transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-purple-400/50 hover:scale-105 ${
+              className={`cursor-pointer relative w-38 h-14 sm:w-40 sm:h-16 rounded-full transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-[#DCFC00]/40 hover:scale-105 ${
                 isPanelOpen
                   ? "bg-gradient-to-r from-[#DCFC00] to-[#DCFC00] shadow-lg shadow-[#DCFC00]/25"
                   : "bg-white/20 backdrop-blur-sm border border-white/30"
@@ -664,7 +664,7 @@ export default function SmartHomePanel() {
 
 //       {/* Floating Status Bar */}
 //       <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-50">
-//         <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
+//         <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
 //           <Wifi className="w-4 h-4 text-green-400" />
 //           <span className="text-white text-sm font-medium">Connected</span>
 //           <Battery className="w-4 h-4 text-blue-400" />
@@ -672,7 +672,7 @@ export default function SmartHomePanel() {
 //             {Math.round(energyUsage * 10)}%
 //           </span>
 //         </div>
-//         <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20">
+//         <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
 //           <span className="text-white text-sm font-medium">
 //             {currentTime.toLocaleTimeString([], {
 //               hour: "2-digit",
@@ -696,7 +696,7 @@ export default function SmartHomePanel() {
 //               <div className="flex justify-center">
 //                 <div
 //                   onClick={() => toggleFeature(smartFeatures[0].id)}
-//                   className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+//                   className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
 //                     smartFeatures[0].active ? "ring-2 ring-purple-400/50" : ""
 //                   }`}
 //                 >
@@ -724,7 +724,7 @@ export default function SmartHomePanel() {
 //               <div className="flex justify-center">
 //                 <div
 //                   onClick={() => toggleFeature(smartFeatures[3].id)}
-//                   className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+//                   className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
 //                     smartFeatures[3].active ? "ring-2 ring-purple-400/50" : ""
 //                   }`}
 //                 >
@@ -756,7 +756,7 @@ export default function SmartHomePanel() {
 //               <div className="flex justify-center">
 //                 <div
 //                   onClick={() => toggleFeature(smartFeatures[1].id)}
-//                   className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+//                   className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
 //                     smartFeatures[1].active ? "ring-2 ring-purple-400/50" : ""
 //                   }`}
 //                 >
@@ -783,7 +783,7 @@ export default function SmartHomePanel() {
 
 //               {/* Central Temperature Control */}
 //               <div className="flex justify-center items-center">
-//                 <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-6 border border-white/30 shadow-2xl">
+//                 <div className="bg-white/15 backdrop-blur-sm rounded-3xl p-6 border border-white/30 shadow-2xl">
 //                   <div className="flex flex-col items-center space-y-4">
 //                     {/* Circular Temperature Display */}
 //                     <div className="relative">
@@ -853,7 +853,7 @@ export default function SmartHomePanel() {
 //               <div className="flex justify-center">
 //                 <div
 //                   onClick={() => toggleFeature(smartFeatures[4].id)}
-//                   className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+//                   className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
 //                     smartFeatures[4].active ? "ring-2 ring-purple-400/50" : ""
 //                   }`}
 //                 >
@@ -882,7 +882,7 @@ export default function SmartHomePanel() {
 //               <div className="flex justify-center">
 //                 <div
 //                   onClick={() => toggleFeature(smartFeatures[2].id)}
-//                   className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+//                   className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
 //                     smartFeatures[2].active ? "ring-2 ring-purple-400/50" : ""
 //                   }`}
 //                 >
@@ -913,7 +913,7 @@ export default function SmartHomePanel() {
 //               <div className="flex justify-center">
 //                 <div
 //                   onClick={() => toggleFeature(smartFeatures[5].id)}
-//                   className={`group cursor-pointer bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
+//                   className={`group cursor-pointer bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:bg-white/20 ${
 //                     smartFeatures[5].active ? "ring-2 ring-purple-400/50" : ""
 //                   }`}
 //                 >
@@ -950,7 +950,7 @@ export default function SmartHomePanel() {
 //             : "opacity-0 translate-y-4 pointer-events-none"
 //         }`}
 //       >
-//         <div className="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/30 text-center">
+//         <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 border border-white/30 text-center">
 //           <h3 className="text-white font-bold text-lg mb-2">
 //             Control complet, fără efort
 //           </h3>
