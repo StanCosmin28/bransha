@@ -220,7 +220,7 @@ export default function SmartHomePanel() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-amber-50 to-orange-100">
+    <div className="relative w-full min-h-[750px] h-screen overflow-hidden bg-gradient-to-br from-amber-50 to-orange-100">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -229,7 +229,11 @@ export default function SmartHomePanel() {
           backgroundImage: `url('https://rvainterior.com/cdn/shop/articles/2150794684_1.jpg?v=1723820272')`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
+        {isPanelOpen ? (
+          <div className="absolute inset-0 bg-gradient-to-bl from-black/80 via-transparent to-black/30"></div>
+        ) : (
+          ""
+        )}
       </div>
 
       {/* Main Container - Max 5xl width */}

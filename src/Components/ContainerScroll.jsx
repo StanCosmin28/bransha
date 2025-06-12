@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Aurora from "./Aurora";
+import data from "../Model/data";
 
 export function ContainerScroll({ titleComponent, children }) {
   const containerRef = useRef(null);
@@ -106,7 +107,7 @@ export default function HeroScrollDemo() {
         }
       >
         <img
-          src="public/munn_app.jpeg"
+          src={data.tabletImg}
           alt="hero"
           height={720}
           width={1400}
