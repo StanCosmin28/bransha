@@ -1,11 +1,11 @@
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import "./App.css";
 import AppleCardsCarousel from "./Components/AppleCardsCarousel";
 import ContainerScroll from "./Components/ContainerScroll";
-import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
+// import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
+// import BuildingAutomation from "./Components/SimpleBlockComponent";
 import SmartHomePanel from "./Components/SmartRoomComponent";
 import SolarSystemComponent from "./Components/SolarSystemComponent";
+import BuildingAutomation from "./Components/BuildingAutomation";
 
 function App() {
   // function stillInProgress() {
@@ -45,10 +45,11 @@ function App() {
       </button> */}
       {/* <div> */}
       <ContainerScroll />
+      <BuildingAutomation />
       <SmartHomePanel />
       <SolarSystemComponent />
       <AppleCardsCarousel cards={cardData} />
-      <ScrollAnimationComponent />
+      {/* <ScrollAnimationComponent /> */}
       {/* </div> */}
     </>
   );

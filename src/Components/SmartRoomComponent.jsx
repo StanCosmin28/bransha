@@ -27,7 +27,8 @@ export default function SmartHomePanel() {
   const [energyUsage, setEnergyUsage] = useState(2.4);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [lightBrightness, setLightBrightness] = useState(75);
-  const [rgbColor, setRgbColor] = useState({ r: 138, g: 43, b: 226 });
+  // const [rgbColor, setRgbColor] = useState({ r: 138, g: 43, b: 226 });
+  const [rgbColor, setRgbColor] = useState("Off");
   const [motionDetected, setMotionDetected] = useState(false);
   const [windowStatus, setWindowStatus] = useState("closed");
   const [hvacMode, setHvacMode] = useState("auto");
@@ -91,9 +92,10 @@ export default function SmartHomePanel() {
       id: 2,
       name: "RGB",
       icon: <Palette className="w-5 h-5" />,
-      active: true,
+      active: rgbColor === "Off" ? false : true,
       position: "left",
-      value: "Purple",
+      // value: "Purple",
+      value: rgbColor,
       color: "from-purple-400 to-pink-500",
     },
     {
@@ -160,6 +162,11 @@ export default function SmartHomePanel() {
     switch (featureId) {
       case 1: // Artificial Light
         setLightBrightness((prev) => (prev > 0 ? 0 : 75));
+        break;
+      case 2:
+        setRgbColor((prev) =>
+          prev === "Off" ? "Green" : prev === "Green" ? "Red" : "Off"
+        );
         break;
       case 3: // Motion Sensor
         setMotionDetected(!motionDetected);

@@ -7,6 +7,7 @@ import {
   Moon,
   Globe,
 } from "lucide-react";
+import data from "../Model/data";
 
 export default function SolarSystemComponent() {
   const orbitalRings = [
@@ -71,7 +72,7 @@ export default function SolarSystemComponent() {
   );
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-white overflow-hidden">
+    <div className="relative w-full h-screen flex items-center justify-center bg-transparent overflow-hidden">
       <style>{`
         ${orbitalRings
           .map((ring) =>
@@ -107,7 +108,8 @@ export default function SolarSystemComponent() {
         {/* Central Sun/Logo */}
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
           <div className="w-24 h-24 bg-gradient-to-br from-lime-400 to-lime-500 rounded-full shadow-2xl flex items-center justify-center">
-            <Rocket size={36} className="text-white" />
+            {/* <Rocket size={36} className="text-white" /> */}
+            <img src={data.munn} className="w-20 h-20 text-white" alt="MUNN" />
           </div>
         </div>
 
