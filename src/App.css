@@ -6,3 +6,13 @@
   text-align: center;
   box-sizing: border-box;
 }
+.bg-test {
+  background: RGBA(174, 119, 247, 0);
+  background: radial-gradient(
+    circle,
+    rgba(174, 119, 247, 0.3) 1%,
+    rgba(174, 119, 247, 0) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  color: rgba(255, 255, 255, 0.5);
+}

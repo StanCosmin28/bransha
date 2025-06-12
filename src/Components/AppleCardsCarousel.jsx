@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import Particles from "./Particles";
 
 const Card = ({ card, index, observer }) => {
   const cardRef = useRef(null);
@@ -17,14 +18,14 @@ const Card = ({ card, index, observer }) => {
   return (
     <div
       ref={cardRef}
-      className="flex-shrink-0 opacity-0 translate-y-5 xl:first:pl-10 xl:last:pr-15 lg:last:pr-10 lg:first:pl-5 md:first:pl-5 md:last:pr-10 last:pr-5"
+      className="relative flex-shrink-0 opacity-0 translate-y-5 xl:first:pl-10 xl:last:pr-15 lg:last:pr-10 lg:first:pl-5 md:first:pl-5 md:last:pr-10 last:pr-5"
       style={{
         animationFillMode: "forwards",
       }}
     >
       <div className="relative h-80 w-56 md:h-[40rem] md:w-96 rounded-3xl bg-gray-100 dark:bg-neutral-900 transition-all duration-300 hover:shadow-xl cursor-pointer overflow-hidden">
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent hover:from-black/60 transition-all duration-300" />
-        <div className="relative z-20 p-6 h-full flex flex-col justify-end">
+        <div className="relative z-20 p-6 flex flex-col justify-end">
           <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90 hover:opacity-100 transition-opacity duration-300">
             {card.category}
           </p>
@@ -38,6 +39,21 @@ const Card = ({ card, index, observer }) => {
           className="absolute inset-0 h-full w-full object-cover transition-all duration-450 hover:scale-115 overflow-hidden"
           loading="lazy"
         />
+        {/* <div className="absolute w-2 h-2 bg-purple-400 rounded-full animate-pulse-slow opacity-50 top-1/4 left-1/4"></div>
+        <div className="absolute w-1 h-1 bg-lime-300 rounded-full animate-pulse-fast opacity-30 top-3/4 right-1/3"></div>
+        <div className="absolute w-3 h-3 bg-white rounded-full animate-pulse-slow opacity-20 bottom-1/3 left-2/3"></div>
+        <div className="absolute inset-0 pointer-events-none">
+          <Particles
+            particleColors={["#ffffff80", "#ffffff80"]}
+            particleCount={200}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover={true}
+            alphaParticles={false}
+            disableRotation={false}
+          />
+        </div> */}
       </div>
     </div>
   );
@@ -89,7 +105,7 @@ const AppleCardsCarousel = ({ cards = [] }) => {
   }, []);
 
   return (
-    <div className="w-full py-10">
+    <div className="w-full py-10 bg-white">
       <div className="relative w-full">
         <div
           ref={carouselRef}

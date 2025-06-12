@@ -1,4 +1,4 @@
-export default function BuildingAutomation() {
+export default function SimpleBlockComponent() {
   return (
     <div className="h-[50vh] flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-50 text-center p-4">
       <div className="max-w-3xl">

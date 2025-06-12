@@ -2,10 +2,11 @@ import "./App.css";
 import AppleCardsCarousel from "./Components/AppleCardsCarousel";
 import ContainerScroll from "./Components/ContainerScroll";
 // import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
-// import BuildingAutomation from "./Components/SimpleBlockComponent";
 import SmartHomePanel from "./Components/SmartRoomComponent";
-import SolarSystemComponent from "./Components/SolarSystemComponent";
-import BuildingAutomation from "./Components/BuildingAutomation";
+// import SolarSystemComponent from "./Components/SolarSystemComponent";
+import MUNNComponent from "./Components/MUNNComponent";
+import SimpleBlockComponent from "./Components/SimpleBlockComponent";
+// import ParticleBackgroundWrapper from "./Components/ParticleBackgroundWrapper";
 
 function App() {
   // function stillInProgress() {
@@ -44,11 +45,13 @@ function App() {
         click here to see the Bransha Website
       </button> */}
       {/* <div> */}
-      <ContainerScroll />
-      <BuildingAutomation />
+      <SimpleBlockComponent />
       <SmartHomePanel />
-      <SolarSystemComponent />
       <AppleCardsCarousel cards={cardData} />
+      {/* <ParticleBackgroundWrapper> */}
+      <ContainerScroll />
+      {/* </ParticleBackgroundWrapper> */}
+      <MUNNComponent />
       {/* <ScrollAnimationComponent /> */}
       {/* </div> */}
     </>

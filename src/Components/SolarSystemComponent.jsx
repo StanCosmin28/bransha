@@ -8,6 +8,7 @@ import {
   Globe,
 } from "lucide-react";
 import data from "../Model/data";
+import "../App.css";
 
 export default function SolarSystemComponent() {
   const orbitalRings = [
@@ -50,7 +51,7 @@ export default function SolarSystemComponent() {
           animation: `orbit-${radius}-${angle} ${duration}s linear infinite`,
         }}
       >
-        <div className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow cursor-pointer gap-2">
+        <div className="w-12 h-12 bg-[#DCFC00] rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow cursor-pointer gap-2">
           <Icon className="w-5 h-5 text-gray-700" />
           {/* <p className="text-xs text-gray-700 font-medium">{text}</p> */}
         </div>
@@ -67,12 +68,14 @@ export default function SolarSystemComponent() {
         left: "50%",
         top: "50%",
         transform: "translate(-50%, -50%)",
+        // background: RGBA(174, 119, 247, 0),
+        // background: radial-gradient(circle,rgba(174, 119, 247, 1) 1%, rgba(174, 119, 247, 0.5) 50%, rgba(0, 1, 71, 0.42) 100%)
       }}
     />
   );
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-transparent overflow-hidden">
+    <div className="relative w-full flex items-center justify-center bg-transparent h-100 sm:h-100 md:h-150 scale-60 sm:scale-80 lg:scale-90 xl:scale-100 bg-test">
       <style>{`
         ${orbitalRings
           .map((ring) =>
@@ -99,7 +102,7 @@ export default function SolarSystemComponent() {
           )
           .join("")}
       `}</style>
-      <div className="relative w-full h-full max-w-4xl max-h-4xl">
+      <div className="relative w-full h-full max-w-6xl max-h-6xl">
         {/* Orbital Ring Guides */}
         {orbitalRings.map((ring, index) => (
           <OrbitRing key={index} radius={ring.radius} />
@@ -107,9 +110,10 @@ export default function SolarSystemComponent() {
 
         {/* Central Sun/Logo */}
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="w-24 h-24 bg-gradient-to-br from-lime-400 to-lime-500 rounded-full shadow-2xl flex items-center justify-center">
+          <div className="w-24 h-24 bg-gradient-to-br  rounded-full shadow-2xl flex items-center justify-center">
+            {/* from-lime-400 to-lime-500 */}
             {/* <Rocket size={36} className="text-white" /> */}
-            <img src={data.munn} className="w-20 h-20 text-white" alt="MUNN" />
+            <img src={data.munn} className="w-25 h-25 text-white" alt="MUNN" />
           </div>
         </div>
 
