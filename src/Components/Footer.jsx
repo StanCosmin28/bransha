@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-white py-6 border-t border-gray-300 text-black">
+    <footer className="bg-white py-16 border-t border-gray-300 text-black ">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 ">
         <div className="h-auto w-full justify-between items-center">
           {/* Logo and Contact Button */}

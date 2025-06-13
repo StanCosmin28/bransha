@@ -332,7 +332,7 @@ export default function SmartHomePanel() {
                   onClick={() =>
                     setTargetTemp((prev) => Math.max(15, prev - 0.5))
                   }
-                  className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:scale-110 transition-transform shadow-lg"
+                  className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:scale-110 transition-transform shadow-lg cursor-pointer"
                 >
                   <Minus className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -346,7 +346,7 @@ export default function SmartHomePanel() {
                   onClick={() =>
                     setTargetTemp((prev) => Math.min(30, prev + 0.5))
                   }
-                  className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white hover:scale-110 transition-transform shadow-lg"
+                  className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white hover:scale-110 transition-transform shadow-lg cursor-pointer"
                 >
                   <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>

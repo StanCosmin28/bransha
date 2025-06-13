@@ -23,8 +23,8 @@ function App() {
       <ContainerScroll />
       <ScrollAnimationComponent />
       <MUNNComponent />
-      <TeamShowcase />
       <BuildingShowcase />
+      <TeamShowcase />
       <Footer />
       {/* </ParticleBackgroundWrapper> */}
     </>
