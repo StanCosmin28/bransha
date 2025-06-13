@@ -18,9 +18,9 @@ function App() {
       <AppleCardsCarousel cards={cardData} />
       {/* <ParticleBackgroundWrapper> */}
       <ContainerScroll />
-      {/* </ParticleBackgroundWrapper> */}
-      <MUNNComponent />
       <ScrollAnimationComponent />
+      <MUNNComponent />
+      {/* </ParticleBackgroundWrapper> */}
     </>
   );
 }
