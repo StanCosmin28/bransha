@@ -9,6 +9,9 @@ import SimpleBlockComponent from "./Components/SimpleBlockComponent";
 // import ParticleBackgroundWrapper from "./Components/ParticleBackgroundWrapper";
 
 import cardData from "./Model/cardData";
+import Footer from "./Components/Footer";
+import BuildingShowcase from "./Components/BuildingShowcase";
+import TeamShowcase from "./Components/TeamShowcase";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
       <ContainerScroll />
       <ScrollAnimationComponent />
       <MUNNComponent />
+      <TeamShowcase />
+      <BuildingShowcase />
+      <Footer />
       {/* </ParticleBackgroundWrapper> */}
     </>
   );
