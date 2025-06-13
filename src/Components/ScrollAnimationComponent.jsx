@@ -1,350 +1,545 @@
 // import { useState, useEffect, useRef } from "react";
 
 // export default function ScrollAnimationComponent() {
-//   const [visibleRectangles, setVisibleRectangles] = useState(new Set());
-//   const [isLeftFixed, setIsLeftFixed] = useState(false);
+//   const [activeCardIndex, setActiveCardIndex] = useState(0);
+//   const [isLeftVisible, setIsLeftVisible] = useState(false);
+//   const [cardVisibility, setCardVisibility] = useState(new Set());
 //   const sectionRef = useRef(null);
-//   const leftZoneRef = useRef(null);
-//   const rightRectRefs = useRef([]);
+//   const cardsRef = useRef([]);
+//   const leftSectionRef = useRef(null);
+//   const timeoutRef = useRef(null);
+
+//   const cards = [
+//     {
+//       title: "Soluții integrate",
+//       description:
+//         "Produse și softuri create și testate pentru a funcționa impecabil împreună, fără complicații.",
+//       color: "bg-gray-800",
+//       icon: "🛠️",
+//       accent: "bg-gray-700",
+//     },
+//     {
+//       title: "Reducerea costurilor",
+//       description:
+//         "Soluții inteligente care reduc semnificativ consumul și costurile operaționale lunare.",
+//       color: "bg-blue-900",
+//       icon: "💡",
+//       accent: "bg-blue-800",
+//     },
+//     {
+//       title: "Flexibilitate",
+//       description:
+//         "Soluții adaptabile pentru orice proiect, de la clădiri rezidențiale la parcuri industriale.",
+//       color: "bg-teal-900",
+//       icon: "🔄",
+//       accent: "bg-teal-800",
+//     },
+//     {
+//       title: "Control prin aplicație",
+//       description:
+//         "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
+//       color: "bg-[rgb(151,71,255)]", // #9747FF
+//       icon: "📱",
+//       accent: "bg-[rgb(135,63,230)]", // Slightly darker shade of #9747FF
+//     },
+//   ];
 
 //   useEffect(() => {
-//     const observerOptions = {
-//       root: null,
-//       rootMargin: "-20% 0px -20% 0px",
-//       threshold: [0, 0.25, 0.5, 0.75, 1],
-//     };
-
-//     // Observer for the main section to control left zone fixing
 //     const sectionObserver = new IntersectionObserver(
-//       (entries) => {
-//         entries.forEach((entry) => {
-//           setIsLeftFixed(entry.isIntersecting && entry.intersectionRatio > 0.1);
-//         });
+//       ([entry]) => {
+//         console.log(
+//           "Left panel visibility:",
+//           entry.isIntersecting,
+//           "Intersection ratio:",
+//           entry.intersectionRatio
+//         );
+//         setIsLeftVisible(entry.isIntersecting);
 //       },
 //       {
-//         root: null,
-//         rootMargin: "0px",
-//         threshold: [0, 0.1, 0.9, 1],
+//         threshold: 0.3,
+//         rootMargin: "0px 0px",
 //       }
 //     );
 
-//     // Observer for right rectangles
-//     const rectangleObserver = new IntersectionObserver((entries) => {
-//       setVisibleRectangles((prev) => {
-//         const newVisible = new Set(prev);
-//         entries.forEach((entry) => {
-//           const index = parseInt(entry.target.dataset.index);
-//           if (entry.isIntersecting) {
-//             newVisible.add(index);
-//           } else {
-//             newVisible.delete(index);
-//           }
-//         });
-//         return newVisible;
-//       });
-//     }, observerOptions);
+//     const cardObserver = new IntersectionObserver(
+//       (entries) => {
+//         setCardVisibility((prev) => {
+//           const newVisible = new Set(prev);
+//           let mostVisibleIndex = -1;
+//           let maxRatio = 0;
 
-//     // Observe section
+//           entries.forEach((entry) => {
+//             const index = Number(entry.target.getAttribute("data-index"));
+
+//             if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+//               newVisible.add(index);
+//               if (entry.intersectionRatio > maxRatio) {
+//                 maxRatio = entry.intersectionRatio;
+//                 mostVisibleIndex = index;
+//               }
+//             } else {
+//               newVisible.delete(index);
+//             }
+//           });
+
+//           if (mostVisibleIndex !== -1) {
+//             // Debounce activeCardIndex update
+//             if (timeoutRef.current) {
+//               clearTimeout(timeoutRef.current);
+//             }
+//             timeoutRef.current = setTimeout(() => {
+//               setActiveCardIndex(mostVisibleIndex);
+//             }, 200);
+//           }
+
+//           return newVisible;
+//         });
+//       },
+//       {
+//         threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+//         rootMargin: "-20% 0px -20% 0px",
+//       }
+//     );
+
 //     if (sectionRef.current) {
+//       console.log("Section ref assigned:", sectionRef.current);
 //       sectionObserver.observe(sectionRef.current);
+//     } else {
+//       console.error("Section ref is null");
 //     }
 
-//     // Observe right rectangles
-//     rightRectRefs.current.forEach((ref) => {
-//       if (ref) {
-//         rectangleObserver.observe(ref);
+//     cardsRef.current.forEach((card, index) => {
+//       if (card) {
+//         cardObserver.observe(card);
+//       } else {
+//         console.warn(`Card ref at index ${index} is null`);
 //       }
 //     });
 
 //     return () => {
+//       if (timeoutRef.current) {
+//         clearTimeout(timeoutRef.current);
+//       }
 //       sectionObserver.disconnect();
-//       rectangleObserver.disconnect();
+//       cardObserver.disconnect();
 //     };
 //   }, []);
 
-//   const rectangleData = [
-//     {
-//       title: "DESCRIPTION",
-//       description: "Cutting-edge solutions for modern challenges",
-//       color: "bg-black",
-//     },
-//     {
-//       title: "Innovation",
-//       description: "Cutting-edge solutions for modern challenges",
-//       color: "bg-blue-500",
-//     },
-//     {
-//       title: "Design",
-//       description: "Beautiful and functional user experiences",
-//       color: "bg-purple-500",
-//     },
-//     {
-//       title: "Development",
-//       description: "Robust and scalable applications",
-//       color: "bg-green-500",
-//     },
-//     {
-//       title: "Success",
-//       description: "Delivering results that exceed expectations",
-//       color: "bg-orange-500",
-//     },
-//   ];
-
 //   return (
-//     <div className="scroll-snap-container">
-//       {/* Spacer before section */}
-//       {/* <div className="h-screen bg-gray-100 flex items-center justify-center">
-//         <h1 className="text-4xl md:text-6xl font-bold text-gray-800">
-//           Scroll Down to Begin
-//         </h1>
-//       </div> */}
-
-//       {/* Main animated section */}
-//       <section
-//         ref={sectionRef}
-//         className="min-h-[200vh] relative scroll-snap-start bg-white"
-//       >
-//         {/* Left Zone - Fixed Rectangle */}
-//         <div
-//           className={`${
-//             isLeftFixed ? "fixed" : "absolute"
-//           } z-10 top-1/2 left-4 md:left-8 lg:left-16 transform -translate-y-1/2 w-72 md:w-80 lg:w-96 h-64 md:h-72 lg:h-80transition-all duration-700 ease-out ${
-//             isLeftFixed ? "opacity-100 scale-100" : "opacity-0 scale-95"
-//           }`}
-//         >
-//           <div className="w-full h-full bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl shadow-2xl p-6 md:p-8 flex flex-col justify-center">
-//             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
-//               Our Journey
-//             </h2>
-//             <p className="text-indigo-100 text-sm md:text-base lg:text-lg leading-relaxed">
-//               Experience the evolution of our story through interactive elements
-//               that come alive as you explore our timeline.
-//             </p>
-//             <div className="mt-6 w-12 h-1 bg-white rounded-full"></div>
+//     <div className="relative w-full overflow-hidden bg-white">
+//       <section ref={sectionRef} className="min-h-[150vh] relative py-32">
+//         <div className="xl:hidden block">
+//           <div className="h-70 mx-auto relative w-full p-12 flex flex-col justify-center items-center">
+//             <div className="relative z-10">
+//               <h2 className="text-6xl font-bold text-black mb-6 leading-tight">
+//                 Cum te sprijinim?
+//               </h2>
+//               <p className="text-gray-800 text-2xl max-w-150 mb-8">
+//                 Tehnologie care lucrează pentru tine, nu invers. Simplu,
+//                 eficient și făcut să țină pasul cu nevoile tale.
+//               </p>
+//             </div>
 //           </div>
 //         </div>
-
-//         {/* Right Zone - Animated Rectangles */}
-//         <div className="absolute right-4 md:right-8 lg:right-16 top-0 w-72 md:w-80 lg:w-96 h-full flex flex-col justify-center space-y-8 md:space-y-12">
-//           {rectangleData.map((item, index) => (
-//             <div
-//               key={index}
-//               ref={(el) => (rightRectRefs.current[index] = el)}
-//               data-index={index}
-//               className={`w-full h-48 md:h-56 lg:h-64 rounded-2xl shadow-xl p-6 md:p-8 transition-all duration-700 ease-out transform ${
-//                 visibleRectangles.has(index)
-//                   ? "opacity-100 translate-x-0 scale-100"
-//                   : "opacity-0 translate-x-8 scale-95"
-//               } ${
-//                 item.color
-//               } text-whitehover:scale-105 hover:shadow-2xl cursor-pointer`}
-//               style={{
-//                 transitionDelay: visibleRectangles.has(index)
-//                   ? `${index * 100}ms`
-//                   : "0ms",
-//               }}
-//             >
-//               <div className="h-full flex flex-col justify-center">
-//                 <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">
-//                   {item.title}
-//                 </h3>
-//                 <p className="text-sm md:text-base opacity-90 leading-relaxed">
-//                   {item.description}
+//         <div
+//           ref={leftSectionRef}
+//           className={`
+//             hidden xl:block fixed z-50 left-12 top-1/2 -translate-y-1/2 w-[420px]
+//             transition-all duration-500 ease-out
+//             ${
+//               isLeftVisible
+//                 ? "opacity-100 translate-x-0"
+//                 : "opacity-0 -translate-x-[100%]"
+//             }
+//           `}
+//         >
+//           <div className="relative">
+//             <div className="min-h-150 relative w-full aspect-square rounded-3xl shadow-xl bg-gray-800 p-12 flex flex-col justify-center overflow-hidden">
+//               <div className="relative z-10">
+//                 {/* Dynamic emoji with transition */}
+//                 <div className="text-6xl mb-8 transition-opacity duration-300 ease-out">
+//                   {cards[activeCardIndex]?.icon || "🛠️"}
+//                 </div>
+//                 <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+//                   Cum te sprijinim?
+//                 </h2>
+//                 <p className="text-gray-200 text-lg leading-relaxed mb-8">
+//                   Tehnologie care lucrează pentru tine, nu invers. Simplu,
+//                   eficient și făcut să țină pasul cu nevoile tale.
 //                 </p>
-//                 <div className="mt-4 md:mt-6 flex items-center">
-//                   <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-//                     <span className="text-xs font-bold">{index + 1}</span>
+
+//                 {/* Progress dots */}
+//                 <div className="flex items-center space-x-3 mb-8">
+//                   {cards.map((_, idx) => (
+//                     <div
+//                       key={idx}
+//                       className={`
+//                         h-2 rounded-full transition-all duration-500 ease-out
+//                         ${
+//                           idx === activeCardIndex
+//                             ? "w-12 bg-white shadow-lg"
+//                             : idx < activeCardIndex
+//                             ? "w-6 bg-white/70"
+//                             : "w-4 bg-white/30"
+//                         }
+//                       `}
+//                     />
+//                   ))}
+//                 </div>
+
+//                 {/* Step indicator with transition */}
+//                 <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20 transition-opacity duration-300 ease-out">
+//                   <div className="text-sm text-white/75 uppercase tracking-wider mb-1">
+//                     Pasul {activeCardIndex + 1} din {cards.length}
+//                   </div>
+//                   <div className="text-white font-semibold">
+//                     {cards[activeCardIndex]?.title}
 //                   </div>
 //                 </div>
+
+//                 {/* Static version (uncomment to remove dynamic emoji and steps) */}
+//                 {/*
+//                 <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+//                   Cum te sprijinim?
+//                 </h2>
+//                 <p className="text-gray-200 text-lg leading-relaxed">
+//                   Tehnologie care lucrează pentru tine, nu invers. Simplu,
+//                   eficient și făcut să țină pasul cu nevoile tale.
+//                 </p>
+//                 */}
 //               </div>
 //             </div>
-//           ))}
+//           </div>
 //         </div>
 
-//         {/* Progress indicator */}
-//         {/* <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-//           <div className="flex space-x-2">
-//             {rectangleData.map((_, index) => (
-//               <div
-//                 key={index}
-//                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-//                   visibleRectangles.has(index)
-//                     ? "bg-indigo-600 scale-125"
-//                     : "bg-gray-300"
-//                 }`}
-//               />
-//             ))}
-//           </div>
-//         </div> */}
-//       </section>
+//         <div className="w-full xl:ml-auto xl:w-3/5 xl:pl-16 px-6 lg:px-20">
+//           <div className="max-w-2xl mx-auto xl:mx-0 xl:max-w-3xl">
+//             {/*  */}
+//             {/* <div className="sm:hidden min-h-150 relative w-full aspect-square rounded-3xl shadow-xl bg-gray-800 p-12 flex flex-col justify-center overflow-hidden">
+//               <div className="relative z-10">
+//                 <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+//                   Cum te sprijinim?
+//                 </h2>
+//                 <p className="text-gray-200 text-lg leading-relaxed mb-8">
+//                   Tehnologie care lucrează pentru tine, nu invers. Simplu,
+//                   eficient și făcut să țină pasul cu nevoile tale.
+//                 </p>
+//               </div>
+//             </div> */}
+//             {/*  */}
+//             <div className="space-y-32 py-32">
+//               {cards.map((card, index) => (
+//                 <div
+//                   key={index}
+//                   ref={(el) => (cardsRef.current[index] = el)}
+//                   data-index={index}
+//                   className={`group relative w-full min-h-90 md:min-h-80 rounded-3xl shadow-xl overflow-hidden transform transition-all duration-700 ease-out
+//                     ${
+//                       cardVisibility.has(index)
+//                         ? "opacity-100 translate-x-0"
+//                         : "opacity-0 translate-x-24"
+//                     }
+//                     hover:shadow-2xl hover:-rotate-1 cursor-pointer
+//                   `}
+//                   style={{
+//                     transitionDelay: cardVisibility.has(index)
+//                       ? `${index * 150}ms`
+//                       : "0ms",
+//                   }}
+//                 >
+//                   <div className={`absolute inset-0 ${card.color}`}></div>
 
-//       {/* Spacer after section */}
-//       {/* <div className="h-screen bg-gray-100 flex items-center justify-center scroll-snap-end">
-//         <h2 className="text-4xl md:text-6xl font-bold text-gray-800">
-//           End of Journey
-//         </h2>
-//       </div> */}
+//                   <div className="absolute inset-0 opacity-20">
+//                     <div className="absolute top-8 right-8 w-32 h-32 bg-gray-400 rounded-full blur-2xl transition-transform duration-1000"></div>
+//                     <div className="absolute bottom-12 left-12 w-20 h-20 bg-gray-400 rounded-full blur-xl transition-transform duration-1000 delay-200"></div>
+//                   </div>
+
+//                   <div className="relative z-10 p-10 h-72 flex flex-col justify-between">
+//                     <div>
+//                       <div className="text-5xl mb-6 transform transition-transform duration-300">
+//                         {card.icon}
+//                       </div>
+//                       <h3 className="text-4xl font-bold text-white mb-4 leading-tight group-hover:translate-x-2 transition-transform duration-300">
+//                         {card.title}
+//                       </h3>
+//                       <p className="text-xl text-white/90 leading-relaxed group-hover:translate-x-1 transition-transform duration-300 delay-75">
+//                         {card.description}
+//                       </p>
+//                     </div>
+//                   </div>
+
+//                   <div
+//                     className={`absolute inset-0 ${card.accent} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+//                   ></div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
 //     </div>
 //   );
 // }
-
 import { useState, useEffect, useRef } from "react";
+import Particles from "./Particles";
 
 export default function ScrollAnimationComponent() {
-  const [visibleRectangles, setVisibleRectangles] = useState(new Set());
-  const [isLeftFixed, setIsLeftFixed] = useState(false);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [isLeftVisible, setIsLeftVisible] = useState(false);
+  const [cardVisibility, setCardVisibility] = useState(new Set());
   const sectionRef = useRef(null);
-  const leftZoneRef = useRef(null);
-  const rightRectRefs = useRef([]);
+  const cardsRef = useRef([]);
+  const leftSectionRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  const cards = [
+    {
+      title: "Soluții integrate",
+      description:
+        "Produse și softuri create și testate pentru a funcționa impecabil împreună, fără complicații.",
+      color: "bg-gray-800",
+      icon: "🛠️",
+      accent: "bg-gray-700",
+    },
+    {
+      title: "Reducerea costurilor",
+      description:
+        "Soluții inteligente care reduc semnificativ consumul și costurile operaționale lunare.",
+      color: "bg-blue-900",
+      icon: "💡",
+      accent: "bg-blue-800",
+    },
+    {
+      title: "Flexibilitate",
+      description:
+        "Soluții adaptabile pentru orice proiect, de la clădiri rezidențiale la parcuri industriale.",
+      color: "bg-teal-900",
+      icon: "🔄",
+      accent: "bg-teal-800",
+    },
+    {
+      title: "Control prin aplicație",
+      description:
+        "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
+      color: "bg-[rgb(151,71,255)]", // #9747FF
+      icon: "📱",
+      accent: "bg-[rgb(135,63,230)]", // Slightly darker shade of #9747FF
+    },
+  ];
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -20% 0px",
-      threshold: [0, 0.25, 0.5, 0.75, 1],
-    };
-
     const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsLeftFixed(entry.isIntersecting && entry.intersectionRatio > 0.1);
-        });
+      ([entry]) => {
+        console.log(
+          "Left panel visibility:",
+          entry.isIntersecting,
+          "Intersection ratio:",
+          entry.intersectionRatio
+        );
+        setIsLeftVisible(entry.isIntersecting);
       },
       {
-        root: null,
-        rootMargin: "0px",
-        threshold: [0, 0.1, 0.9, 1],
+        threshold: 0.3,
+        rootMargin: "0px 0px",
       }
     );
 
-    const rectangleObserver = new IntersectionObserver((entries) => {
-      setVisibleRectangles((prev) => {
-        const newVisible = new Set(prev);
-        entries.forEach((entry) => {
-          const index = parseInt(entry.target.dataset.index);
-          if (entry.isIntersecting) {
-            newVisible.add(index);
-          } else {
-            newVisible.delete(index);
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        setCardVisibility((prev) => {
+          const newVisible = new Set(prev);
+          let mostVisibleIndex = -1;
+          let maxRatio = 0;
+
+          entries.forEach((entry) => {
+            const index = Number(entry.target.getAttribute("data-index"));
+
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              newVisible.add(index);
+              if (entry.intersectionRatio > maxRatio) {
+                maxRatio = entry.intersectionRatio;
+                mostVisibleIndex = index;
+              }
+            }
+            // Removed deletion logic to keep cards visible
+          });
+
+          if (mostVisibleIndex !== -1) {
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+            timeoutRef.current = setTimeout(() => {
+              setActiveCardIndex(mostVisibleIndex);
+            }, 200);
           }
+
+          return newVisible;
         });
-        return newVisible;
-      });
-    }, observerOptions);
+      },
+      {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+        rootMargin: "-20% 0px -20% 0px",
+      }
+    );
 
     if (sectionRef.current) {
+      console.log("Section ref assigned:", sectionRef.current);
       sectionObserver.observe(sectionRef.current);
+    } else {
+      console.error("Section ref is null");
     }
 
-    rightRectRefs.current.forEach((ref) => {
-      if (ref) {
-        rectangleObserver.observe(ref);
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        cardObserver.observe(card);
+      } else {
+        console.warn(`Card ref at index ${index} is null`);
       }
     });
 
     return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       sectionObserver.disconnect();
-      rectangleObserver.disconnect();
+      cardObserver.disconnect();
     };
   }, []);
 
-  const rectangleData = [
-    {
-      title: "DESCRIPTION",
-      description: "Cutting-edge solutions for modern challenges",
-      color: "bg-black",
-    },
-    {
-      title: "Innovation",
-      description: "Cutting-edge solutions for modern challenges",
-      color: "bg-blue-500",
-    },
-    {
-      title: "Design",
-      description: "Beautiful and functional user experiences",
-      color: "bg-purple-500",
-    },
-    {
-      title: "Development",
-      description: "Robust and scalable applications",
-      color: "bg-green-500",
-    },
-    {
-      title: "Success",
-      description: "Delivering results that exceed expectations",
-      color: "bg-orange-500",
-    },
-  ];
-
   return (
-    <div className="scroll-snap-container">
-      <section
-        ref={sectionRef}
-        className="min-h-[200vh] relative scroll-snap-start bg-gradient-to-br from-gray-50 to-white"
-      >
-        {/* Left Zone - Fixed Rectangle (hidden on small screens, bigger on larger screens) */}
-        <div
-          ref={leftZoneRef}
-          className={`${
-            isLeftFixed ? "fixed" : "absolute"
-          } z-10 top-1/2 left-4 md:left-8 lg:left-16 transform -translate-y-1/2 w-80 md:w-96 lg:w-128 h-72 md:h-96 lg:h-128 transition-all duration-700 ease-out ${
-            isLeftFixed && window.innerWidth >= 768
-              ? "opacity-100 scale-100"
-              : "opacity-0 scale-95 hidden md:block"
-          }`}
-        >
-          <div className="w-full h-full bg-gradient-to-br from-indigo-600 to-purple-800 rounded-3xl shadow-xl p-8 flex flex-col justify-center text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Our Journey
-            </h2>
-            <p className="text-indigo-100 text-base md:text-lg lg:text-xl leading-relaxed">
-              Experience the evolution of our story through interactive elements
-              that come alive as you explore our timeline.
-            </p>
-            <div className="mt-8 w-16 h-2 bg-white rounded-full"></div>
+    <div className="relative w-full overflow-hidden bg-white">
+      <div className="absolute w-[100vw] h-[100%] z-100">
+        <Particles
+          particleColors={["#060010", "#060010"]}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+      <section ref={sectionRef} className="min-h-[150vh] relative py-32">
+        <div className="xl:hidden block">
+          <div className="h-70 mx-auto relative w-full p-12 flex flex-col justify-center items-center">
+            <div className="relative z-10">
+              <h2 className="text-6xl font-bold text-black mb-6 leading-tight">
+                Cum te sprijinim?
+              </h2>
+              <p className="text-gray-800 text-2xl max-w-150 mb-8">
+                Tehnologie care lucrează pentru tine, nu invers. Simplu,
+                eficient și făcut să țină pasul cu nevoile tale.
+              </p>
+            </div>
           </div>
         </div>
+        <div
+          ref={leftSectionRef}
+          className={`
+            hidden xl:block fixed z-50 left-12 top-1/2 -translate-y-1/2 w-[420px] 
+            transition-all duration-500 ease-out
+            ${
+              isLeftVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-[100%]"
+            }
+          `}
+        >
+          <div className="relative">
+            <div className="min-h-150 relative w-full aspect-square rounded-3xl shadow-xl bg-gray-800 p-12 flex flex-col justify-center overflow-hidden">
+              <div className="relative z-10">
+                <div className="text-6xl mb-8 transition-opacity duration-300 ease-out">
+                  {cards[activeCardIndex]?.icon || "🛠️"}
+                </div>
+                <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+                  Cum te sprijinim?
+                </h2>
+                <p className="text-gray-200 text-lg leading-relaxed mb-8">
+                  Tehnologie care lucrează pentru tine, nu invers. Simplu,
+                  eficient și făcut să țină pasul cu nevoile tale.
+                </p>
 
-        {/* Right Zone - Animated Rectangles (centered on small screens, bigger on larger screens) */}
-        <div className="absolute right-4 md:right-8 lg:right-16 top-0 h-full flex flex-col justify-center space-y-10 md:space-y-12">
-          <div
-            className={`w-80 md:w-96 lg:w-128 ${
-              window.innerWidth < 768 ? "flex-col items-center" : "flex-col"
-            }`}
-          >
-            {rectangleData.map((item, index) => (
-              <div
-                key={index}
-                ref={(el) => (rightRectRefs.current[index] = el)}
-                data-index={index}
-                className={`w-full h-60 md:h-72 lg:h-80 rounded-3xl shadow-2xl p-8 transition-all duration-700 ease-out transform ${
-                  visibleRectangles.has(index)
-                    ? "opacity-100 translate-x-0 scale-100"
-                    : "opacity-0 translate-x-8 scale-95"
-                } ${
-                  item.color
-                } text-white hover:scale-105 hover:shadow-3xl cursor-pointer`}
-                style={{
-                  transitionDelay: visibleRectangles.has(index)
-                    ? `${index * 100}ms`
-                    : "0ms",
-                }}
-              >
-                <div className="h-full flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-base md:text-lg opacity-90 leading-relaxed">
-                    {item.description}
-                  </p>
-                  <div className="mt-6 md:mt-8 flex items-center">
-                    <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                      <span className="text-sm font-bold">{index + 1}</span>
-                    </div>
+                <div className="flex items-center space-x-3 mb-8">
+                  {cards.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`
+                        h-2 rounded-full transition-all duration-500 ease-out
+                        ${
+                          idx === activeCardIndex
+                            ? "w-12 bg-white shadow-lg"
+                            : idx < activeCardIndex
+                            ? "w-6 bg-white/70"
+                            : "w-4 bg-white/30"
+                        }
+                      `}
+                    />
+                  ))}
+                </div>
+
+                <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20 transition-opacity duration-300 ease-out">
+                  <div className="text-sm text-white/75 uppercase tracking-wider mb-1">
+                    Pasul {activeCardIndex + 1} din {cards.length}
+                  </div>
+                  <div className="text-white font-semibold">
+                    {cards[activeCardIndex]?.title}
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full xl:ml-auto xl:w-3/5 xl:pl-16 px-6 lg:px-20">
+          <div className="max-w-2xl mx-auto xl:mx-0 xl:max-w-3xl">
+            <div className="space-y-32 py-32">
+              {cards.map((card, index) => (
+                <div
+                  key={index}
+                  ref={(el) => (cardsRef.current[index] = el)}
+                  data-index={index}
+                  className={`group relative w-full min-h-90 md:min-h-80 rounded-3xl shadow-xl overflow-hidden transform transition-all duration-700 ease-out
+                    ${
+                      cardVisibility.has(index)
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 translate-x-24"
+                    }
+                    hover:shadow-2xl hover:-rotate-1 cursor-pointer
+                  `}
+                  style={{
+                    transitionDelay: cardVisibility.has(index)
+                      ? `${index * 150}ms`
+                      : "0ms",
+                  }}
+                >
+                  <div className={`absolute inset-0 ${card.color}`}></div>
+
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-8 right-8 w-32 h-32 bg-gray-400 rounded-full blur-2xl transition-transform duration-1000"></div>
+                    <div className="absolute bottom-12 left-12 w-20 h-20 bg-gray-400 rounded-full blur-xl transition-transform duration-1000 delay-200"></div>
+                  </div>
+
+                  <div className="relative z-10 p-10 h-72 flex flex-col justify-between">
+                    <div>
+                      <div className="text-5xl mb-6 transform transition-transform duration-300">
+                        {card.icon}
+                      </div>
+                      <h3 className="text-4xl font-bold text-white mb-4 leading-tight group-hover:translate-x-2 transition-transform duration-300">
+                        {card.title}
+                      </h3>
+                      <p className="text-xl text-white/90 leading-relaxed group-hover:translate-x-1 transition-transform duration-300 delay-75">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    className={`absolute inset-0 ${card.accent} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                  ></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
