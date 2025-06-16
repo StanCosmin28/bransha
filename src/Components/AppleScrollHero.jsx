@@ -135,20 +135,19 @@ export default function AppleScrollHero({
     <div ref={containerRef} className="relative">
       <section
         ref={animationSectionRef}
-        className="relative h-[400vh] bg-gradient-to-b from-black via-gray-900 to-white"
+        className="relative h-[350vh] bg-gradient-to-b from-black via-gray-900 to-white"
       >
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
           <div
             ref={phoneRef}
             className="relative"
-            style={
-              {
-                //   transform: "translate3d(0, 0, 0) scale(13)",
-                //   willChange: "transform",
-                //   backfaceVisibility: "hidden",
-                //   perspective: "1000px",
-              }
-            }
+            style={{
+              //   transform: "translate3d(0, 0, 0) scale(7)",
+              transform: "translate3d(0, 0, 0)",
+              willChange: "transform",
+              backfaceVisibility: "hidden",
+              perspective: "1000px",
+            }}
           >
             <CustomPhoneSVG>
               <img
@@ -156,17 +155,15 @@ export default function AppleScrollHero({
                 alt={alt}
                 loading="lazy"
                 className="w-full h-full object-cover"
-                style={
-                  {
-                    //   transform: "translate3d(0, 0, 0)",
-                    //   willChange: "transform",
-                  }
-                }
+                style={{
+                  transform: "translate3d(0, 0, 0)",
+                  willChange: "transform",
+                }}
               />
-              <div className="opacity-75 text-[8px] xl:text-lg absolute top-35 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black font-black ">
-                BRANSHA
-              </div>
             </CustomPhoneSVG>
+            {/* <div className="opacity-75 text-[8px] xl:text-lg absolute top-35 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black font-black ">
+              BRANSHA
+            </div> */}
             <div
               className="absolute inset-0 rounded-[3rem] "
               style={{ transform: "translate3d(0, 0, 0)" }}
