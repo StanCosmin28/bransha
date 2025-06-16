@@ -25,7 +25,7 @@ function App() {
       <SimpleBlockComponent />
       {/* <SimpleBranshaComponent /> */}
       <SmartHomePanel />
-      <SimpleShowcaseComponent />
+      {/* <SimpleShowcaseComponent /> */}
       <AppleCardsCarousel cards={cardData} />
       {/* <ParticleBackgroundWrapper> */}
       <ContainerScroll />

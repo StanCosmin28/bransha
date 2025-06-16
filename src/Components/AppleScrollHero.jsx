@@ -176,7 +176,7 @@ export default function AppleScrollHero({
               <img
                 src={imageSrc}
                 alt={alt}
-                loading="lazy"
+                // loading="lazy"
                 className="w-full h-full object-cover"
                 style={{
                   transform: "translate3d(0, 0, 0)",
