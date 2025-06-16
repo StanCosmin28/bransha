@@ -126,7 +126,7 @@ export default function ScrollAnimationComponent() {
 
   return (
     <div className="relative w-full overflow-hidden bg-white">
-      <div className="absolute w-[100vw] h-[100%] z-100">
+      {/* <div className="absolute w-[100vw] h-[100%] z-100">
         <Particles
           particleColors={["#06001080", "#06001080"]}
           particleCount={200}
@@ -137,7 +137,7 @@ export default function ScrollAnimationComponent() {
           alphaParticles={false}
           disableRotation={false}
         />
-      </div>
+      </div> */}
       <section ref={sectionRef} className="min-h-[150vh] relative py-32">
         <div className="xl:hidden block">
           <div className="h-70 mx-auto relative w-full p-12 flex flex-col justify-center items-center">

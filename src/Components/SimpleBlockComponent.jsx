@@ -1,7 +1,8 @@
 export default function SimpleBlockComponent() {
   return (
-    <div className="min-h-screen">
-      <div className="h-[50vh] flex items-center justify-center bg-gradient-to-br bg-black text-center p-4">
+    // <div className="min-h-screen">
+    <div>
+      {/* <div className="h-[50vh] flex items-center justify-center bg-gradient-to-br bg-black text-center p-4">
         <section className="flex items-center justify-center relative overflow-hidden">
           <div className="text-center text-white z-10">
             <h1 className="text-6xl md:text-8xl font-thin tracking-tight mb-4">
@@ -12,8 +13,8 @@ export default function SimpleBlockComponent() {
             </p>
           </div>
         </section>
-      </div>
-      <div className="h-[50vh] flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-50 text-center p-4">
+      </div> */}
+      <div className="h-[50vh] flex items-center justify-center bg-white text-center p-4">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-bold text-gray-800 mb-3">
             Ce se întâmplă când automatizarea preia controlul unei clădiri?
