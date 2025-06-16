@@ -48,12 +48,12 @@ export default function ScrollAnimationComponent() {
   useEffect(() => {
     const sectionObserver = new IntersectionObserver(
       ([entry]) => {
-        console.log(
-          "Left panel visibility:",
-          entry.isIntersecting,
-          "Intersection ratio:",
-          entry.intersectionRatio
-        );
+        // console.log(
+        //   "Left panel visibility:",
+        //   entry.isIntersecting,
+        //   "Intersection ratio:",
+        //   entry.intersectionRatio
+        // );
         setIsLeftVisible(entry.isIntersecting);
       },
       {
@@ -101,7 +101,7 @@ export default function ScrollAnimationComponent() {
     );
 
     if (sectionRef.current) {
-      console.log("Section ref assigned:", sectionRef.current);
+      // console.log("Section ref assigned:", sectionRef.current);
       sectionObserver.observe(sectionRef.current);
     } else {
       console.error("Section ref is null");

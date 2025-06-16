@@ -233,10 +233,11 @@
 // }
 
 import data from "../Model/data";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 export default function AppleScrollHero({
-  imageSrc = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+  //   imageSrc = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+  imageSrc = "https://images.unsplash.com/photo-1720415353460-957325a7267d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   alt = "Premium Product",
   phoneSvg = data.iPhoneSVG,
   phoneWidth = 640,
@@ -296,7 +297,7 @@ export default function AppleScrollHero({
 
     const phoneScale = 8 - smoothProgress * widthVar;
 
-    console.log(widthVar, phoneScale);
+    // console.log(widthVar, phoneScale);
     // const phoneRotation = smoothProgress * 1.5; // 0 to 1.5 degrees
     // phoneRef.current.style.transform = `translate3d(0, 0, 0) scale(${phoneScale}) rotate(${phoneRotation}deg)`;
     phoneRef.current.style.transform = `translate3d(0, 0, 0) scale(${phoneScale})`;
@@ -375,7 +376,7 @@ export default function AppleScrollHero({
             ref={phoneRef}
             className="relative"
             style={{
-              transform: "translate3d(0, 0, 0)",
+              transform: "translate3d(0, 0, 0) scale(8)",
               willChange: "transform",
               backfaceVisibility: "hidden",
               perspective: "1000px",
@@ -392,7 +393,7 @@ export default function AppleScrollHero({
                   willChange: "transform",
                 }}
               />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black font-black">
                 BRANSHA x MUNN
               </div>
             </CustomPhoneSVG>
