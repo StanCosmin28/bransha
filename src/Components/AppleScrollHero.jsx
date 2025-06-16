@@ -334,7 +334,7 @@ export default function AppleScrollHero({
             loading="lazy"
           />
           <div
-            className="absolute rounded-[3rem] overflow-hidden"
+            className="absolute rounded-[3rem] overflow-hidden z-1000"
             style={{
               top: screenInset,
               left: screenInset,
@@ -393,8 +393,8 @@ export default function AppleScrollHero({
                   willChange: "transform",
                 }}
               />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black font-black">
-                BRANSHA x MUNN
+              <div className="opacity-75 text-[8px] xl:text-lg absolute top-35 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black font-black ">
+                BRANSHA
               </div>
             </CustomPhoneSVG>
             <div
