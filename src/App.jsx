@@ -21,11 +21,11 @@ function App() {
   return (
     <>
       {/* <LoadingWrapper timeoutMs={2000}> */}
+      <AppleScrollHero />
       <SimpleBlockComponent />
       {/* <SimpleBranshaComponent /> */}
-      <AppleScrollHero />
-      <SimpleShowcaseComponent />
       <SmartHomePanel />
+      <SimpleShowcaseComponent />
       <AppleCardsCarousel cards={cardData} />
       {/* <ParticleBackgroundWrapper> */}
       <ContainerScroll />

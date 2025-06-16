@@ -240,7 +240,7 @@ export default function AppleScrollHero({
   phoneSvg = data.iPhoneSVG,
   phoneWidth = 640,
   phoneHeight = 320,
-  screenInset = 20,
+  screenInset = 14,
 }) {
   const containerRef = useRef(null);
   const animationSectionRef = useRef(null);
@@ -298,13 +298,13 @@ export default function AppleScrollHero({
           style={{ width: phoneWidth, height: phoneHeight }}
         >
           <img
-            src={phoneSvg || "/placeholder.svg"}
+            src={phoneSvg}
             alt="Phone"
             className="w-full h-full"
             loading="lazy"
           />
           <div
-            className="absolute rounded-[2rem] overflow-hidden"
+            className="absolute rounded-[3rem] overflow-hidden"
             style={{
               top: screenInset,
               left: screenInset,
@@ -363,9 +363,12 @@ export default function AppleScrollHero({
                   willChange: "transform",
                 }}
               />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                BRANSHA x MUNN
+              </div>
             </CustomPhoneSVG>
             <div
-              className="absolute inset-0 rounded-[3rem] shadow-[0_35px_70px_rgba(0,0,0,0.3)]"
+              className="absolute inset-0 rounded-[3rem] "
               style={{ transform: "translate3d(0, 0, 0)" }}
             />
             <div
