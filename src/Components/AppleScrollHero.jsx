@@ -50,18 +50,41 @@ export default function AppleScrollHero({
     //7.2 for small screen
     //7.6 for mobile screen
 
-    const widthVar =
-      deviceWidth < 540
-        ? 7.6
-        : deviceWidth < 768
-        ? 7.2
-        : deviceWidth < 1024
-        ? 6.9
-        : deviceWidth < 1300
-        ? 6.5
-        : 6;
+    // const widthVar =
+    //   deviceWidth < 540
+    //     ? 7.6
+    //     : deviceWidth < 768
+    //     ? 7.2
+    //     : deviceWidth < 1024
+    //     ? 6.9
+    //     : deviceWidth < 1300
+    //     ? 6.5
+    //     : 6;
 
-    const phoneScale = 8 - smoothProgress * widthVar;
+    // const phoneScale = 8 - smoothProgress * widthVar;
+    const maxScale =
+      deviceWidth < 540
+        ? 3.5
+        : deviceWidth < 768
+        ? 4
+        : deviceWidth < 1024
+        ? 4.5
+        : deviceWidth < 1300
+        ? 5
+        : 5.5;
+
+    const scaleReduction =
+      deviceWidth < 540
+        ? 0.5
+        : deviceWidth < 768
+        ? 0.8
+        : deviceWidth < 1024
+        ? 1.1
+        : deviceWidth < 1300
+        ? 1.4
+        : 1.7;
+
+    const phoneScale = maxScale - smoothProgress * (maxScale - scaleReduction);
 
     // console.log(widthVar, phoneScale);
     // const phoneRotation = smoothProgress * 1.5; // 0 to 1.5 degrees
