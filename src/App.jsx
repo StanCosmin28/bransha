@@ -12,11 +12,19 @@ import cardData from "./Model/cardData";
 import Footer from "./Components/Footer";
 import BuildingShowcase from "./Components/BuildingShowcase";
 import TeamShowcase from "./Components/TeamShowcase";
+import AppleScrollHero from "./Components/AppleScrollHero";
+import LoadingWrapper from "./Components/LoadingWrapper";
+import SimpleBranshaComponent from "./Components/SimpleBranshaComponent";
+import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
 
 function App() {
   return (
     <>
+      {/* <LoadingWrapper timeoutMs={2000}> */}
       <SimpleBlockComponent />
+      {/* <SimpleBranshaComponent /> */}
+      <AppleScrollHero />
+      <SimpleShowcaseComponent />
       <SmartHomePanel />
       <AppleCardsCarousel cards={cardData} />
       {/* <ParticleBackgroundWrapper> */}
@@ -27,6 +35,7 @@ function App() {
       <TeamShowcase />
       <Footer />
       {/* </ParticleBackgroundWrapper> */}
+      {/* </LoadingWrapper> */}
     </>
   );
 }
