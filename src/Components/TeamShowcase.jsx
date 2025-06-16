@@ -1,3 +1,4 @@
+import data from "../Model/data";
 export default function TeamShowcase() {
   return (
     <section className="bg-gray-800 text-white py-12 px-4 lg:px-10">
@@ -19,7 +20,7 @@ export default function TeamShowcase() {
         {/* Illustration */}
         <div className="lg:w-3/5">
           <img
-            src="public/team.svg"
+            src={data.teamSVG}
             alt="Team Illustration"
             className="w-full h-auto rounded-lg"
           />
