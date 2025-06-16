@@ -376,7 +376,7 @@ export default function AppleScrollHero({
             ref={phoneRef}
             className="relative"
             style={{
-              transform: "translate3d(0, 0, 0) scale(8)",
+              transform: "translate3d(0, 0, 0) scale(13)",
               willChange: "transform",
               backfaceVisibility: "hidden",
               perspective: "1000px",
