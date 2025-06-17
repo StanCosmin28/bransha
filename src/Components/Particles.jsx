@@ -237,8 +237,8 @@ const Particles = ({
 
 export default Particles;
 
-// import { useEffect, useRef } from "react";
-// import gsap from "gsap";
+// import { useEffect, useRef, useMemo } from "react";
+// import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 
 // const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
 
@@ -251,11 +251,102 @@ export default Particles;
 //       .join("");
 //   }
 //   const int = parseInt(hex, 16);
-//   return {
-//     r: (int >> 16) & 255,
-//     g: (int >> 8) & 255,
-//     b: int & 255,
-//   };
+//   const r = ((int >> 16) & 255) / 255;
+//   const g = ((int >> 8) & 255) / 255;
+//   const b = (int & 255) / 255;
+//   return [r, g, b];
+// };
+
+// // Simplified vertex shader for mobile
+// const vertex = /* glsl */ `
+//   attribute vec3 position;
+//   attribute vec2 random;
+//   attribute vec3 color;
+
+//   uniform mat4 modelMatrix;
+//   uniform mat4 viewMatrix;
+//   uniform mat4 projectionMatrix;
+//   uniform float uTime;
+//   uniform float uSpread;
+//   uniform float uBaseSize;
+
+//   varying vec2 vRandom;
+//   varying vec3 vColor;
+
+//   void main() {
+//     vRandom = random;
+//     vColor = color;
+
+//     vec3 pos = position * uSpread;
+//     pos.z *= 5.0; // Reduced depth
+
+//     vec4 mPos = modelMatrix * vec4(pos, 1.0);
+
+//     // Simplified animation - fewer sin calculations
+//     float t = uTime * 0.5;
+//     mPos.x += sin(t + random.x * 6.28) * 0.8;
+//     mPos.y += cos(t + random.y * 6.28) * 0.8;
+
+//     vec4 mvPos = viewMatrix * mPos;
+//     gl_PointSize = uBaseSize / max(1.0, length(mvPos.xyz) * 0.1);
+//     gl_Position = projectionMatrix * mvPos;
+//   }
+// `;
+
+// // Simplified fragment shader for mobile
+// const fragment = /* glsl */ `
+//   precision mediump float; // Changed from highp to mediump for mobile
+
+//   uniform float uAlphaParticles;
+//   varying vec2 vRandom;
+//   varying vec3 vColor;
+
+//   void main() {
+//     vec2 uv = gl_PointCoord.xy;
+//     float d = distance(uv, vec2(0.5));
+
+//     if(uAlphaParticles < 0.5) {
+//       if(d > 0.5) discard;
+//       gl_FragColor = vec4(vColor, 1.0); // Simplified color calculation
+//     } else {
+//       float circle = smoothstep(0.5, 0.3, d);
+//       gl_FragColor = vec4(vColor, circle * 0.8);
+//     }
+//   }
+// `;
+
+// // Device detection utility
+// const getDevicePerformance = () => {
+//   const canvas = document.createElement("canvas");
+//   const gl =
+//     canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+
+//   if (!gl) return "low";
+
+//   const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+//   const renderer = debugInfo
+//     ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+//     : "";
+
+//   // Detect mobile devices
+//   const isMobile =
+//     /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+//       navigator.userAgent
+//     );
+//   const isLowEnd = /Android.*Chrome\/[1-5][0-9]|Android.*Chrome\/60/i.test(
+//     navigator.userAgent
+//   );
+
+//   // Check for low-end indicators
+//   if (
+//     isMobile ||
+//     isLowEnd ||
+//     (renderer.includes("Adreno") && !renderer.includes("Adreno 6"))
+//   ) {
+//     return "low";
+//   }
+
+//   return navigator.hardwareConcurrency > 4 ? "high" : "medium";
 // };
 
 // const Particles = ({
@@ -273,215 +364,251 @@ export default Particles;
 //   className,
 // }) => {
 //   const containerRef = useRef(null);
-//   const particlesRef = useRef([]);
 //   const mouseRef = useRef({ x: 0, y: 0 });
-//   const timeRef = useRef(0);
+//   const rafId = useRef(null);
+//   const lastFrameTime = useRef(0);
+
+//   // Memoize performance settings
+//   const performanceConfig = useMemo(() => {
+//     const devicePerf = getDevicePerformance();
+
+//     switch (devicePerf) {
+//       case "low":
+//         return {
+//           particleCount: Math.min(particleCount * 0.3, 60), // Drastically reduce particles on mobile
+//           targetFPS: 30,
+//           skipFrames: 2, // Skip every 2nd frame
+//           simplifiedShaders: true,
+//           disableRotation: true,
+//           particleBaseSize: particleBaseSize * 0.7,
+//         };
+//       case "medium":
+//         return {
+//           particleCount: Math.min(particleCount * 0.6, 120),
+//           targetFPS: 45,
+//           skipFrames: 1,
+//           simplifiedShaders: false,
+//           disableRotation: false,
+//           particleBaseSize: particleBaseSize * 0.85,
+//         };
+//       default: // high
+//         return {
+//           particleCount,
+//           targetFPS: 60,
+//           skipFrames: 0,
+//           simplifiedShaders: false,
+//           disableRotation,
+//           particleBaseSize,
+//         };
+//     }
+//   }, [particleCount, disableRotation, particleBaseSize]);
 
 //   useEffect(() => {
 //     const container = containerRef.current;
 //     if (!container) return;
 
-//     const width = container.clientWidth;
-//     const height = container.clientHeight;
+//     // WebGL context with mobile-optimized settings
+//     const renderer = new Renderer({
+//       depth: false,
+//       alpha: true,
+//       antialias: false, // Disable antialiasing on mobile
+//       powerPreference: "high-performance",
+//     });
+
+//     const gl = renderer.gl;
+//     container.appendChild(gl.canvas);
+//     gl.clearColor(0, 0, 0, 0);
+
+//     // Enable extensions for better mobile performance
+//     const extVAO = gl.getExtension("OES_vertex_array_object");
+//     const extInstancedArrays = gl.getExtension("ANGLE_instanced_arrays");
+
+//     const camera = new Camera(gl, { fov: 15 });
+//     camera.position.set(0, 0, cameraDistance);
+
+//     const resize = () => {
+//       const width = container.clientWidth;
+//       const height = container.clientHeight;
+
+//       // Limit resolution on mobile devices
+//       const pixelRatio = Math.min(
+//         window.devicePixelRatio,
+//         performanceConfig.targetFPS < 60 ? 1 : 2
+//       );
+
+//       renderer.setSize(width, height);
+//       gl.canvas.style.width = width + "px";
+//       gl.canvas.style.height = height + "px";
+
+//       camera.perspective({ aspect: width / height });
+//     };
+
+//     let resizeTimeout;
+//     const debouncedResize = () => {
+//       clearTimeout(resizeTimeout);
+//       resizeTimeout = setTimeout(resize, 100);
+//     };
+
+//     window.addEventListener("resize", debouncedResize, { passive: true });
+//     resize();
+
+//     // Throttled mouse move handler
+//     let mouseMoveTimeout;
+//     const handleMouseMove = (e) => {
+//       if (mouseMoveTimeout) return;
+
+//       mouseMoveTimeout = setTimeout(() => {
+//         const rect = container.getBoundingClientRect();
+//         const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+//         const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+//         mouseRef.current = { x, y };
+//         mouseMoveTimeout = null;
+//       }, 16); // ~60fps throttling
+//     };
+
+//     if (moveParticlesOnHover && performanceConfig.targetFPS >= 45) {
+//       container.addEventListener("mousemove", handleMouseMove, {
+//         passive: true,
+//       });
+//     }
+
+//     // Generate optimized particle data
+//     const count = performanceConfig.particleCount;
+//     const positions = new Float32Array(count * 3);
+//     const randoms = new Float32Array(count * 2); // Reduced from 4 to 2
+//     const colors = new Float32Array(count * 3);
 //     const palette =
 //       particleColors && particleColors.length > 0
 //         ? particleColors
 //         : defaultColors;
 
-//     // Create particles
-//     particlesRef.current = [];
-//     for (let i = 0; i < particleCount; i++) {
-//       const particle = document.createElement("div");
-//       particle.className = `absolute rounded-full pointer-events-none ${
-//         alphaParticles ? "opacity-60" : "opacity-100"
-//       }`;
-//       particle.style.transform = "translate(-50%, -50%)";
-//       container.appendChild(particle);
-//       particlesRef.current.push(particle);
-
-//       // Random position within a sphere
-//       let x, y, z, len;
-//       do {
-//         x = Math.random() * 2 - 1;
-//         y = Math.random() * 2 - 1;
-//         z = Math.random() * 2 - 1;
-//         len = x * x + y * y + z * z;
-//       } while (len > 1 || len === 0);
+//     // Pre-calculate particle positions for better performance
+//     for (let i = 0; i < count; i++) {
+//       // Use more efficient distribution
+//       const theta = Math.random() * Math.PI * 2;
+//       const phi = Math.acos(2 * Math.random() - 1);
 //       const r = Math.cbrt(Math.random());
-//       x *= r * particleSpread * (width / 20);
-//       y *= r * particleSpread * (height / 20);
-//       z *= r * particleSpread * (height / 20);
 
-//       // Random size
-//       const size =
-//         (particleBaseSize * (1 + sizeRandomness * (Math.random() - 0.5))) /
-//         (cameraDistance / 2);
-//       particle.style.width = `${size}px`;
-//       particle.style.height = `${size}px`;
+//       const x = r * Math.sin(phi) * Math.cos(theta);
+//       const y = r * Math.sin(phi) * Math.sin(theta);
+//       const z = r * Math.cos(phi);
 
-//       // Random color
-//       const color = hexToRgb(
-//         palette[Math.floor(Math.random() * palette.length)]
-//       );
-//       particle.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+//       positions.set([x, y, z], i * 3);
+//       randoms.set([Math.random(), Math.random()], i * 2);
 
-//       // Random animation properties
-//       const random = {
-//         x: Math.random(),
-//         y: Math.random(),
-//         z: Math.random(),
-//         w: Math.random(),
-//       };
-
-//       // Initial position
-//       gsap.set(particle, {
-//         left: "50%",
-//         top: "50%",
-//         x: x,
-//         y: y,
-//         z: z,
-//       });
-
-//       // Store initial position and randoms for animation
-//       particle._gsap = { x, y, z, random };
+//       const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
+//       colors.set(col, i * 3);
 //     }
 
-//     // Continuous animation loop
-//     const update = (time) => {
-//       timeRef.current = time * 0.001 * speed;
-//       particlesRef.current.forEach((particle) => {
-//         const { x, y, z, random } = particle._gsap;
-//         const t = timeRef.current;
-//         const newX =
-//           x +
-//           Math.sin(t * random.z + 6.28 * random.w) *
-//             (0.1 + 1.4 * random.x) *
-//             (width / 20);
-//         const newY =
-//           y +
-//           Math.sin(t * random.y + 6.28 * random.x) *
-//             (0.1 + 1.4 * random.w) *
-//             (height / 20);
-//         const newZ =
-//           z +
-//           Math.sin(t * random.w + 6.28 * random.y) *
-//             (0.1 + 1.4 * random.z) *
-//             (height / 20);
+//     const geometry = new Geometry(gl, {
+//       position: { size: 3, data: positions },
+//       random: { size: 2, data: randoms },
+//       color: { size: 3, data: colors },
+//     });
 
-//         const scale = cameraDistance / (cameraDistance - newZ / (height / 20));
-//         particle.style.transform = `translate(-50%, -50%) scale(${Math.max(
-//           0.1,
-//           scale
-//         )})`;
+//     const program = new Program(gl, {
+//       vertex,
+//       fragment,
+//       uniforms: {
+//         uTime: { value: 0 },
+//         uSpread: { value: particleSpread },
+//         uBaseSize: { value: performanceConfig.particleBaseSize },
+//         uAlphaParticles: { value: alphaParticles ? 1 : 0 },
+//       },
+//       transparent: true,
+//       depthTest: false,
+//       depthWrite: false,
+//     });
 
-//         gsap.set(particle, {
-//           x: newX,
-//           y: newY,
-//           z: newZ,
-//         });
+//     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
 
-//         // Color animation
-//         const color = hexToRgb(palette[Math.floor(random.x * palette.length)]);
-//         const colorOffset = 51 * Math.sin(t + random.y * 6.28);
-//         particle.style.backgroundColor = `rgb(${Math.min(
-//           255,
-//           color.r + colorOffset
-//         )}, ${Math.min(255, color.g + colorOffset)}, ${Math.min(
-//           255,
-//           color.b + colorOffset
-//         )})`;
-//       });
+//     let frameCount = 0;
+//     let elapsed = 0;
+//     const frameInterval = 1000 / performanceConfig.targetFPS;
 
-//       if (!disableRotation) {
-//         const rotX = Math.sin(t * 0.2) * 0.1;
-//         const rotY = Math.cos(t * 0.5) * 0.15;
-//         const rotZ = t * 0.01;
-//         particlesRef.current.forEach((particle) => {
-//           particle.style.transform += ` rotateX(${rotX}rad) rotateY(${rotY}rad) rotateZ(${rotZ}rad)`;
-//         });
+//     const update = (currentTime) => {
+//       rafId.current = requestAnimationFrame(update);
+
+//       // Frame skipping for low-end devices
+//       if (performanceConfig.skipFrames > 0) {
+//         frameCount++;
+//         if (frameCount % (performanceConfig.skipFrames + 1) !== 0) {
+//           return;
+//         }
 //       }
-//     };
 
-//     gsap.ticker.add(update);
-
-//     // Handle mouse move
-//     const handleMouseMove = (e) => {
-//       const rect = container.getBoundingClientRect();
-//       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-//       const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-//       mouseRef.current = { x, y };
-
-//       if (moveParticlesOnHover) {
-//         gsap.to(particlesRef.current, {
-//           x: (i, target) =>
-//             target._gsap.x -
-//             mouseRef.current.x * particleHoverFactor * (width / 20),
-//           y: (i, target) =>
-//             target._gsap.y -
-//             mouseRef.current.y * particleHoverFactor * (height / 20),
-//           duration: 0.3,
-//           ease: "power2.out",
-//         });
+//       // FPS limiting
+//       if (currentTime - lastFrameTime.current < frameInterval) {
+//         return;
 //       }
+
+//       const deltaTime = currentTime - lastFrameTime.current;
+//       lastFrameTime.current = currentTime;
+//       elapsed += deltaTime * speed;
+
+//       program.uniforms.uTime.value = elapsed * 0.001;
+
+//       // Simplified hover effect for mobile
+//       if (moveParticlesOnHover && performanceConfig.targetFPS >= 45) {
+//         particles.position.x = -mouseRef.current.x * particleHoverFactor * 0.5;
+//         particles.position.y = -mouseRef.current.y * particleHoverFactor * 0.5;
+//       }
+
+//       // Simplified rotation for mobile
+//       if (!performanceConfig.disableRotation) {
+//         const rotationSpeed = speed * 0.5;
+//         particles.rotation.z += 0.005 * rotationSpeed;
+
+//         // Only add complex rotation on higher-end devices
+//         if (performanceConfig.targetFPS >= 45) {
+//           particles.rotation.x = Math.sin(elapsed * 0.0001) * 0.05;
+//           particles.rotation.y = Math.cos(elapsed * 0.0002) * 0.075;
+//         }
+//       }
+
+//       renderer.render({ scene: particles, camera });
 //     };
 
-//     if (moveParticlesOnHover) {
-//       container.addEventListener("mousemove", handleMouseMove);
-//     }
-
-//     // Handle resize
-//     const resize = () => {
-//       const newWidth = container.clientWidth;
-//       const newHeight = container.clientHeight;
-//       particlesRef.current.forEach((particle) => {
-//         const { x, y, z } = particle._gsap;
-//         particle._gsap.x = x * (newWidth / width);
-//         particle._gsap.y = y * (newHeight / height);
-//         particle._gsap.z = z * (newHeight / height);
-//         gsap.set(particle, {
-//           left: "50%",
-//           top: "50%",
-//           x: particle._gsap.x,
-//           y: particle._gsap.y,
-//           z: particle._gsap.z,
-//         });
-//       });
-//     };
-//     window.addEventListener("resize", resize);
+//     rafId.current = requestAnimationFrame(update);
 
 //     return () => {
-//       gsap.ticker.remove(update);
+//       window.removeEventListener("resize", debouncedResize);
 //       if (moveParticlesOnHover) {
 //         container.removeEventListener("mousemove", handleMouseMove);
 //       }
-//       window.removeEventListener("resize", resize);
-//       gsap.killTweensOf(particlesRef.current);
-//       particlesRef.current.forEach((particle) =>
-//         container.removeChild(particle)
-//       );
-//       particlesRef.current = [];
+//       if (rafId.current) {
+//         cancelAnimationFrame(rafId.current);
+//       }
+//       clearTimeout(resizeTimeout);
+//       clearTimeout(mouseMoveTimeout);
+
+//       if (container.contains(gl.canvas)) {
+//         container.removeChild(gl.canvas);
+//       }
+
+//       // Clean up WebGL resources
+//       geometry.remove();
+//       program.remove();
 //     };
 //   }, [
-//     particleCount,
 //     particleSpread,
 //     speed,
-//     particleColors,
 //     moveParticlesOnHover,
 //     particleHoverFactor,
 //     alphaParticles,
-//     particleBaseSize,
-//     sizeRandomness,
 //     cameraDistance,
-//     disableRotation,
+//     performanceConfig,
+//     particleColors,
 //   ]);
 
 //   return (
 //     <div
 //       ref={containerRef}
-//       className={`relative w-full h-full overflow-hidden perspective-[${
-//         cameraDistance * 50
-//       }px] ${className}`}
-//       style={{ transformStyle: "preserve-3d" }}
+//       className={`relative w-full h-full ${className}`}
+//       style={{
+//         willChange: "transform",
+//         transform: "translateZ(0)", // Force hardware acceleration
+//       }}
 //     />
 //   );
 // };

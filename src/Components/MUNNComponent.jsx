@@ -1,5 +1,5 @@
 import SolarSystemComponent from "./SolarSystemComponent";
-import Particles from "./Particles";
+// import Particles from "./Particles";
 
 export default function MUNNComponent() {
   return (
@@ -20,7 +20,7 @@ export default function MUNNComponent() {
             alphaParticles={false}
             disableRotation={false}
           /> */}
-          <div className="absolute inset-0 w-full h-full z-0">
+          {/* <div className="absolute inset-0 w-full h-full z-0">
             <Particles
               width={window.innerWidth}
               height={window.innerHeight}
@@ -33,7 +33,7 @@ export default function MUNNComponent() {
               alphaParticles={false}
               disableRotation={false}
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Left Text Section */}
