@@ -127,7 +127,7 @@ export default function ScrollAnimationComponent() {
   return (
     <div className="relative w-full overflow-hidden bg-white">
       {/* <div className="absolute w-[100vw] h-[100%] z-100">
-        <Particles
+        
           particleColors={["#06001080", "#06001080"]}
           particleCount={200}
           particleSpread={10}

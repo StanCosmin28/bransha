@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import Aurora from "./Aurora";
 import data from "../Model/data";
+import Aurora from "./Aurora";
 import Particles from "./Particles";
 
 export function ContainerScroll({ titleComponent, children }) {
@@ -86,19 +86,22 @@ export default function HeroScrollDemo() {
   return (
     // <div className="flex flex-col overflow-hidden relative">
     <div className="flex flex-col min-h-screen bg-gradient-to-bl from-black via-gray-900 to-black overflow-hidden relative">
-      <Aurora
-        // colorStops={["#DCFC00", "#DCFC00", "#DCFC00"]}
-        colorStops={["#9747FF", "#9747FF", "#9747FF"]}
-        blend={1}
-        amplitude={1}
-        speed={0.5}
-      />
+      <div className="absolute inset-0 w-full h-full z-0">
+        <Aurora
+          width={window.innerWidth} // optional dacă ai modificat componenta să accepte
+          height={window.innerHeight}
+          colorStops={["#9747FF", "#9747FF", "#9747FF"]}
+          blend={1}
+          amplitude={1}
+          speed={0.5}
+        />
+      </div>
       {/* Styles Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute w-2 h-2 bg-purple-400 rounded-full animate-pulse-slow opacity-50 top-1/4 left-1/4"></div>
         <div className="absolute w-1 h-1 bg-lime-300 rounded-full animate-pulse-fast opacity-30 top-3/4 right-1/3"></div>
         <div className="absolute w-3 h-3 bg-white rounded-full animate-pulse-slow opacity-20 bottom-1/3 left-2/3"></div>
-        <Particles
+        {/* <Particles
           particleColors={["#ffffff", "#ffffff"]}
           particleCount={200}
           particleSpread={10}
@@ -107,7 +110,21 @@ export default function HeroScrollDemo() {
           moveParticlesOnHover={true}
           alphaParticles={false}
           disableRotation={false}
-        />
+        /> */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <Particles
+            width={window.innerWidth}
+            height={window.innerHeight}
+            particleColors={["#ffffff", "#ffffff"]}
+            particleCount={200}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover={true}
+            alphaParticles={false}
+            disableRotation={false}
+          />
+        </div>
       </div>
       <ContainerScroll
         titleComponent={

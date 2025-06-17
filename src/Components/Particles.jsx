@@ -22,7 +22,7 @@ const vertex = /* glsl */ `
   attribute vec3 position;
   attribute vec4 random;
   attribute vec3 color;
-  
+
   uniform mat4 modelMatrix;
   uniform mat4 viewMatrix;
   uniform mat4 projectionMatrix;
@@ -30,23 +30,23 @@ const vertex = /* glsl */ `
   uniform float uSpread;
   uniform float uBaseSize;
   uniform float uSizeRandomness;
-  
+
   varying vec4 vRandom;
   varying vec3 vColor;
-  
+
   void main() {
     vRandom = random;
     vColor = color;
-    
+
     vec3 pos = position * uSpread;
     pos.z *= 10.0;
-    
+
     vec4 mPos = modelMatrix * vec4(pos, 1.0);
     float t = uTime;
     mPos.x += sin(t * random.z + 6.28 * random.w) * mix(0.1, 1.5, random.x);
     mPos.y += sin(t * random.y + 6.28 * random.x) * mix(0.1, 1.5, random.w);
     mPos.z += sin(t * random.w + 6.28 * random.y) * mix(0.1, 1.5, random.z);
-    
+
     vec4 mvPos = viewMatrix * mPos;
     gl_PointSize = (uBaseSize * (1.0 + uSizeRandomness * (random.x - 0.5))) / length(mvPos.xyz);
     gl_Position = projectionMatrix * mvPos;
@@ -55,16 +55,16 @@ const vertex = /* glsl */ `
 
 const fragment = /* glsl */ `
   precision highp float;
-  
+
   uniform float uTime;
   uniform float uAlphaParticles;
   varying vec4 vRandom;
   varying vec3 vColor;
-  
+
   void main() {
     vec2 uv = gl_PointCoord.xy;
     float d = length(uv - vec2(0.5));
-    
+
     if(uAlphaParticles < 0.5) {
       if(d > 0.5) {
         discard;
@@ -236,3 +236,254 @@ const Particles = ({
 };
 
 export default Particles;
+
+// import { useEffect, useRef } from "react";
+// import gsap from "gsap";
+
+// const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
+
+// const hexToRgb = (hex) => {
+//   hex = hex.replace(/^#/, "");
+//   if (hex.length === 3) {
+//     hex = hex
+//       .split("")
+//       .map((c) => c + c)
+//       .join("");
+//   }
+//   const int = parseInt(hex, 16);
+//   return {
+//     r: (int >> 16) & 255,
+//     g: (int >> 8) & 255,
+//     b: int & 255,
+//   };
+// };
+
+// const Particles = ({
+//   particleCount = 200,
+//   particleSpread = 10,
+//   speed = 0.1,
+//   particleColors,
+//   moveParticlesOnHover = false,
+//   particleHoverFactor = 1,
+//   alphaParticles = false,
+//   particleBaseSize = 100,
+//   sizeRandomness = 1,
+//   cameraDistance = 20,
+//   disableRotation = false,
+//   className,
+// }) => {
+//   const containerRef = useRef(null);
+//   const particlesRef = useRef([]);
+//   const mouseRef = useRef({ x: 0, y: 0 });
+//   const timeRef = useRef(0);
+
+//   useEffect(() => {
+//     const container = containerRef.current;
+//     if (!container) return;
+
+//     const width = container.clientWidth;
+//     const height = container.clientHeight;
+//     const palette =
+//       particleColors && particleColors.length > 0
+//         ? particleColors
+//         : defaultColors;
+
+//     // Create particles
+//     particlesRef.current = [];
+//     for (let i = 0; i < particleCount; i++) {
+//       const particle = document.createElement("div");
+//       particle.className = `absolute rounded-full pointer-events-none ${
+//         alphaParticles ? "opacity-60" : "opacity-100"
+//       }`;
+//       particle.style.transform = "translate(-50%, -50%)";
+//       container.appendChild(particle);
+//       particlesRef.current.push(particle);
+
+//       // Random position within a sphere
+//       let x, y, z, len;
+//       do {
+//         x = Math.random() * 2 - 1;
+//         y = Math.random() * 2 - 1;
+//         z = Math.random() * 2 - 1;
+//         len = x * x + y * y + z * z;
+//       } while (len > 1 || len === 0);
+//       const r = Math.cbrt(Math.random());
+//       x *= r * particleSpread * (width / 20);
+//       y *= r * particleSpread * (height / 20);
+//       z *= r * particleSpread * (height / 20);
+
+//       // Random size
+//       const size =
+//         (particleBaseSize * (1 + sizeRandomness * (Math.random() - 0.5))) /
+//         (cameraDistance / 2);
+//       particle.style.width = `${size}px`;
+//       particle.style.height = `${size}px`;
+
+//       // Random color
+//       const color = hexToRgb(
+//         palette[Math.floor(Math.random() * palette.length)]
+//       );
+//       particle.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+
+//       // Random animation properties
+//       const random = {
+//         x: Math.random(),
+//         y: Math.random(),
+//         z: Math.random(),
+//         w: Math.random(),
+//       };
+
+//       // Initial position
+//       gsap.set(particle, {
+//         left: "50%",
+//         top: "50%",
+//         x: x,
+//         y: y,
+//         z: z,
+//       });
+
+//       // Store initial position and randoms for animation
+//       particle._gsap = { x, y, z, random };
+//     }
+
+//     // Continuous animation loop
+//     const update = (time) => {
+//       timeRef.current = time * 0.001 * speed;
+//       particlesRef.current.forEach((particle) => {
+//         const { x, y, z, random } = particle._gsap;
+//         const t = timeRef.current;
+//         const newX =
+//           x +
+//           Math.sin(t * random.z + 6.28 * random.w) *
+//             (0.1 + 1.4 * random.x) *
+//             (width / 20);
+//         const newY =
+//           y +
+//           Math.sin(t * random.y + 6.28 * random.x) *
+//             (0.1 + 1.4 * random.w) *
+//             (height / 20);
+//         const newZ =
+//           z +
+//           Math.sin(t * random.w + 6.28 * random.y) *
+//             (0.1 + 1.4 * random.z) *
+//             (height / 20);
+
+//         const scale = cameraDistance / (cameraDistance - newZ / (height / 20));
+//         particle.style.transform = `translate(-50%, -50%) scale(${Math.max(
+//           0.1,
+//           scale
+//         )})`;
+
+//         gsap.set(particle, {
+//           x: newX,
+//           y: newY,
+//           z: newZ,
+//         });
+
+//         // Color animation
+//         const color = hexToRgb(palette[Math.floor(random.x * palette.length)]);
+//         const colorOffset = 51 * Math.sin(t + random.y * 6.28);
+//         particle.style.backgroundColor = `rgb(${Math.min(
+//           255,
+//           color.r + colorOffset
+//         )}, ${Math.min(255, color.g + colorOffset)}, ${Math.min(
+//           255,
+//           color.b + colorOffset
+//         )})`;
+//       });
+
+//       if (!disableRotation) {
+//         const rotX = Math.sin(t * 0.2) * 0.1;
+//         const rotY = Math.cos(t * 0.5) * 0.15;
+//         const rotZ = t * 0.01;
+//         particlesRef.current.forEach((particle) => {
+//           particle.style.transform += ` rotateX(${rotX}rad) rotateY(${rotY}rad) rotateZ(${rotZ}rad)`;
+//         });
+//       }
+//     };
+
+//     gsap.ticker.add(update);
+
+//     // Handle mouse move
+//     const handleMouseMove = (e) => {
+//       const rect = container.getBoundingClientRect();
+//       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+//       const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+//       mouseRef.current = { x, y };
+
+//       if (moveParticlesOnHover) {
+//         gsap.to(particlesRef.current, {
+//           x: (i, target) =>
+//             target._gsap.x -
+//             mouseRef.current.x * particleHoverFactor * (width / 20),
+//           y: (i, target) =>
+//             target._gsap.y -
+//             mouseRef.current.y * particleHoverFactor * (height / 20),
+//           duration: 0.3,
+//           ease: "power2.out",
+//         });
+//       }
+//     };
+
+//     if (moveParticlesOnHover) {
+//       container.addEventListener("mousemove", handleMouseMove);
+//     }
+
+//     // Handle resize
+//     const resize = () => {
+//       const newWidth = container.clientWidth;
+//       const newHeight = container.clientHeight;
+//       particlesRef.current.forEach((particle) => {
+//         const { x, y, z } = particle._gsap;
+//         particle._gsap.x = x * (newWidth / width);
+//         particle._gsap.y = y * (newHeight / height);
+//         particle._gsap.z = z * (newHeight / height);
+//         gsap.set(particle, {
+//           left: "50%",
+//           top: "50%",
+//           x: particle._gsap.x,
+//           y: particle._gsap.y,
+//           z: particle._gsap.z,
+//         });
+//       });
+//     };
+//     window.addEventListener("resize", resize);
+
+//     return () => {
+//       gsap.ticker.remove(update);
+//       if (moveParticlesOnHover) {
+//         container.removeEventListener("mousemove", handleMouseMove);
+//       }
+//       window.removeEventListener("resize", resize);
+//       gsap.killTweensOf(particlesRef.current);
+//       particlesRef.current.forEach((particle) =>
+//         container.removeChild(particle)
+//       );
+//       particlesRef.current = [];
+//     };
+//   }, [
+//     particleCount,
+//     particleSpread,
+//     speed,
+//     particleColors,
+//     moveParticlesOnHover,
+//     particleHoverFactor,
+//     alphaParticles,
+//     particleBaseSize,
+//     sizeRandomness,
+//     cameraDistance,
+//     disableRotation,
+//   ]);
+
+//   return (
+//     <div
+//       ref={containerRef}
+//       className={`relative w-full h-full overflow-hidden perspective-[${
+//         cameraDistance * 50
+//       }px] ${className}`}
+//       style={{ transformStyle: "preserve-3d" }}
+//     />
+//   );
+// };
+
+// export default Particles;

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import Particles from "./Particles";
+// import Particles from "./Particles";
 
 const Card = ({ card, index, observer }) => {
   const cardRef = useRef(null);

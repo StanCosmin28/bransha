@@ -1,5 +1,5 @@
 import data from "../Model/data";
-import { useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export default function AppleScrollHero({
   imageSrc = "https://images.unsplash.com/photo-1720415353460-957325a7267d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -11,7 +11,8 @@ export default function AppleScrollHero({
 }) {
   const containerRef = useRef(null);
   const animationSectionRef = useRef(null);
-  const progressRef = useRef(0);
+  // const progressRef = useRef(0);
+  const [progress, setProgress] = useState(0);
   const phoneRef = useRef(null);
 
   const updateScrollProgress = useCallback(() => {
@@ -30,7 +31,8 @@ export default function AppleScrollHero({
 
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
     const smoothProgress = easeOutCubic(progress);
-    progressRef.current = smoothProgress;
+    // progressRef.current = smoothProgress;
+    setProgress(smoothProgress);
 
     const deviceWidth = window.innerWidth;
 
@@ -118,7 +120,7 @@ export default function AppleScrollHero({
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
           <div
             ref={phoneRef}
-            className="relative"
+            className="relative will-change-transform"
             style={{
               transform: "translate3d(0, 0, 0)",
             }}
@@ -136,7 +138,7 @@ export default function AppleScrollHero({
             <div
               className="absolute inset-0 rounded-[3rem] bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-md"
               style={{
-                opacity: progressRef.current > 0.7 ? 0.5 : 0,
+                opacity: progress > 0.7 ? 0.5 : 0,
                 transition: "opacity 0.2s ease-out",
               }}
             />

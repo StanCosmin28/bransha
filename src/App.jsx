@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       {/* <LoadingWrapper timeoutMs={2000}> */}
-      {/* <AppleScrollHero /> */}
+      <AppleScrollHero />
       <SimpleBlockComponent />
       {/* <SimpleBranshaComponent /> */}
       <SmartHomePanel />
