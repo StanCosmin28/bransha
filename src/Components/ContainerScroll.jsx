@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import data from "../Model/data";
-import Aurora from "./Aurora";
+// import Aurora from "./Aurora";
 // import Particles from "./Particles";
 
 export function ContainerScroll({ titleComponent, children }) {
@@ -88,7 +88,7 @@ export default function HeroScrollDemo() {
     <div className="flex flex-col min-h-screen bg-gradient-to-bl from-black/10 via-gray-900 to-black overflow-hidden relative">
       <div className="absolute inset-0 w-full h-full z-[-10]">
         <img
-          src="public/aurora_bg.gif"
+          src={data.auroraBG}
           alt=""
           className="w-full h-full object-cover"
           loading="eager"
