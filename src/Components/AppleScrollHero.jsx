@@ -19,7 +19,7 @@ export default function AppleScrollHero({
     const getDeviceWidth = () => window.innerWidth;
     const deviceWidth = typeof window !== "undefined" ? getDeviceWidth() : 0;
 
-    if (deviceWidth < 480) return { max: 2.2, min: 0.4 };
+    if (deviceWidth < 480) return { max: 4, min: 0.4 };
     if (deviceWidth < 768) return { max: 2.8, min: 0.7 };
     if (deviceWidth < 1024) return { max: 3.5, min: 1.0 };
     return { max: 4.0, min: 1.5 };
