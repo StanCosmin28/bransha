@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-// import Particles from "./Particles";
+import cards from "../Model/cardData";
 
 const Card = ({ card, index, observer }) => {
   const cardRef = useRef(null);
@@ -39,27 +39,12 @@ const Card = ({ card, index, observer }) => {
           className="absolute inset-0 h-full w-full object-cover transition-all duration-450 hover:scale-115 overflow-hidden"
           loading="lazy"
         />
-        {/* <div className="absolute w-2 h-2 bg-purple-400 rounded-full animate-pulse-slow opacity-50 top-1/4 left-1/4"></div>
-        <div className="absolute w-1 h-1 bg-lime-300 rounded-full animate-pulse-fast opacity-30 top-3/4 right-1/3"></div>
-        <div className="absolute w-3 h-3 bg-white rounded-full animate-pulse-slow opacity-20 bottom-1/3 left-2/3"></div>
-        <div className="absolute inset-0 pointer-events-none">
-          <Particles
-            particleColors={["#ffffff80", "#ffffff80"]}
-            particleCount={200}
-            particleSpread={10}
-            speed={0.1}
-            particleBaseSize={100}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-          />
-        </div> */}
       </div>
     </div>
   );
 };
 
-const AppleCardsCarousel = ({ cards = [] }) => {
+const AppleCardsCarousel = () => {
   const carouselRef = useRef(null);
   const [canScroll, setCanScroll] = useState({ left: false, right: true });
   const observer = useRef(null);
@@ -96,7 +81,7 @@ const AppleCardsCarousel = ({ cards = [] }) => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     return () => {

@@ -1,181 +1,188 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import gsap from "gsap";
 
-export default function LoadingWrapper({ children, timeoutMs = 3000 }) {
+export default function LoadingWrapper({ children, timeoutMs = 30000 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
   const rafRef = useRef(null);
   const startTimeRef = useRef(Date.now());
-  const contentRef = useRef(null);
+  const transitionEndTimeoutRef = useRef(null);
+  const logoRef = useRef(null);
+  const progressTextRef = useRef(null);
+  const bgRef = useRef(null);
+
+  const easeInOutCubic = useCallback((t) => {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }, []);
+
+  const updateProgressAnimation = useCallback(() => {
+    if (!isLoading || isExiting) return;
+
+    const elapsed = Date.now() - startTimeRef.current;
+    const rawTargetProgress = Math.min(elapsed / timeoutMs, 1);
+    const easedTargetProgress = easeInOutCubic(rawTargetProgress);
+
+    progressRef.current += (easedTargetProgress - progressRef.current) * 0.05;
+    if (progressRef.current < 0.001 && rawTargetProgress > 0) {
+      progressRef.current = 0.001;
+    }
+
+    setProgress(Math.min(100, progressRef.current * 100));
+
+    if (progressRef.current < 0.999) {
+      rafRef.current = requestAnimationFrame(updateProgressAnimation);
+    } else {
+      setProgress(100);
+      setTimeout(() => setIsExiting(true), 200);
+    }
+  }, [isLoading, isExiting, timeoutMs, easeInOutCubic]);
+
+  const handleLoadingCompletion = useCallback(() => {
+    if (!isExiting && isLoading) {
+      if (progressRef.current < 1) {
+        progressRef.current = 1;
+        setProgress(100);
+      }
+      setTimeout(() => setIsExiting(true), 200);
+    }
+  }, [isExiting, isLoading]);
 
   useEffect(() => {
-    let timeoutId;
+    let loadTimeoutId;
+    rafRef.current = requestAnimationFrame(updateProgressAnimation);
 
-    const updateProgress = () => {
-      if (isLoading && !isExiting) {
-        const elapsed = Date.now() - startTimeRef.current;
-        const targetProgress = Math.min((elapsed / timeoutMs) * 100, 100);
+    if (document.readyState === "complete") {
+      handleLoadingCompletion();
+    } else {
+      window.addEventListener("load", handleLoadingCompletion, { once: true });
+    }
 
-        // Smooth easing function
-        const easeOutQuad = (t) => t * (2 - t);
-        progressRef.current +=
-          (targetProgress - progressRef.current) * easeOutQuad(0.1);
-        setProgress(progressRef.current);
-
-        if (progressRef.current < 99.9) {
-          rafRef.current = requestAnimationFrame(updateProgress);
-        } else {
-          setProgress(100);
-          setTimeout(() => {
-            setIsExiting(true);
-            setTimeout(() => setIsLoading(false), 1200); // Sync with burst animation
-          }, 300);
-        }
-      }
-    };
-
-    const handleLoad = () => {
-      const elapsed = Date.now() - startTimeRef.current;
-      const remainingTime = Math.max(0, timeoutMs - elapsed);
-      timeoutId = setTimeout(() => {
-        if (progressRef.current < 100) {
-          progressRef.current = 100;
-          setProgress(100);
-        }
-        setTimeout(() => {
-          setIsExiting(true);
-          setTimeout(() => setIsLoading(false), 1200);
-        }, 300);
-      }, remainingTime);
-    };
-
-    // Prefetch critical resources
-    const prefetchResources = () => {
-      const images = document.querySelectorAll("img");
-      images.forEach((img) => {
-        const src = img.getAttribute("data-src") || img.src;
-        if (src) new Image().src = src;
-      });
-      // Add font preloading if needed
-      const font = new FontFace("Inter", "url(/fonts/inter.woff2)");
-      font.load().catch(() => {});
-    };
-    prefetchResources();
-
-    rafRef.current = requestAnimationFrame(updateProgress);
-    if (document.readyState === "complete") handleLoad();
-    else window.addEventListener("load", handleLoad, { once: true });
-    timeoutId = setTimeout(handleLoad, timeoutMs);
+    loadTimeoutId = setTimeout(handleLoadingCompletion, timeoutMs);
 
     return () => {
-      window.removeEventListener("load", handleLoad);
-      clearTimeout(timeoutId);
+      window.removeEventListener("load", handleLoadingCompletion);
+      clearTimeout(loadTimeoutId);
+      clearTimeout(transitionEndTimeoutRef.current);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [timeoutMs]);
+  }, [timeoutMs, updateProgressAnimation, handleLoadingCompletion]);
+
+  useEffect(() => {
+    if (isExiting) {
+      gsap.to([logoRef.current, progressTextRef.current], {
+        opacity: 0,
+        scale: 0.95,
+        duration: 1,
+        ease: "power2.out",
+        stagger: 0.2,
+      });
+      gsap.to(bgRef.current, {
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        onComplete: () => setIsLoading(false),
+      });
+    } else {
+      gsap.fromTo(
+        logoRef.current,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 1, ease: "power2.out", delay: 0.2 }
+      );
+      gsap.fromTo(
+        progressTextRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.4 }
+      );
+    }
+  }, [isExiting]);
+
+  useEffect(() => {
+    const prefetchResources = () => {
+      document.querySelectorAll("img").forEach((img) => {
+        const src = img.getAttribute("data-src") || img.src;
+        if (src) {
+          const tempImg = new Image();
+          tempImg.src = src;
+        }
+      });
+
+      if (document.fonts) {
+        const interFont = new FontFace("Inter", "url(/fonts/inter.woff2)");
+        interFont
+          .load()
+          .then(() => document.fonts.add(interFont))
+          .catch(() => {});
+      }
+    };
+    prefetchResources();
+  }, []);
 
   if (isLoading) {
     return (
       <>
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-gray-950 to-black transition-all duration-1000 ${
-            isExiting ? "opacity-0 scale-110" : "opacity-100 scale-100"
-          }`}
+          ref={bgRef}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black transition-opacity duration-1500 ease-in-out will-change-opacity"
           role="alert"
           aria-live="polite"
-          aria-label="Loading BRANSHA application, please wait"
+          aria-label="Loading Smart Home Interface, please wait"
         >
-          {/* Subtle Grid Background */}
-          <div className="absolute inset-0 opacity-10">
+          {/* Subtle Particle Background */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px)`,
-                backgroundSize: "40px 40px",
-                animation: "grid-float 15s linear infinite",
+                backgroundImage: `radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)`,
+                animation: "pulse-bg 8s ease-in-out infinite",
               }}
             />
           </div>
 
-          {/* Main Content */}
-          <div
-            className={`relative z-10 text-center transition-all duration-1000 ${
-              isExiting ? "scale-110 opacity-0" : "scale-100 opacity-100"
-            }`}
-          >
-            {/* Glitchy BRANSHA Logo */}
-            <div className="relative mb-12">
-              <h1
-                className="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600/80 via-purple-600/80 to-pink-600/80 animate-glitch"
-                style={{
-                  textShadow:
-                    progress > 90 ? "0 0 20px rgba(59, 130, 246, 0.6)" : "none",
-                }}
-              >
-                BRANSHA
-              </h1>
-              <h1
-                className="absolute inset-0 text-6xl md:text-8xl font-extrabold text-red-500/30 opacity-0 animate-glitch-overlay"
-                style={{
-                  transform: `translate(${(Math.random() - 0.5) * 3}px, ${
-                    (Math.random() - 0.5) * 3
-                  }px)`,
-                  clipPath: "inset(0 0 70% 0)",
-                }}
-              >
-                BRANSHA
-              </h1>
-            </div>
-
-            {/* Sleek Progress Bar */}
-            <div className="relative w-80 md:w-96 mx-auto">
-              <div className="h-2 bg-gray-900/60 rounded-full overflow-hidden border border-gray-800/50 backdrop-blur-sm">
-                <div
-                  className="h-full bg-gradient-to-r from-blue-600/70 via-purple-600/70 to-pink-600/70 transition-all duration-300 ease-out relative overflow-hidden"
-                  style={{ width: `${progress}%` }}
-                >
-                  {/* Holographic Shimmer */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-holo" />
-                </div>
-              </div>
-            </div>
-
-            {/* Radial Burst on Exit */}
-            {isExiting && (
-              <div className="absolute inset-0 pointer-events-none">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-pink-600/30 animate-radial-burst"
-                  style={{
-                    background:
-                      "radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(147,51,234,0.3) 70%, transparent 100%)",
-                  }}
-                />
-                {[...Array(20)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-3 h-3 bg-gradient-to-r from-blue-600/50 to-purple-600/50 rounded-full animate-particle-burst"
-                    style={{
-                      left: "50%",
-                      top: "50%",
-                      transform: "translate(-50%, -50%)",
-                      animationDelay: `${i * 0.05}s`,
-                    }}
-                  />
-                ))}
-              </div>
-            )}
+          {/* Logo and Progress */}
+          <div className="relative z-10 flex flex-col items-center">
+            <h1
+              ref={logoRef}
+              className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600 animate-pulse-slow"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              BRANSHA
+            </h1>
+            <p
+              ref={progressTextRef}
+              className="mt-4 text-lg md:text-xl text-purple-400 font-medium"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              Initializing... {Math.round(progress)}%
+            </p>
           </div>
         </div>
-
-        {/* Hidden Content Preload */}
-        <div
-          ref={contentRef}
-          className="fixed inset-0 z-40 visibility-hidden"
-          style={{ visibility: "hidden" }}
-        >
+        <div className="fixed inset-0 z-40" style={{ visibility: "hidden" }}>
           {children}
         </div>
+        <style jsx>{`
+          @keyframes pulse-bg {
+            0%,
+            100% {
+              opacity: 0.1;
+            }
+            50% {
+              opacity: 0.15;
+            }
+          }
+          @keyframes pulse-slow {
+            0%,
+            100% {
+              opacity: 0.8;
+            }
+            50% {
+              opacity: 1;
+            }
+          }
+        `}</style>
       </>
     );
   }

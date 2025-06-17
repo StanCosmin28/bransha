@@ -39,21 +39,15 @@ export default function ScrollAnimationComponent() {
       title: "Control prin aplicație",
       description:
         "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
-      color: "bg-[rgb(151,71,255)]", // #9747FF
+      color: "bg-[rgb(151,71,255)]",
       icon: "📱",
-      accent: "bg-[rgb(135,63,230)]", // Slightly darker shade of #9747FF
+      accent: "bg-[rgb(135,63,230)]",
     },
   ];
 
   useEffect(() => {
     const sectionObserver = new IntersectionObserver(
       ([entry]) => {
-        // console.log(
-        //   "Left panel visibility:",
-        //   entry.isIntersecting,
-        //   "Intersection ratio:",
-        //   entry.intersectionRatio
-        // );
         setIsLeftVisible(entry.isIntersecting);
       },
       {
@@ -126,18 +120,6 @@ export default function ScrollAnimationComponent() {
 
   return (
     <div className="relative w-full overflow-hidden bg-white">
-      {/* <div className="absolute w-[100vw] h-[100%] z-100">
-        
-          particleColors={["#06001080", "#06001080"]}
-          particleCount={200}
-          particleSpread={10}
-          speed={0.1}
-          particleBaseSize={100}
-          moveParticlesOnHover={true}
-          alphaParticles={false}
-          disableRotation={false}
-        />
-      </div> */}
       <section ref={sectionRef} className="min-h-[150vh] relative py-32">
         <div className="xl:hidden block">
           <div className="h-70 mx-auto relative w-full p-12 flex flex-col justify-center items-center">

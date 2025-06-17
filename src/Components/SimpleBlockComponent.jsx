@@ -1,6 +1,5 @@
 export default function SimpleBlockComponent() {
   return (
-    // <div className="min-h-screen">
     <div>
       {/* <div className="h-[50vh] flex items-center justify-center bg-gradient-to-br bg-black text-center p-4">
         <section className="flex items-center justify-center relative overflow-hidden">
@@ -26,7 +25,6 @@ export default function SimpleBlockComponent() {
           <p className="text-sm text-gray-500">
             Descoperă cum ar putea funcționa și clădirea ta.
           </p>
-          {/* <div className="mt-4 h-1 w-12 bg-gray-400 rounded-full"></div> */}
         </div>
       </div>
     </div>
