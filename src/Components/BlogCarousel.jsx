@@ -133,7 +133,7 @@ export default function BlogCarousel({ posts = samplePosts }) {
           />
         </div>
       </div>
-      <style jsx>{`
+      <style jsx="true">{`
         @media only screen and (max-width: 360px) {
           .small-blog h2 {
             text-align: left;

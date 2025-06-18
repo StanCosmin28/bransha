@@ -17,7 +17,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Produse și softuri create și testate pentru a funcționa impecabil împreună, fără complicații.",
       color: "bg-gray-800",
-      icon: iconsSVG[0],
+      icon: iconsSVG.bransha,
       accent: "bg-gray-700",
     },
     {
@@ -25,7 +25,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Soluții inteligente care reduc semnificativ consumul și costurile operaționale lunare.",
       color: "bg-teal-900",
-      icon: iconsSVG[1],
+      icon: iconsSVG.analytics,
       accent: "bg-teal-800",
     },
     {
@@ -33,7 +33,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Soluții adaptabile pentru orice proiect, de la clădiri rezidențiale la parcuri industriale.",
       color: "bg-blue-900",
-      icon: iconsSVG[2],
+      icon: iconsSVG.building,
       accent: "bg-blue-800",
     },
     {
@@ -41,7 +41,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
       color: "bg-[rgb(151,71,255)]",
-      icon: iconsSVG[3],
+      icon: iconsSVG.munn,
       accent: "bg-[rgb(135,63,230)]",
     },
   ];
@@ -148,10 +148,18 @@ export default function ScrollAnimationComponent() {
           `}
         >
           <div className="relative">
-            <div className="min-h-150 relative w-full aspect-square rounded-3xl shadow-xl bg-gray-800 p-12 flex flex-col justify-center overflow-hidden">
+            <div
+              className={`min-h-150 relative w-full aspect-square rounded-3xl shadow-xl p-12 flex flex-col justify-center overflow-hidden ${
+                cards[activeCardIndex]?.accent || "bg-gray-700"
+              }`}
+            >
               <div className="relative z-10">
                 <div className="text-6xl mb-8 transition-opacity duration-300 ease-out">
-                  {cards[activeCardIndex]?.icon || "🛠️"}
+                  <img
+                    className="mx-auto"
+                    src={cards[activeCardIndex]?.icon || iconsSVG.bransha}
+                    alt=""
+                  />
                 </div>
                 <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
                   Cum te sprijinim?
@@ -224,7 +232,7 @@ export default function ScrollAnimationComponent() {
                   <div className="relative z-10 p-10 h-72 flex flex-col justify-between">
                     <div>
                       <div className="text-5xl mb-6 transform transition-transform duration-300">
-                        {card.icon}
+                        <img className="mx-auto" src={card.icon} alt="" />
                       </div>
                       <h3 className="text-4xl font-bold text-white mb-4 leading-tight group-hover:translate-x-2 transition-transform duration-300">
                         {card.title}
