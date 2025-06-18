@@ -11,6 +11,7 @@ import TeamShowcase from "./Components/TeamShowcase";
 import AppleScrollHero from "./Components/AppleScrollHero";
 import SimpleBranshaComponent from "./Components/SimpleBranshaComponent";
 import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
+import BlogCarousel from "./Components/BlogCarousel";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <MUNNComponent />
       <ScrollAnimationComponent />
       <BuildingShowcase />
+      <BlogCarousel />
       <TeamShowcase />
       <Footer />
       {/* </LoadingWrapper> */}
