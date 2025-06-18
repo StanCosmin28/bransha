@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Particles from "./Particles";
+import data from "../Model/data";
 
 export default function ScrollAnimationComponent() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -10,13 +10,14 @@ export default function ScrollAnimationComponent() {
   const leftSectionRef = useRef(null);
   const timeoutRef = useRef(null);
 
+  const { iconsSVG } = data;
   const cards = [
     {
       title: "Soluții integrate",
       description:
         "Produse și softuri create și testate pentru a funcționa impecabil împreună, fără complicații.",
       color: "bg-gray-800",
-      icon: "🛠️",
+      icon: iconsSVG[0],
       accent: "bg-gray-700",
     },
     {
@@ -24,7 +25,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Soluții inteligente care reduc semnificativ consumul și costurile operaționale lunare.",
       color: "bg-teal-900",
-      icon: "💸",
+      icon: iconsSVG[1],
       accent: "bg-teal-800",
     },
     {
@@ -32,7 +33,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Soluții adaptabile pentru orice proiect, de la clădiri rezidențiale la parcuri industriale.",
       color: "bg-blue-900",
-      icon: "🔄",
+      icon: iconsSVG[2],
       accent: "bg-blue-800",
     },
     {
@@ -40,7 +41,7 @@ export default function ScrollAnimationComponent() {
       description:
         "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
       color: "bg-[rgb(151,71,255)]",
-      icon: "📱",
+      icon: iconsSVG[3],
       accent: "bg-[rgb(135,63,230)]",
     },
   ];
@@ -193,7 +194,7 @@ export default function ScrollAnimationComponent() {
 
         <div className="w-full xl:ml-auto xl:w-3/5 xl:pl-16 px-6 lg:px-20">
           <div className="max-w-2xl mx-auto xl:mx-0 xl:max-w-3xl">
-            <div className="space-y-32 py-32">
+            <div className="space-y-10 md:space-y-20 py-20">
               {cards.map((card, index) => (
                 <div
                   key={index}
@@ -209,7 +210,7 @@ export default function ScrollAnimationComponent() {
                   `}
                   style={{
                     transitionDelay: cardVisibility.has(index)
-                      ? `${index * 150}ms`
+                      ? `${index * 100}ms`
                       : "0ms",
                   }}
                 >

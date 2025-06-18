@@ -6,6 +6,12 @@ const data = {
   iPhoneSVG: `${URL}/iphone_16.svg`,
   teamSVG: `${URL}/team.svg`,
   auroraBG: `${URL}/aurora_bg.gif`,
+  iconsSVG: {
+    bransha: `${URL}/bransha-icon.svg`,
+    analytics: `${URL}/analytics-icon.svg`,
+    building: `${URL}/building-icon.svg`,
+    munn: `${URL}/munn-icon.svg`,
+  },
 };
 
 export default data;
