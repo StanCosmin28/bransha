@@ -40,21 +40,60 @@ export default function SolarSystemComponent() {
     },
   ];
 
+  // const OrbitItem = ({ icon: Icon, radius, angle, duration, text }) => {
+  //   return (
+  //     <div
+  //       className="absolute w-12 h-12 flex items-center justify-center border-4 border-white rounded-full overflow-hidden"
+  //       style={{
+  //         transform: `translate(-50%, -50%)`,
+  //         left: "50%",
+  //         top: "50%",
+  //         animation: `orbit-${radius}-${angle} ${duration}s linear infinite`,
+  //       }}
+  //     >
+  //       <div className="w-12 h-12 bg-[#DCFC00] rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow cursor-pointer gap-2">
+  //         <Icon className="w-5 h-5 text-gray-700" />
+  //         {/* <p className="text-xs text-gray-700 font-medium">{text}</p> */}
+  //       </div>
+  //     </div>
+  //   );
+  // };
   const OrbitItem = ({ icon: Icon, radius, angle, duration, text }) => {
     return (
       <div
-        className="absolute w-12 h-12 flex items-center justify-center border-4 border-white rounded-full overflow-hidden"
+        className="absolute flex items-center border-4 border-white rounded-full overflow-hidden transition-all duration-300 ease-in-out w-12 h-12 hover:w-fit group"
         style={{
           transform: `translate(-50%, -50%)`,
+          transformOrigin: "left",
           left: "50%",
           top: "50%",
           animation: `orbit-${radius}-${angle} ${duration}s linear infinite`,
         }}
       >
-        <div className="w-12 h-12 bg-[#DCFC00] rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow cursor-pointer gap-2">
-          <Icon className="w-5 h-5 text-gray-700" />
-          {/* <p className="text-xs text-gray-700 font-medium">{text}</p> */}
+        <div
+          className="orbit-item-class h-full bg-[#DCFC00] rounded-full shadow-lg flex items-center border border-gray-200 hover:shadow-xl cursor-pointer transition-all duration-300 ease-in-out"
+          style={{
+            width: "48px",
+            transitionProperty: "width, box-shadow",
+          }}
+        >
+          <div className="orbit-item-class flex items-center w-full h-full">
+            {/* Icon container: Always centered (justify-center, items-center), smooth transition */}
+            <div className="orbit-item-class flex-shrink-0 w-10 h-10 flex items-center justify-center">
+              <Icon className="w-5 h-5 text-gray-700 " />
+            </div>
+            {/* Text: Initially hidden, appears on hover to the right */}
+            <p className="text-xs text-gray-700 font-medium hidden group-hover:block whitespace-nowrap pr-2">
+              {text}
+            </p>
+          </div>
         </div>
+        {/* Hover width extension */}
+        <style jsx="true">{`
+          .group:hover > .orbit-item-class {
+            width: 135px !important; /* Fixed width for text + icon + padding */
+          }
+        `}</style>
       </div>
     );
   };

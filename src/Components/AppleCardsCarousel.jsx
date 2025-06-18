@@ -23,19 +23,20 @@ const Card = ({ card, index, observer }) => {
         animationFillMode: "forwards",
       }}
     >
-      <div className="relative h-80 w-56 md:h-[40rem] md:w-96 rounded-3xl bg-gray-100 dark:bg-neutral-900 transition-all duration-300 hover:shadow-xl cursor-pointer overflow-hidden group">
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-full" />
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 hover:from-black/60 transition-all duration-300"></div>
-        <div className="relative z-20 p-6 flex flex-col justify-end h-full">
-          <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90 hover:opacity-100 transition-opacity duration-300">
+      {/* <div className="relative h-80 w-70 md:h-150 md:w-250 rounded-3xl bg-gray-100 dark:bg-neutral-900 transition-all duration-300 cursor-pointer overflow-hidden group"></div> */}
+      <div className="relative h-80 w-56 md:h-[40rem] md:w-96 rounded-3xl cursor-pointer overflow-hidden group">
+        <div className="absolute rounded-3xl bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10 inset-0 min-w-full"></div>
+        {/* <div className="absolute rounded-3xl bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 inset-0"></div> */}
+        <div className="relative z-20 p-6 flex flex-col justify-end h-full w-full">
+          <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90 min-w-50">
             {card.category}
           </p>
-          <p className="mt-2 max-w-xs text-left font-sans text-xl md:text-3xl font-semibold text-white hover:scale-105 transition-transform duration-300">
+          <p className="mt-2 max-w-xs text-left font-sans text-xl md:text-3xl font-semibold text-white min-w-50 ">
             {card.title}
           </p>
         </div>
         <img
-          src={card.src || "/placeholder.svg"}
+          src={card.src}
           alt={card.title}
           className="absolute inset-0 h-full w-full object-cover transition-all duration-450 group-hover:scale-115 overflow-hidden"
           loading="lazy"

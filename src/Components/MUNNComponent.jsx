@@ -1,14 +1,18 @@
+import { ShootingStars } from "./ShootingStars";
 import SolarSystemComponent from "./SolarSystemComponent";
+import { StarsBackground } from "./StarsBackground";
 
 export default function MUNNComponent() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-bl from-black via-gray-900 to-black flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden relative">
       <div className="max-w-7xl flex flex-col lg:flex-row flex-1 justify-center items-center mx-auto">
         {/* Animated Background Particles */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-50 top-1/4 left-1/4"></div>
           <div className="absolute w-1 h-1 bg-lime-300 rounded-full opacity-30 top-3/4 right-1/3"></div>
           <div className="absolute w-3 h-3 bg-white rounded-full opacity-20 bottom-1/3 left-2/3"></div>
+          <StarsBackground />
+          <ShootingStars />
         </div>
 
         {/* Left Text Section */}

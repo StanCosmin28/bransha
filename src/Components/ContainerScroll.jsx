@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import data from "../Model/data";
+import { StarsBackground } from "./StarsBackground";
 // import Aurora from "./Aurora";
 // import Particles from "./Particles";
 
@@ -100,6 +101,7 @@ export default function HeroScrollDemo() {
         <div className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-50 top-1/4 left-1/4"></div>
         <div className="absolute w-1 h-1 bg-lime-300 rounded-full opacity-30 top-3/4 right-1/3"></div>
         <div className="absolute w-3 h-3 bg-white rounded-full opacity-20 bottom-1/3 left-2/3"></div>
+        <StarsBackground />
       </div>
       <ContainerScroll
         titleComponent={

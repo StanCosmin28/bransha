@@ -13,7 +13,7 @@ export default function BuildingShowcase() {
       ],
       location: "Iași",
       image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1446133132410-19df4d6610a1?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "Modernizare Spital General",
@@ -24,7 +24,7 @@ export default function BuildingShowcase() {
       ],
       location: "Iași",
       image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1460472178825-e5240623afd5?q=80&w=2338&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "Inovație în Sănătate",
@@ -35,7 +35,7 @@ export default function BuildingShowcase() {
       ],
       location: "Iași",
       image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1681997862998-617e27e86d55?q=80&w=1437&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
@@ -48,22 +48,24 @@ export default function BuildingShowcase() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden bg-white flex justify-center max-h-screen sm:max-h-auto">
-      <div className="max-w-[1440px] w-full flex flex-col lg:flex-row items-center p-6 lg:p-10">
+    <div className="relative w-full overflow-hidden bg-white flex justify-center">
+      <div className="max-w-[1440px] w-full flex flex-col-reverse lg:flex-row items-stretch p-4 sm:p-6 lg:p-8">
         {/* Description Panel */}
-        <div className="bg-gray-100 h-full text-black p-6 rounded-lg shadow-lg w-full lg:w-1/3 mb-6 lg:mb-0 lg:mr-6 flex flex-col justify-evenly">
-          <h2 className="text-2xl font-bold mb-2">
-            {data[currentIndex].title}
-          </h2>
-          <h3 className="text-xl font-semibold mb-4">
-            {data[currentIndex].subtitle}
-          </h3>
-          <ul className="list-disc pl-5 space-y-2 text-gray-800 text-left">
-            {data[currentIndex].details.map((detail, i) => (
-              <li key={i}>{detail}</li>
-            ))}
-          </ul>
-          <div className="flex items-center justify-end mt-10 mr-10 font-bold text-2xl">
+        <div className="bg-gray-100 text-black p-4 sm:p-6 rounded-lg shadow-lg w-full lg:w-1/3 mb-4 lg:mb-0 lg:mr-4 flex flex-col justify-between h-[350px] sm:h-[500px]">
+          <div className="h-full justify-evenly flex flex-col ">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2">
+              {data[currentIndex].title}
+            </h2>
+            <h3 className="text-lg sm:text-xl font-semibold mb-4">
+              {data[currentIndex].subtitle}
+            </h3>
+            <ul className="list-disc pl-5 space-y-2 text-gray-800 text-sm sm:text-base text-left">
+              {data[currentIndex].details.map((detail, i) => (
+                <li key={i}>{detail}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex items-center justify-end mt-4 sm:mt-6 font-bold text-lg sm:text-2xl">
             <span className="text-red-500 mr-2">
               <svg
                 width="18"
@@ -85,22 +87,31 @@ export default function BuildingShowcase() {
         </div>
 
         {/* Image */}
-        <div className="w-full lg:w-2/3 relative h-[80vh] flex items-center justify-center">
-          <div
-            className="w-full h-full bg-cover bg-center rounded-lg shadow-lg"
-            style={{ backgroundImage: `url(${data[currentIndex].image})` }}
-          ></div>
+        {/* Image Section with Crossfade Animation */}
+        <div className="w-full lg:w-2/3 relative h-[450px] sm:h-[500px] flex items-center justify-center overflow-hidden">
+          <div className="relative w-full h-full">
+            {data.map((item, idx) => (
+              <div
+                key={idx}
+                className={`absolute top-0 left-0 w-full h-full rounded-lg shadow-lg bg-cover bg-center transition-opacity duration-700 ease-in-out ${
+                  idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
+                style={{ backgroundImage: `url(${item.image})` }}
+              />
+            ))}
+          </div>
+
           {/* Navigation Buttons */}
-          <div className="absolute bottom-4 right-4 flex space-x-2">
+          <div className="absolute bottom-4 right-4 flex space-x-2 z-20">
             <button
               onClick={handlePrev}
-              className="bg-white text-black px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-106 duration-150"
+              className="bg-white text-black px-4 sm:px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-105 duration-150"
             >
               ←
             </button>
             <button
               onClick={handleNext}
-              className="bg-white text-black px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-106 duration-150"
+              className="bg-white text-black px-4 sm:px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-105 duration-150"
             >
               →
             </button>

@@ -23,8 +23,8 @@ function App() {
       <AppleCardsCarousel />
       <SimpleShowcaseComponent />
       <ContainerScroll />
-      <MUNNComponent />
       <SimpleBranshaComponent />
+      <MUNNComponent />
       <ScrollAnimationComponent />
       <BuildingShowcase />
       <TeamShowcase />

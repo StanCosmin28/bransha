@@ -1,5 +1,7 @@
 import { useEffect, useRef, useCallback, useMemo } from "react";
 import data from "../Model/data";
+import { StarsBackground } from "./StarsBackground";
+import { ShootingStars } from "./ShootingStars";
 
 export default function AppleScrollHero({
   imageSrc = "https://images.unsplash.com/photo-1720415353460-957325a7267d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -186,6 +188,7 @@ export default function AppleScrollHero({
         aria-label="Product Scroll Animation"
       >
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+          <StarsBackground />
           <div
             ref={phoneRef}
             className="relative will-change-transform"
