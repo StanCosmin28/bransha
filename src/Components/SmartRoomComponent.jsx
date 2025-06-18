@@ -297,7 +297,7 @@ export default function SmartHomePanel() {
                 </div>
               </div>
               {feature.active && (
-                <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full"></div>
               )}
             </div>
           </div>
@@ -448,7 +448,7 @@ export default function SmartHomePanel() {
             {[...Array(15)].map((_, i) => (
               <div
                 key={i}
-                className="absolute w-1 h-1 bg-purple-400/30 rounded-full animate-pulse"
+                className="absolute w-1 h-1 bg-purple-400/30 rounded-full"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,

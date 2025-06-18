@@ -32,7 +32,7 @@ export function ContainerScroll({ titleComponent, children }) {
 
   return (
     <div
-      className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
+      className="h-[40rem] sm:h-[50rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
       ref={containerRef}
     >
       <div
@@ -85,7 +85,7 @@ export function Card({ rotate, scale, children }) {
 export default function HeroScrollDemo() {
   return (
     // <div className="flex flex-col overflow-hidden relative">
-    <div className="flex flex-col min-h-screen bg-gradient-to-bl from-black/10 via-gray-900 to-black overflow-hidden relative">
+    <div className="flex flex-col bg-gradient-to-bl from-black/10 via-gray-900 to-black overflow-hidden relative">
       <div className="absolute inset-0 w-full h-full z-[-10]">
         <img
           src={data.auroraBG}
@@ -97,14 +97,14 @@ export default function HeroScrollDemo() {
       </div>
       {/* Styles Background */}
       <div className="absolute inset-0 pointer-events-none z-100">
-        <div className="absolute w-2 h-2 bg-purple-400 rounded-full animate-pulse-slow opacity-50 top-1/4 left-1/4"></div>
-        <div className="absolute w-1 h-1 bg-lime-300 rounded-full animate-pulse-fast opacity-30 top-3/4 right-1/3"></div>
-        <div className="absolute w-3 h-3 bg-white rounded-full animate-pulse-slow opacity-20 bottom-1/3 left-2/3"></div>
+        <div className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-50 top-1/4 left-1/4"></div>
+        <div className="absolute w-1 h-1 bg-lime-300 rounded-full opacity-30 top-3/4 right-1/3"></div>
+        <div className="absolute w-3 h-3 bg-white rounded-full opacity-20 bottom-1/3 left-2/3"></div>
       </div>
       <ContainerScroll
         titleComponent={
           <>
-            <h1 className="text-4xl font-semibold text-black dark:text-white">
+            <h1 className="text-4xl font-semibold text-white ">
               {/* Unleash the power of <br /> */}
               {"Control total".toUpperCase()} <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
@@ -124,33 +124,10 @@ export default function HeroScrollDemo() {
           draggable={false}
         />
       </ContainerScroll>
+      <h2 className="absolute lg:bottom-20 left-1/2 -translate-x-1/2 -translate-y-1/2 bottom-16 text-sm font-semibold w-[85%] max-w-[30rem] md:text-2xl lg:max-w-[75%] xl:text-3xl xl:max-w-[60%]">
+        Monitorizează și gestionează toate sistemele clădirii rapid și simplu,
+        oriunde te afli, totul la un singur touch.
+      </h2>
     </div>
   );
 }
-
-<style jsx>{`
-  @keyframes pulse-slow {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
-  .animate-pulse-slow {
-    animation: pulse-slow 4s infinite;
-  }
-  @keyframes pulse-fast {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.5);
-    }
-  }
-  .animate-pulse-fast {
-    animation: pulse-fast 2s infinite;
-  }
-`}</style>;

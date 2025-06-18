@@ -144,7 +144,7 @@ export default function LoadingWrapper({ children, timeoutMs = 30000 }) {
           <div className="relative z-10 flex flex-col items-center">
             <h1
               ref={logoRef}
-              className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600 animate-pulse-slow"
+              className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600"
               style={{
                 fontFamily: "'Inter', sans-serif",
               }}
