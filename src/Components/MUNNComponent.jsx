@@ -42,8 +42,8 @@ export default function MUNNComponent() {
           </p>
           <p className="text-xs sm:text-sm md:text-base lg:text-xl leading-relaxed">
             Disponibil și în versiuni speciale pentru{" "}
-            <span className="text-green-500 font-bold"> hoteluri </span> și
-            <span className="text-green-500 font-bold">
+            <span className="text-[#DCFC00] font-bold"> hoteluri </span> și
+            <span className="text-[#DCFC00] font-bold">
               {" "}
               complexe rezidențiale.
             </span>
