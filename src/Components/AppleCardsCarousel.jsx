@@ -23,9 +23,10 @@ const Card = ({ card, index, observer }) => {
         animationFillMode: "forwards",
       }}
     >
-      <div className="relative h-80 w-56 md:h-[40rem] md:w-96 rounded-3xl bg-gray-100 dark:bg-neutral-900 transition-all duration-300 hover:shadow-xl cursor-pointer overflow-hidden">
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent hover:from-black/60 transition-all duration-300" />
-        <div className="relative z-20 p-6 flex flex-col justify-end">
+      <div className="relative h-80 w-56 md:h-[40rem] md:w-96 rounded-3xl bg-gray-100 dark:bg-neutral-900 transition-all duration-300 hover:shadow-xl cursor-pointer overflow-hidden group">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-full" />
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 hover:from-black/60 transition-all duration-300"></div>
+        <div className="relative z-20 p-6 flex flex-col justify-end h-full">
           <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90 hover:opacity-100 transition-opacity duration-300">
             {card.category}
           </p>
@@ -36,7 +37,7 @@ const Card = ({ card, index, observer }) => {
         <img
           src={card.src || "/placeholder.svg"}
           alt={card.title}
-          className="absolute inset-0 h-full w-full object-cover transition-all duration-450 hover:scale-115 overflow-hidden"
+          className="absolute inset-0 h-full w-full object-cover transition-all duration-450 group-hover:scale-115 overflow-hidden"
           loading="lazy"
         />
       </div>
