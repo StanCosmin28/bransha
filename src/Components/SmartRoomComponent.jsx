@@ -24,7 +24,7 @@ export default function SmartHomePanel() {
   const [humidity, setHumidity] = useState(45);
   const [energyUsage, setEnergyUsage] = useState(2.4);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [lightBrightness, setLightBrightness] = useState(75);
+  const [lightBrightness, setLightBrightness] = useState(0);
   // const [rgbColor, setRgbColor] = useState({ r: 138, g: 43, b: 226 });
   const [rgbColor, setRgbColor] = useState("Off");
   const [motionDetected, setMotionDetected] = useState(false);
@@ -85,6 +85,7 @@ export default function SmartHomePanel() {
       position: "top-left",
       value: `${lightBrightness}%`,
       color: "from-amber-400 to-orange-500",
+      filterLight: lightBrightness > 0 ? "brightness-110 sepia-50" : "",
     },
     {
       id: 2,
@@ -95,6 +96,8 @@ export default function SmartHomePanel() {
       // value: "Purple",
       value: rgbColor,
       color: "from-purple-400 to-pink-500",
+      filterGreen: rgbColor === "Green" ? "hue-rotate-[120deg]" : "",
+      filterPurple: rgbColor === "Purple" ? "hue-rotate-[230deg]" : "",
     },
     {
       id: 3,
@@ -163,7 +166,7 @@ export default function SmartHomePanel() {
         break;
       case 2:
         setRgbColor((prev) =>
-          prev === "Off" ? "Green" : prev === "Green" ? "Red" : "Off"
+          prev === "Off" ? "Green" : prev === "Green" ? "Purple" : "Off"
         );
         break;
       case 3: // Motion Sensor
@@ -228,7 +231,7 @@ export default function SmartHomePanel() {
     <div className="relative w-full min-h-[750px] h-screen overflow-hidden bg-gradient-to-br from-amber-50 to-orange-100">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${smartFeatures[1].filterGreen} ${smartFeatures[1].filterPurple} ${smartFeatures[0].filterLight}`}
         style={{
           //   backgroundImage: `url('https://www.decorilla.com/online-decorating/wp-content/uploads/2024/11/smart-home-design-by-Decorilla-designer-Mena-H-scaled.jpeg')`,
           backgroundImage: `url('https://rvainterior.com/cdn/shop/articles/2150794684_1.jpg?v=1723820272')`,
@@ -346,7 +349,7 @@ export default function SmartHomePanel() {
                   onClick={() =>
                     setTargetTemp((prev) => Math.min(30, prev + 0.5))
                   }
-                  className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white hover:scale-110 transition-transform shadow-lg cursor-pointer"
+                  className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-purple-500 to-orange-500 text-white hover:scale-110 transition-transform shadow-lg cursor-pointer"
                 >
                   <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -394,14 +397,13 @@ export default function SmartHomePanel() {
             </h3>
             <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
               Un singur sistem pentru tot: iluminat, climatizare, securitate,
-              acces și tot ce ai nevoie. BMS-ul tău optimizează energia, reduce
-              costurile și protejează planeta.
+              acces și tot ce ai nevoie. BMS-ul tău optimizează energia,
+              Purpleuce costurile și protejează planeta.
             </p>
           </div>
         </div>
 
         {/* Enhanced Toggle Switch */}
-        {/* <div className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 z-50 "> */}
         <div className="absolute z-50 left-1/2 -translate-x-1/2  bottom-44 sm:bottom-49">
           {/* <div className="absolute z-50 left-1/2 -translate-x-1/2 top-20"> */}
           <div className="flex flex-col items-center space-y-2">
@@ -420,11 +422,6 @@ export default function SmartHomePanel() {
                     : "translate-x-2"
                 }`}
               >
-                {/* <Home
-                  className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors duration-300 ${
-                    isPanelOpen ? "text-purple-500" : "text-gray-400"
-                  }`}
-                /> */}
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfD09kj62wIXzdJ9cu7Zs-nRLG7uHi-sQ4Pw&s"
                   alt="B"
@@ -433,12 +430,36 @@ export default function SmartHomePanel() {
                   }`}
                 />
               </div>
+              {isPanelOpen ? (
+                <h2 className="font-black text-xl text-black text-left ml-12 transition-all duration-400">
+                  ON
+                </h2>
+              ) : (
+                <h2 className="font-black text-xl text-white text-right mr-12 transition-all duration-400">
+                  OFF
+                </h2>
+              )}
+              {/* <div className="relative h-10 overflow-hidden">
+                <h2
+                  className={`absolute top-0 left-0 right-0 transition-all duration-200 ease-in-out transform ${
+                    isPanelOpen
+                      ? "opacity-100 translate-x-0 text-black text-left ml-10"
+                      : "opacity-0 -translate-x-5"
+                  }`}
+                >
+                  HOT
+                </h2>
+                <h2
+                  className={`absolute top-0 left-0 right-0 transition-all duration-200 ease-in-out transform ${
+                    !isPanelOpen
+                      ? "opacity-100 translate-x-0 text-white text-right mr-10"
+                      : "opacity-0 translate-x-5"
+                  }`}
+                >
+                  NAH
+                </h2>
+              </div> */}
             </button>
-            {/* <div className="bg-black/50 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1">
-               <span className="text-white text-xs font-medium">
-                {isPanelOpen ? "ACTIV" : "NAH"}
-              </span> 
-            </div> */}
           </div>
         </div>
 

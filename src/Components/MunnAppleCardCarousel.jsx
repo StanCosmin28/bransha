@@ -77,7 +77,6 @@ const AppleCardsCarousel = () => {
 
   const scroll = (direction) => {
     if (carouselRef.current) {
-      // Adjust scroll amount to roughly one card width (w-56 or 224px on mobile, w-80 or 320px on md+)
       carouselRef.current.scrollBy({
         left: direction * (window.innerWidth >= 768 ? 320 : 224),
         behavior: "smooth",

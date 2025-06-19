@@ -15,6 +15,7 @@ import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
 import BlogCarousel from "./Components/BlogCarousel";
 import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
 import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
+import ScrollToTop from "./Components/ScrollToTop";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             path="/bransha/munn"
             element={
               <>
+                <ScrollToTop />
                 <SimpleBlockComponent />
                 <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
