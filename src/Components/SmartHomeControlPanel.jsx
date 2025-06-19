@@ -91,7 +91,7 @@ const SmartHomeControlPanel = () => {
       {/* Tabs */}
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-10 z-10">
         <button
-          className={`flex items-center px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 ${
+          className={`flex items-center px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 cursor-pointer ${
             activeTab === "end-user"
               ? "bg-purple-600 text-white shadow-lg"
               : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:shadow-md"
@@ -114,7 +114,7 @@ const SmartHomeControlPanel = () => {
           End-user
         </button>
         <button
-          className={`flex items-center px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 ${
+          className={`flex items-center px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 cursor-pointer ${
             activeTab === "owner-manager"
               ? "bg-purple-600 text-white shadow-lg"
               : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:shadow-md"

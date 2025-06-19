@@ -13,14 +13,13 @@ import AppleScrollHero from "./Components/AppleScrollHero";
 import SimpleBranshaComponent from "./Components/SimpleBranshaComponent";
 import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
 import BlogCarousel from "./Components/BlogCarousel";
-// import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
+import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
 import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
   return (
     <>
-      {/* <LoadingWrapper timeoutMs={20000}> */}
       <BrowserRouter>
         <Routes>
           <Route
@@ -49,7 +48,7 @@ function App() {
               <>
                 <SimpleBlockComponent />
                 <MunnAppleCardsCarousel />
-                {/* <SmartHomeControlPanel /> */}
+                <SmartHomeControlPanel />
                 <SimpleShowcaseComponent />
                 <SimpleBranshaComponent />
                 <BlogCarousel />
@@ -60,7 +59,6 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-      {/* </LoadingWrapper> */}
     </>
   );
 }
