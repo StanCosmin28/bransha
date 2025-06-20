@@ -17,6 +17,7 @@ import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
 import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
 import ScrollToTop from "./Components/ScrollToTop";
 import MunnApp from "./Components/MunnApp";
+import ScrollReveal from "./Components/ScrollReveal";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
@@ -51,6 +52,17 @@ function App() {
                 <ScrollToTop />
                 <SimpleBlockComponent />
                 <MunnApp />
+                <div className="min-h-screen flex justify-center items-center text-left ">
+                  <ScrollReveal
+                    baseOpacity={0}
+                    enableBlur={true}
+                    baseRotation={10}
+                    blurStrength={50}
+                  >
+                    Nu sunt doar o aplicație. Sunt creierul digital al clădirii
+                    tale.
+                  </ScrollReveal>
+                </div>
                 <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
                 <SimpleShowcaseComponent />
