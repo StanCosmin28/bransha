@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, Star, Gauge, Building2, Users } from "lucide-react";
+import data from "../Model/data";
 
 export default function MunnApp() {
   const [activeSection, setActiveSection] = useState("smart-building");
@@ -74,7 +75,7 @@ export default function MunnApp() {
             </div>
             <div className="absolute top-0 w-full h-full">
               <img
-                src="./public/iphone_16_vertical.svg"
+                src={data.iPhoneSVGV}
                 alt="Phone"
                 className="w-full h-full object-contain"
               />
@@ -200,7 +201,7 @@ export default function MunnApp() {
                   </div>
                   <div className="absolute top-[5%] left-[2%] w-[96%] h-[90%]">
                     <img
-                      src="./public/iphone_16_vertical.svg"
+                      src={data.iPhoneSVGV}
                       alt="Phone"
                       className="w-full h-full object-contain"
                     />
