@@ -11,7 +11,6 @@ import {
   Wifi,
   Battery,
   Zap,
-  Home,
   Thermometer,
   Droplets,
   Gauge,
@@ -403,9 +402,8 @@ export default function SmartHomePanel() {
           </div>
         </div>
 
-        {/* Enhanced Toggle Switch */}
-        <div className="absolute z-50 left-1/2 -translate-x-1/2  bottom-44 sm:bottom-49">
-          {/* <div className="absolute z-50 left-1/2 -translate-x-1/2 top-20"> */}
+        {/* OLD -- Toggle Switch */}
+        {/* <div className="absolute z-50 left-1/2 -translate-x-1/2  bottom-44 sm:bottom-49">
           <div className="flex flex-col items-center space-y-2">
             <button
               onClick={() => setIsPanelOpen(!isPanelOpen)}
@@ -431,37 +429,76 @@ export default function SmartHomePanel() {
                 />
               </div>
               {isPanelOpen ? (
+                <h2 className="font-black text-xl text-black text-left ml-10 transition-all duration-400">
+                  ON
+                </h2>
+              ) : (
+                <h2 className="font-black text-xl text-white text-right mr-10 transition-all duration-400">
+                  OFF
+                </h2>
+              )}
+            </button>
+          </div>
+        </div> */}
+        {/* Enhanced Toggle Switch */}
+        <div className="absolute z-50 left-1/2 -translate-x-1/2 bottom-44 sm:bottom-49">
+          <div className="flex flex-col items-center space-y-2">
+            <button
+              onClick={() => setIsPanelOpen(!isPanelOpen)}
+              className={`cursor-pointer relative w-38 h-14 sm:w-40 sm:h-16 rounded-full transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-[#DCFC00]/40 hover:scale-105 ${
+                isPanelOpen
+                  ? "bg-gradient-to-r from-[#DCFC00] to-[#DCFC00] shadow-lg shadow-[#DCFC00]/25"
+                  : "bg-white/20 backdrop-blur-sm border border-white/30 animate-pulse-off"
+              }`}
+            >
+              <div
+                className={`absolute top-[7px] w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg transition-all duration-500 flex items-center justify-center ${
+                  isPanelOpen
+                    ? "translate-x-25 sm:translate-x-25"
+                    : "translate-x-2"
+                }`}
+              >
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfD09kj62wIXzdJ9cu7Zs-nRLG7uHi-sQ4Pw&s"
+                  alt="B"
+                  className={`w-10 h-10 sm:w-10 sm:h-10 rounded-full transition-colors duration-300 ${
+                    isPanelOpen ? "text-purple-500" : "text-gray-400"
+                  }`}
+                />
+              </div>
+              {isPanelOpen ? (
                 <h2 className="font-black text-xl text-black text-left ml-12 transition-all duration-400">
+                  {/* HOT */}
                   ON
                 </h2>
               ) : (
                 <h2 className="font-black text-xl text-white text-right mr-12 transition-all duration-400">
+                  {/* NAH */}
                   OFF
                 </h2>
               )}
-              {/* <div className="relative h-10 overflow-hidden">
-                <h2
-                  className={`absolute top-0 left-0 right-0 transition-all duration-200 ease-in-out transform ${
-                    isPanelOpen
-                      ? "opacity-100 translate-x-0 text-black text-left ml-10"
-                      : "opacity-0 -translate-x-5"
-                  }`}
-                >
-                  HOT
-                </h2>
-                <h2
-                  className={`absolute top-0 left-0 right-0 transition-all duration-200 ease-in-out transform ${
-                    !isPanelOpen
-                      ? "opacity-100 translate-x-0 text-white text-right mr-10"
-                      : "opacity-0 translate-x-5"
-                  }`}
-                >
-                  NAH
-                </h2>
-              </div> */}
             </button>
           </div>
         </div>
+        <style jsx="true">
+          {`
+            @keyframes pulse-off {
+              0% {
+                transform: scale(1);
+              }
+              50% {
+                transform: scale(1.05);
+              }
+              100% {
+                transform: scale(1);
+              }
+            }
+
+            .animate-pulse-off {
+              animation: pulse-off 1s infinite;
+            }
+          `}
+        </style>
 
         {/* Floating Particles Animation */}
         {isPanelOpen && (

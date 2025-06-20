@@ -14,7 +14,6 @@ const Card = ({ card, index, observer }) => {
       }
     };
   }, [observer]);
-
   return (
     <div
       ref={cardRef}
@@ -106,7 +105,8 @@ const AppleCardsCarousel = () => {
   }, [checkScrollability]);
 
   return (
-    <div className="w-full py-10 bg-white dark:bg-neutral-900">
+    // <div className="w-full py-10 bg-gradient-to-t from-black to-gray-900">
+    <div className="w-full py-10 bg-black">
       <div className="relative w-full max-w-[2000px] mx-auto">
         <div
           ref={carouselRef}

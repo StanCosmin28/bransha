@@ -11,18 +11,18 @@ const SmartHomeControlPanel = () => {
 
   const endUserFeatures = [
     "Activate or deactivate HVAC systems, natural lighting (drapes), artificial lighting, and outlets with ease.",
-    "Create personalized scenarios for daily routines or special occasions – tailored just for you.",
-    "Receive real-time notifications from integrated sensors – always know what’s happening.",
+    "Create personalized scenarios for daily routines or special occasions - tailored just for you.",
+    "Receive real-time notifications from integrated sensors - always know what's happening.",
     "Monitor everything via video cameras, directly from the app.",
-    "Track system activity anytime in the History section – clear, chronological, and detailed.",
+    "Track system activity anytime in the History section - clear, chronological, and detailed.",
   ];
 
   const ownerManagerFeatures = [
-    "Manage user access and permissions across all devices with a single tap.",
-    "Analyze energy usage data and optimize consumption with smart insights.",
-    "Schedule maintenance alerts based on system performance metrics.",
-    "Review security logs and adjust settings remotely for enhanced control.",
-    "Generate detailed reports for compliance and auditing purposes, updated as of 11:04 AM EEST, June 19, 2025.",
+    "Gestionează accesul utilizatorilor și permisiunile pe toate dispozitivele cu o singură atingere.",
+    "Analizează datele privind consumul de energie și optimizează utilizarea cu ajutorul informațiilor inteligente.",
+    "Programează alerte de mentenanță pe baza metricilor de performanță ale sistemului.",
+    "Revizuiește jurnalele de securitate și ajustează setările de la distanță pentru un control sporit.",
+    "Generează rapoarte detaliate pentru conformitate și audit, actualizate la ora 11:04 EEST, 19 iunie 2025.",
   ];
 
   const features =
@@ -63,20 +63,20 @@ const SmartHomeControlPanel = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (progressRef.current) {
-      gsap.fromTo(
-        progressRef.current,
-        { drawSVG: "0%" },
-        {
-          drawSVG: "100%",
-          duration: 0.3,
-          ease: "ease-inOut",
-          onComplete: () => gsap.set(progressRef.current, { drawSVG: "0%" }),
-        }
-      );
-    }
-  }, [activeTab]);
+  // useEffect(() => {
+  //   if (progressRef.current) {
+  //     gsap.fromTo(
+  //       progressRef.current,
+  //       { drawSVG: "0%" },
+  //       {
+  //         drawSVG: "100%",
+  //         duration: 0.3,
+  //         ease: "ease-inOut",
+  //         onComplete: () => gsap.set(progressRef.current, { drawSVG: "0%" }),
+  //       }
+  //     );
+  //   }
+  // }, [activeTab]);
 
   return (
     <div
@@ -161,7 +161,7 @@ const SmartHomeControlPanel = () => {
         ref={titleRef}
         className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10 px-4"
       >
-        Tu controlezi totul – simplu și intuitiv
+        Tu controlezi totul - simplu și intuitiv
       </h1>
 
       {/* Feature List */}
@@ -175,7 +175,7 @@ const SmartHomeControlPanel = () => {
             className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 border-l-4 border-green-400 hover:bg-green-400/10 transition-all duration-300 hover:shadow-[0_0_15px_rgba(74,222,128,0.3)] relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent h-1/2 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <p className="text-xs sm:text-sm md:text-base text-white leading-relaxed z-10 relative">
+            <p className="text-xs sm:text-sm md:text-base text-white leading-relaxed z-10 relative text-left">
               {feature}
             </p>
           </div>
