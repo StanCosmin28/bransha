@@ -56,8 +56,8 @@ export default function MunnApp() {
   return (
     <div className="min-h-screen/2 lg:min-h-screen bg-black text-white overflow-hidden">
       {/* Munn App*/}
-      <div className="text-center mt-20">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+      <div className="hidden lg:block text-center mt-20">
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
           Munn App
         </h1>
         <p className="text-gray-400 mt-2">Explorează funcționalitățile</p>
