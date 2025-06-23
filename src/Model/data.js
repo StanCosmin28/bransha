@@ -7,7 +7,8 @@ const data = {
   iPhoneSVGV: `${URL}/iphone_16_vertical.svg`,
   teamSVG: `${URL}/team.svg`,
   auroraBG: `${URL}/aurora_bg.gif`,
-  Munn3D: `${URL}/munn-3d.png`,
+  munn3D: `${URL}/munn-3d.png`,
+  munnDesc: `${URL}/munn-3d-desc.png`,
   iconsSVG: {
     bransha: `${URL}/bransha-icon.svg`,
     analytics: `${URL}/analytics-icon.svg`,
