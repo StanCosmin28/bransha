@@ -18,6 +18,7 @@ import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
 import ScrollToTop from "./Components/ScrollToTop";
 import MunnApp from "./Components/MunnApp";
 import ScrollReveal from "./Components/ScrollReveal";
+import MunnDescriptionComponent from "./Components/MunnDescriptionComponent";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
@@ -51,6 +52,8 @@ function App() {
               <>
                 <ScrollToTop />
                 <SimpleBlockComponent />
+                <SimpleBlockComponent />
+                <MunnDescriptionComponent />
                 <MunnApp />
                 <div className="min-h-screen flex justify-center items-center text-left ">
                   <ScrollReveal
