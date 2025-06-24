@@ -17,9 +17,8 @@ export default function BuildingShowcase() {
   return (
     <div className="relative w-full overflow-hidden bg-white flex justify-center">
       <div className="max-w-[1440px] w-full flex flex-col-reverse lg:flex-row items-stretch p-4 sm:p-6 lg:p-8">
-        {/* Description Panel */}
-        <div className="bg-gray-100 text-black p-4 sm:p-6 rounded-lg shadow-lg w-full lg:w-1/3 mb-4 lg:mb-0 lg:mr-4 flex flex-col justify-between h-[350px] sm:h-[500px]">
-          <div className="h-full justify-evenly flex flex-col ">
+        <div className="bg-gray-100 text-black p-4 sm:p-6 rounded-lg shadow-lg w-full lg:w-1/3 mb-4 lg:mb-0 lg:mr-4 flex flex-col justify-between h-[350px] sm:h-[600px]">
+          <div className="h-full justify-evenly flex flex-col text-left">
             <h2 className="text-xl sm:text-2xl font-bold mb-2">
               {showcaseData[currentIndex].title}
             </h2>
@@ -53,9 +52,7 @@ export default function BuildingShowcase() {
           </div>
         </div>
 
-        {/* Image */}
-        {/* Image Section with Crossfade Animation */}
-        <div className="w-full lg:w-2/3 relative h-[450px] sm:h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="w-full lg:w-2/3 relative h-[450px] sm:h-[600px] flex items-center justify-center overflow-hidden">
           <div className="relative w-full h-full">
             {showcaseData.map((item, idx) => (
               <div
@@ -68,17 +65,16 @@ export default function BuildingShowcase() {
             ))}
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="absolute bottom-4 right-4 flex space-x-2 z-20">
+          <div className="absolute bottom-4 right-4 flex space-x-2 z-20 group">
             <button
               onClick={handlePrev}
-              className="bg-white text-black px-4 sm:px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-105 duration-150"
+              className="bg-white text-black px-4 sm:px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-105 duration-150 group"
             >
               ←
             </button>
             <button
               onClick={handleNext}
-              className="bg-white text-black px-4 sm:px-6 py-2 rounded-full border border-gray-400 hover:bg-[#DCFC00] transition-all cursor-pointer hover:scale-105 duration-150"
+              className="group-hover:bg-white hover:bg-[#DCFC00] text-black px-4 sm:px-6 py-2 rounded-full border border-gray-400 bg-[#DCFC00] transition-all cursor-pointer hover:scale-105 duration-150"
             >
               →
             </button>

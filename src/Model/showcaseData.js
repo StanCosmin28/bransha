@@ -38,7 +38,7 @@ const showcaseData = [
       "Plus senzori de inundație în băi, pentru un mediu educațional securizat și eficient.",
     ],
     location: "Iași",
-    image: `${URL}/edusafe-lab.webp`,
+    image: `${URL}/edu-safe.webp`,
   },
 ];
 
