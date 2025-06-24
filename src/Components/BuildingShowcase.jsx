@@ -1,50 +1,17 @@
 import { useState } from "react";
+import showcaseData from "../Model/showcaseData";
 
 export default function BuildingShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const data = [
-    {
-      title: "Nou Update al Sistemului Medical Romănesc",
-      subtitle: "Spitalul Clinic de Urgență pentru Copii 'Sf.Maria'",
-      details: [
-        "Sistemul BMS asigură siguranța și confortul pacienților prin funcții esențiale:",
-        "Apeleare Sordă, detectie a ferestrelor deschise, control automat al climatizării și al iluminatului natural.",
-      ],
-      location: "Iași",
-      image:
-        "https://images.unsplash.com/photo-1446133132410-19df4d6610a1?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      title: "Modernizare Spital General",
-      subtitle: "Spitalul Județean Iași",
-      details: [
-        "Sistemul BMS optimizează eficiența energetică:",
-        "Monitorizare în timp real, reglarea automată a ventilației și reducerea consumului.",
-      ],
-      location: "Iași",
-      image:
-        "https://images.unsplash.com/photo-1460472178825-e5240623afd5?q=80&w=2338&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      title: "Inovație în Sănătate",
-      subtitle: "Clinica Privată Bransha",
-      details: [
-        "Tehnologii avansate pentru pacienți:",
-        "Senzori de mișcare, control al luminii și integrare cu aplicații mobile.",
-      ],
-      location: "Iași",
-      image:
-        "https://images.unsplash.com/photo-1681997862998-617e27e86d55?q=80&w=1437&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
-
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + data.length) % data.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + showcaseData.length) % showcaseData.length
+    );
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % data.length);
+    setCurrentIndex((prev) => (prev + 1) % showcaseData.length);
   };
 
   return (
@@ -54,13 +21,13 @@ export default function BuildingShowcase() {
         <div className="bg-gray-100 text-black p-4 sm:p-6 rounded-lg shadow-lg w-full lg:w-1/3 mb-4 lg:mb-0 lg:mr-4 flex flex-col justify-between h-[350px] sm:h-[500px]">
           <div className="h-full justify-evenly flex flex-col ">
             <h2 className="text-xl sm:text-2xl font-bold mb-2">
-              {data[currentIndex].title}
+              {showcaseData[currentIndex].title}
             </h2>
             <h3 className="text-lg sm:text-xl font-semibold mb-4">
-              {data[currentIndex].subtitle}
+              {showcaseData[currentIndex].subtitle}
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-800 text-sm sm:text-base text-left">
-              {data[currentIndex].details.map((detail, i) => (
+              {showcaseData[currentIndex].details.map((detail, i) => (
                 <li key={i}>{detail}</li>
               ))}
             </ul>
@@ -82,7 +49,7 @@ export default function BuildingShowcase() {
                 />
               </svg>
             </span>
-            <span>{data[currentIndex].location}</span>
+            <span>{showcaseData[currentIndex].location}</span>
           </div>
         </div>
 
@@ -90,7 +57,7 @@ export default function BuildingShowcase() {
         {/* Image Section with Crossfade Animation */}
         <div className="w-full lg:w-2/3 relative h-[450px] sm:h-[500px] flex items-center justify-center overflow-hidden">
           <div className="relative w-full h-full">
-            {data.map((item, idx) => (
+            {showcaseData.map((item, idx) => (
               <div
                 key={idx}
                 className={`absolute top-0 left-0 w-full h-full rounded-lg shadow-lg bg-cover bg-center transition-opacity duration-700 ease-in-out ${

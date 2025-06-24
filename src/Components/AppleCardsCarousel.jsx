@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import cards from "../Model/cardData";
+import SimpleBlockComponent from "./SimpleBlockComponent";
 
 const Card = ({ card, index, observer }) => {
   const cardRef = useRef(null);
@@ -93,6 +94,18 @@ const AppleCardsCarousel = () => {
 
   return (
     <div className="w-full py-10 bg-white">
+      {/* <SimpleBlockComponent /> */}
+      <div className="h-80 mx-auto flex items-center justify-center bg-white text-center">
+        <div className="max-w-3xl">
+          <h1 className="text-5xl font-bold text-gray-800 mb-8">
+            Vibe-ul Tău, Soluțiile Noastre.
+          </h1>
+          <p className="text-xl max-w-xl mx-auto text-center text-gray-600 mb-2">
+            Fiecare proiect are vibe-ul lui. Noi venim cu soluții smart,
+            flexibile și gata să se potrivească perfect pe ce ai tu nevoie.
+          </p>
+        </div>
+      </div>
       <div className="relative w-full">
         <div
           ref={carouselRef}
@@ -100,7 +113,7 @@ const AppleCardsCarousel = () => {
           onScroll={checkScrollability}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          <div className="flex flex-row justify-start gap-4 pl-4">
+          <div className="flex flex-row justify-start gap-4 pl-4 mb-20">
             {cards.map((card, index) => (
               <Card
                 key={card.id}

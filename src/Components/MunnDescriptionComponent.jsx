@@ -12,7 +12,6 @@ export default function MunnDescriptionComponent() {
             className="object-contain w-full h-full"
           />
         </div>
-
         <div className="w-full lg:w-1/2 h-full text-white flex flex-col justify-center space-y-5 p-4 gap-8">
           <ScrollReveal
             baseOpacity={0}

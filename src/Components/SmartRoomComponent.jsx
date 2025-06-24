@@ -468,13 +468,13 @@ export default function SmartHomePanel() {
               </div>
               {isPanelOpen ? (
                 <h2 className="font-black text-xl text-black text-left ml-12 transition-all duration-400">
-                  {/* HOT */}
-                  ON
+                  HOT
+                  {/* ON */}
                 </h2>
               ) : (
                 <h2 className="font-black text-xl text-white text-right mr-12 transition-all duration-400">
-                  {/* NAH */}
-                  OFF
+                  NAH
+                  {/* OFF */}
                 </h2>
               )}
             </button>
