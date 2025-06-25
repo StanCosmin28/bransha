@@ -64,7 +64,7 @@ export default function MunnApp() {
       </div>
       {/* Desktop Layout */}
       <div className="hidden lg:flex items-center justify-center min-h-screen px-8 pb-8">
-        <div className="flex items-center gap-16 max-w-7xl w-full">
+        <div className="flex items-center justify-center gap-40 max-w-7xl w-full ">
           <div className="relative flex-shrink-0 w-80 h-[640px]">
             <div className="absolute w-[95%] h-[98%] top-2 left-2">
               <img
@@ -83,45 +83,64 @@ export default function MunnApp() {
           </div>
 
           {/* Right Panel */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6 max-w-sm">
             {/* Section Buttons */}
             <div className="space-y-4">
               {sections.map((section, index) => (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`w-full p-6 rounded-2xl text-left transition-all duration-500 hover:transform hover:scale-105 cursor-pointer ${
-                    section.id === activeSection
-                      ? "bg-gradient-to-r from-purple-600 to-purple-800 shadow-2xl scale-105"
-                      : "bg-gray-900/50 hover:bg-gray-800/70"
+                  className={`relative w-full p-6 rounded-2xl text-left transition-all duration-500 hover:transform hover:scale-105 cursor-pointer   ${
+                    section.id === activeSection ? " shadow-2xl scale-105" : ""
+                    /* bg-gradient-to-r from-purple-600 to-purple-800 */
+                    // "bg-gray-900/50 hover:bg-gray-800/70"
                   }`}
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className={`p-3 rounded-2xl transition-all duration-300 ${
-                        section.id === activeSection
-                          ? "bg-white/20"
-                          : "bg-white/10"
-                      }`}
+                      className={`p-3 rounded-2xl transition-all duration-300
+                        ${
+                          section.id === activeSection
+                            ? "bg-white/20"
+                            : "bg-white/10"
+                        }
+                      `}
                     >
                       <section.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3
+                      className={`text-2xl font-bold ${
+                        activeSection === section.id
+                          ? "text-[#33E380]"
+                          : "text-white"
+                      }`}
+                    >
                       {section.title}
                     </h3>
-                    {section.id === activeSection && (
-                      <div className="ml-auto">
+                    {/* {section.id === activeSection && (
+                      <div className="mt-[2px]">
                         <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
                       </div>
-                    )}
+                    )} */}
                   </div>
+                  {section.id === activeSection && (
+                    <p className="text-white/90 text-lg leading-relaxed relative z-10 text-left mt-4 max-w-sm">
+                      {section.description}
+                    </p>
+                  )}
+                  <div
+                    className={`w-[1px] -translate-y-1/2 bg-white absolute top-1/2 left-0 transition-all duration-500 ${
+                      activeSection === section.id ? "h-[90%]" : "h-[50%]"
+                    }`}
+                  ></div>
                 </button>
               ))}
             </div>
 
             {/* Active Section Description */}
-            {currentSection && (
+
+            {/* {currentSection && (
               <div className="mt-8 p-8 rounded-3xl bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-md border border-gray-700/50 shadow-2xl animate-in slide-in-from-right-4 duration-700 relative overflow-hidden">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-600/20 to-blue-600/20">
@@ -138,11 +157,11 @@ export default function MunnApp() {
                   {currentSection.description}
                 </p>
 
-                {/* Decorative Elements */}
+
                 <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-purple-600/10 to-blue-600/10 rounded-full blur-xl"></div>
                 <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-blue-600/10 to-green-600/10 rounded-full blur-xl"></div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -159,7 +178,7 @@ export default function MunnApp() {
         {sections.map((section) => (
           <div
             key={section.id}
-            className="border border-gray-800 rounded-2xl overflow-hidden"
+            className="border border-gray-800 rounded-2xl overflow-hidden "
           >
             {/* Dropdown Header */}
             <button
