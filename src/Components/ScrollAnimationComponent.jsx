@@ -16,33 +16,41 @@ export default function ScrollAnimationComponent() {
       title: "Soluții integrate",
       description:
         "Produse și softuri create și testate pentru a funcționa impecabil împreună, fără complicații.",
-      color: "bg-gray-800",
+      // color: "bg-gray-800",
+      color: "bg-[#EFEFEF]",
       icon: iconsSVG.bransha,
-      accent: "bg-gray-700",
+      // accent: "bg-gray-700",
+      accent: "bg-[#EFEFEF]",
     },
     {
       title: "Reducerea costurilor",
       description:
         "Soluții inteligente care reduc semnificativ consumul și costurile operaționale lunare.",
-      color: "bg-teal-900",
+      // color: "bg-teal-900",
+      color: "bg-[#EFEFEF]",
       icon: iconsSVG.analytics,
-      accent: "bg-teal-800",
+      // accent: "bg-teal-800",
+      accent: "bg-[#EFEFEF]",
     },
     {
       title: "Flexibilitate",
       description:
         "Soluții adaptabile pentru orice proiect, de la clădiri rezidențiale la parcuri industriale.",
-      color: "bg-blue-900",
+      // color: "bg-blue-900",
+      color: "bg-[#EFEFEF]",
       icon: iconsSVG.building,
-      accent: "bg-blue-800",
+      // accent: "bg-blue-800",
+      accent: "bg-[#EFEFEF]",
     },
     {
       title: "Control prin aplicație",
       description:
         "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
-      color: "bg-[rgb(151,71,255)]",
+      // color: "bg-[rgb(151,71,255)]",
+      color: "bg-[#EFEFEF]",
       icon: iconsSVG.munn,
-      accent: "bg-[rgb(135,63,230)]",
+      // accent: "bg-[rgb(135,63,230)]",
+      accent: "bg-[#EFEFEF]",
     },
   ];
 
@@ -120,7 +128,9 @@ export default function ScrollAnimationComponent() {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden bg-white">
+    <div className="relative w-full  bg-white">
+      {" "}
+      {/* overflow-hidden */}
       <section ref={sectionRef} className="min-h-[150vh] relative py-32">
         <div className="xl:hidden block">
           <div className="h-70 mx-auto relative w-full p-12 flex flex-col justify-center items-center">
@@ -149,10 +159,11 @@ export default function ScrollAnimationComponent() {
         >
           <div className="relative">
             <div
-              className={`min-h-150 relative w-full aspect-square rounded-3xl shadow-xl p-12 flex flex-col justify-center overflow-hidden ${
+              className={`min-h-150 relative w-full aspect-square rounded-3xl shadow-xl p-12 flex flex-col justify-center ${
                 cards[activeCardIndex]?.accent || "bg-gray-700"
               }`}
             >
+              {/* overflow-hidden  */}
               <div className="relative z-10">
                 <div className="text-6xl mb-8 transition-opacity duration-300 ease-out">
                   <img
@@ -161,10 +172,10 @@ export default function ScrollAnimationComponent() {
                     alt=""
                   />
                 </div>
-                <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+                <h2 className="text-4xl font-bold text-black mb-6 leading-tight">
                   Cum te sprijinim?
                 </h2>
-                <p className="text-gray-200 text-lg leading-relaxed mb-8">
+                <p className="text-black/50 text-lg leading-relaxed mb-8">
                   Tehnologie care lucrează pentru tine, nu invers. Simplu,
                   eficient și făcut să țină pasul cu nevoile tale.
                 </p>
@@ -177,10 +188,10 @@ export default function ScrollAnimationComponent() {
                         h-2 rounded-full transition-all duration-500 ease-out
                         ${
                           idx === activeCardIndex
-                            ? "w-12 bg-white shadow-lg"
+                            ? "w-12 bg-black shadow-lg"
                             : idx < activeCardIndex
-                            ? "w-6 bg-white/70"
-                            : "w-4 bg-white/30"
+                            ? "w-6 bg-black/70"
+                            : "w-4 bg-black/30"
                         }
                       `}
                     />
@@ -188,10 +199,10 @@ export default function ScrollAnimationComponent() {
                 </div>
 
                 <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20 transition-opacity duration-300 ease-out">
-                  <div className="text-sm text-white/75 uppercase tracking-wider mb-1">
+                  <div className="text-sm text-black/75 uppercase tracking-wider mb-1">
                     Pasul {activeCardIndex + 1} din {cards.length}
                   </div>
-                  <div className="text-white font-semibold">
+                  <div className="text-black font-semibold">
                     {cards[activeCardIndex]?.title}
                   </div>
                 </div>
@@ -208,13 +219,13 @@ export default function ScrollAnimationComponent() {
                   key={index}
                   ref={(el) => (cardsRef.current[index] = el)}
                   data-index={index}
-                  className={`group relative w-full min-h-90 md:min-h-80 rounded-3xl shadow-xl overflow-hidden transform transition-all duration-700 ease-out
-                    ${
-                      cardVisibility.has(index)
-                        ? "opacity-100 translate-x-0"
-                        : "opacity-0 translate-x-24"
-                    }
-                    hover:shadow-2xl hover:-rotate-1 cursor-pointer
+                  className={`group relative w-full min-h-90 md:min-h-80 rounded-3xl shadow-xl overflow-hidden border-b-8 border-r-9 border-[#636363] transform transition-all duration-700 ease-out
+                  ${
+                    cardVisibility.has(index)
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 translate-x-24"
+                  }
+                  hover:shadow-2xl hover:-rotate-1 cursor-pointer
                   `}
                   style={{
                     transitionDelay: cardVisibility.has(index)
@@ -229,15 +240,16 @@ export default function ScrollAnimationComponent() {
                     <div className="absolute bottom-12 left-12 w-20 h-20 bg-gray-400 rounded-full blur-xl transition-transform duration-1000 delay-200"></div>
                   </div>
 
-                  <div className="relative z-10 p-10 h-72 flex flex-col justify-between">
+                  <div className="relative z-10 p-10 h-72 flex flex-col justify-between rounded-xl">
+                    {/* <div className="w-full h-full bg-black absolute left-100 -z-10"></div> */}
                     <div>
                       <div className="text-5xl mb-6 transform transition-transform duration-300">
                         <img className="mx-auto" src={card.icon} alt="" />
                       </div>
-                      <h3 className="text-4xl font-bold text-white mb-4 leading-tight group-hover:translate-x-2 transition-transform duration-300">
+                      <h3 className="text-4xl font-bold text-black mb-4 leading-tight group-hover:translate-x-2 transition-transform duration-300">
                         {card.title}
                       </h3>
-                      <p className="text-xl text-white/90 leading-relaxed group-hover:translate-x-1 transition-transform duration-300 delay-75">
+                      <p className="text-xl text-black/90 leading-relaxed group-hover:translate-x-1 transition-transform duration-300 delay-75">
                         {card.description}
                       </p>
                     </div>

@@ -1,8 +1,8 @@
 const URL = "https://stancosmin28.github.io/bransha";
 
 const data = {
-  tabletImg: `${URL}/munn-app.webp`,
-  phoneImg: `${URL}/phone-img.webp`,
+  tabletImg: `${URL}/munn-app.jpeg`,
+  phoneImg: `${URL}/phone-img.jpeg`,
   munn: `${URL}/munn.svg`,
   iPhoneSVG: `${URL}/iphone_16.svg`,
   iPhoneSVGV: `${URL}/iphone_16_vertical.svg`,
