@@ -128,9 +128,7 @@ export default function ScrollAnimationComponent() {
   }, []);
 
   return (
-    <div className="relative w-full  bg-white">
-      {" "}
-      {/* overflow-hidden */}
+    <div className="relative w-full overflow-hidden bg-white">
       <section ref={sectionRef} className="min-h-[150vh] relative py-32">
         <div className="xl:hidden block">
           <div className="h-70 mx-auto relative w-full p-12 flex flex-col justify-center items-center">
