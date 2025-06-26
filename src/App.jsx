@@ -19,6 +19,10 @@ import ScrollToTop from "./Components/ScrollToTop";
 import MunnApp from "./Components/MunnApp";
 import ScrollReveal from "./Components/ScrollReveal";
 import MunnDescriptionComponent from "./Components/MunnDescriptionComponent";
+import MUNNCustomLayoutV1 from "./Components/MUNNCustomLayoutV1";
+import MUNNCustomLayoutV2 from "./Components/MUNNCustomLayoutV2";
+import MUNNCustomLayoutV3 from "./Components/MUNNCustomLayoutV3";
+import data from "./Model/data";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
@@ -51,6 +55,9 @@ function App() {
             element={
               <>
                 <ScrollToTop />
+                <MUNNCustomLayoutV1 imageSrc={data.tabletV1} />
+                <MUNNCustomLayoutV2 imageSrc={data.tabletV2} />
+                <MUNNCustomLayoutV3 imageSrc={data.tabletV3} />
                 <SimpleBlockComponent />
                 <SimpleBlockComponent />
                 <MunnDescriptionComponent />

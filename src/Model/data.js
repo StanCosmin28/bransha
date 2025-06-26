@@ -10,6 +10,9 @@ const data = {
   auroraBG: `${URL}/aurora_bg.gif`,
   munn3D: `${URL}/munn-3d.png`,
   munnDesc: `${URL}/munn-3d-desc.png`,
+  tabletV1: `${URL}/tablet-v1.webp`,
+  tabletV2: `${URL}/tablet-v2.webp`,
+  tabletV3: `${URL}/tablet-v3.webp`,
   iconsSVG: {
     bransha: `${URL}/bransha-icon.svg`,
     analytics: `${URL}/analytics-icon.svg`,
