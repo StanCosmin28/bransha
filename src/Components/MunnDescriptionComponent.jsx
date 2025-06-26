@@ -7,7 +7,7 @@ export default function MunnDescriptionComponent() {
       <div className="flex flex-col lg:flex-row w-full h-full p-4 sm:p-6 md:p-8 lg:p-12 gap-6 justify-center items-center">
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center ">
           <img
-            src={data.munnDesc}
+            src={data.munn3DV2}
             alt="Munn 3D"
             className="object-contain w-full h-full"
           />
