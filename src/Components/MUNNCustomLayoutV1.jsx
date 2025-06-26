@@ -11,11 +11,11 @@ export default function MUNNCustomLayoutV1({
 }) {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-black text-white p-6">
-      <div className="w-full lg:w-2/3 p-4">
+      <div className="w-full lg:w-2/3 p-10">
         <img
           src={imageSrc}
           alt={altText}
-          className="w-full h-auto object-cover rounded-lg"
+          className="w-[90%] h-auto object-cover rounded-lg"
         />
       </div>
       <div className="w-full lg:w-1/3 p-4 space-y-4">

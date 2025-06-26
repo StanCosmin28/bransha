@@ -22,7 +22,7 @@ export default function MUNNCustomLayoutV2({
         <img
           src={imageSrc}
           alt={altText}
-          className="w-full h-auto object-cover rounded-lg"
+          className="w-[90%] h-auto object-cover rounded-lg"
         />
       </div>
     </div>
