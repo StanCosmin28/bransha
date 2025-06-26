@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import data from "../Model/data";
 
 const SmartHomeControlPanel = () => {
   const [activeTab, setActiveTab] = useState("end-user");
@@ -81,13 +82,13 @@ const SmartHomeControlPanel = () => {
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white flex flex-col items-center justify-start p-4 sm:p-6 md:p-8 relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white flex flex-col items-center justify-start p-16 sm:p-18 md:p-20 relative overflow-hidden"
     >
       {/* Background Holographic Effect */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute w-1/3 h-1/3 bg-gradient-to-br from-green-400/20 via-transparent to-blue-400/20 rounded-full blur-xl animate-shimmer" />
       </div>
-
+      <img className="w-auto max-h-100 p-10" src={data.munn3DV2} alt="" />
       {/* Tabs */}
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-10 z-10">
         <button
@@ -137,24 +138,6 @@ const SmartHomeControlPanel = () => {
           Owner/Manager
         </button>
       </div>
-
-      {/* Progress Ring */}
-      <svg
-        ref={progressRef}
-        className="w-12 h-12 mb-6 sm:mb-8 text-purple-600 opacity-50 z-10"
-        viewBox="0 0 100 100"
-      >
-        <circle
-          cx="50"
-          cy="50"
-          r="45"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="5"
-          strokeDasharray="282.74"
-          strokeDashoffset="282.74"
-        />
-      </svg>
 
       {/* Title */}
       <h1

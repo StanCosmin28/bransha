@@ -13,6 +13,7 @@ const data = {
   tabletV1: `${URL}/tablet-v1.webp`,
   tabletV2: `${URL}/tablet-v2.webp`,
   tabletV3: `${URL}/tablet-v3.webp`,
+  munnApps: `${URL}/MUNN-apps.webp`,
   iconsSVG: {
     bransha: `${URL}/bransha-icon.svg`,
     analytics: `${URL}/analytics-icon.svg`,

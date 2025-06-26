@@ -10,7 +10,7 @@ export default function MUNNCustomLayoutV1({
   altText = "Section image",
 }) {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-black text-white p-6">
+    <div className="flex flex-col lg:flex-row items-center justify-center h-auto  text-white p-6 relative">
       <div className="w-full lg:w-2/3 p-10">
         <img
           src={imageSrc}

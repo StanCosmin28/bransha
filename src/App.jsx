@@ -55,12 +55,12 @@ function App() {
             element={
               <>
                 <ScrollToTop />
-                <MUNNCustomLayoutV1 imageSrc={data.tabletV1} />
-                <MUNNCustomLayoutV2 imageSrc={data.tabletV2} />
-                <MUNNCustomLayoutV3 imageSrc={data.tabletV3} />
                 <SimpleBlockComponent />
                 <SimpleBlockComponent />
                 <MunnDescriptionComponent />
+                <MUNNCustomLayoutV1 imageSrc={data.tabletV1} />
+                <MUNNCustomLayoutV2 imageSrc={data.tabletV2} />
+                <MUNNCustomLayoutV3 imageSrc={data.tabletV3} />
                 <MunnApp />
                 <div className="min-h-screen flex justify-center items-center text-left ">
                   <ScrollReveal
@@ -76,9 +76,9 @@ function App() {
                 <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
                 {/* <SimpleShowcaseComponent /> */}
-                <SimpleBranshaComponent />
-                <BlogCarousel />
-                <TeamShowcase />
+                {/* <SimpleBranshaComponent /> */}
+                {/* <BlogCarousel /> */}
+                {/* <TeamShowcase />s */}
                 <Footer />
               </>
             }
