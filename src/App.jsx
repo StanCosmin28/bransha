@@ -11,7 +11,7 @@ import BuildingShowcase from "./Components/BuildingShowcase";
 import TeamShowcase from "./Components/TeamShowcase";
 import AppleScrollHero from "./Components/AppleScrollHero";
 import SimpleBranshaComponent from "./Components/SimpleBranshaComponent";
-// import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
+import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
 import BlogCarousel from "./Components/BlogCarousel";
 import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
 import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
@@ -39,7 +39,6 @@ function App() {
                 <SimpleBlockComponent />
                 <SmartHomePanel />
                 <AppleCardsCarousel />
-                {/* <SimpleShowcaseComponent /> */}
                 <ContainerScroll />
                 <SimpleBranshaComponent />
                 <MUNNComponent />
@@ -76,7 +75,7 @@ function App() {
                 </div>
                 <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
-                {/* <SimpleShowcaseComponent /> */}
+                <SimpleShowcaseComponent />
                 {/* <SimpleBranshaComponent /> */}
                 {/* <BlogCarousel /> */}
                 {/* <TeamShowcase />s */}
