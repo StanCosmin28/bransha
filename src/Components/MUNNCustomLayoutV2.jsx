@@ -5,7 +5,6 @@ export default function MUNNCustomLayoutV2({
     "athis is a descriptionription for the MUNN application!",
     "athis is a descriptionription for the MUNN application!",
     "athis is a descriptionription for the MUNN application!",
-    "athis is a descriptionription for the MUNN application!",
   ],
   altText = "Section image",
 }) {
