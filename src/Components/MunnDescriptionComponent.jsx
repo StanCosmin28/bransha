@@ -5,14 +5,14 @@ export default function MunnDescriptionComponent() {
   return (
     <div className="min-h-screen w-full max-w-7xl flex items-center justify-center  mx-auto">
       <div className="flex flex-col lg:flex-row w-full h-full p-4 sm:p-6 md:p-8 lg:p-12 gap-6 justify-center items-center">
-        <div className="w-full lg:w-1/2 h-full flex items-center justify-center ">
+        <div className="w-full lg:w-2/5 h-full flex items-center justify-center ">
           <img
             src={data.munn3DV1}
             alt="Munn 3D"
             className="object-contain w-full h-full p-10"
           />
         </div>
-        <div className="w-full lg:w-1/2 h-full text-white flex flex-col justify-center space-y-5 p-4 gap-8">
+        <div className="w-full lg:w-3/5 h-full text-white flex flex-col justify-center space-y-5 p-4 gap-8">
           <ScrollReveal
             baseOpacity={0}
             enableBlur={true}

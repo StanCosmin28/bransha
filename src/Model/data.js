@@ -15,6 +15,8 @@ const data = {
   tabletV3: `${URL}/tablet-v3.webp`,
   munnApps: `${URL}/MUNN-apps.webp`,
   headerParticles: `${URL}/headerParticles.webp`,
+  googlePlay: `${URL}/google_play.webp`,
+  appStore: `${URL}/app_store.webp`,
   iconsSVG: {
     bransha: `${URL}/bransha-icon.svg`,
     analytics: `${URL}/analytics-icon.svg`,

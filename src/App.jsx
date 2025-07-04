@@ -75,7 +75,7 @@ function App() {
                 </div>
                 <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
-                <SimpleShowcaseComponent />
+                {/* <SimpleShowcaseComponent /> */}
                 {/* <SimpleBranshaComponent /> */}
                 {/* <BlogCarousel /> */}
                 {/* <TeamShowcase />s */}

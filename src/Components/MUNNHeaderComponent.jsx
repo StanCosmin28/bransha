@@ -2,32 +2,36 @@ import data from "../Model/data";
 
 export default function MUNNHeaderComponent({
   imageSrc = "",
-  // title = "Orice clădire are nevoie de ",
   description = [
     "Controlează și optimizează tot cu un tool puternic, simplu de folosit, creat pentru profesioniști și nu numai.",
   ],
   altText = "Section image",
 }) {
   return (
-    <div className="flex flex-col lg:flex-row items-center bg-white justify-evenly h-auto text-black p-20 relative z-10">
-      <div className="absolute w-[100vw] h-full -z-10">
-        <img className="w-[100vw] h-auto" src={data.headerParticles} alt="" />
+    <div className="flex flex-col lg:flex-row items-center justify-evenly h-screen text-black p-4 sm:p-6 md:p-8 lg:p-12 relative z-10">
+      <div className="absolute w-full h-full -z-10">
+        <img
+          className="w-full h-full object-cover"
+          src={data.headerParticles}
+          alt=""
+        />
       </div>
-      <div className="w-full lg:w-3/5 p-4">
+      <div className="w-full lg:w-1/2 p-2 sm:p-4">
         <img
           src={imageSrc}
           alt={altText}
-          className="w-[90%] h-auto object-cover rounded-lg"
+          className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg object-contain mx-auto"
         />
       </div>
-      <div className="w-full lg:w-2/5 p-4 space-y-4 text-left">
-        <div className="relative bg-red-200 ">
-          <h2 className="text-5xl text-black font-bold text-left leading-14">
-            {/* {title} */}Orice clădire are <br /> nevoie de
+      <div className="w-full lg:w-1/2 p-2 sm:p-4 space-y-4 text-left">
+        <div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            Orice clădire are <br /> nevoie de{" "}
+            <span className="font-black text-purple-500">MUNN</span>
           </h2>
-          <span className="">
+          {/* <span className="block mt-2">
             <svg
-              height="33"
+              className="w-24 sm:w-28 md:w-32 lg:w-40 h-auto"
               viewBox="0 0 100 23"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -37,9 +41,15 @@ export default function MUNNHeaderComponent({
                 fill="#9747FF"
               />
             </svg>
-          </span>
+          </span> */}
         </div>
-        <h3>{description}</h3>
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black max-w-md">
+          {description}
+        </p>
+        <div className="">
+          <img className="" src={data.appStore} alt="" />
+          <img className="" src={data.googlePlay} alt="" />
+        </div>
       </div>
     </div>
   );
