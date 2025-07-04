@@ -62,7 +62,7 @@ function App() {
                 <MUNNCustomLayoutV2 imageSrc={data.tabletV2} />
                 <MUNNCustomLayoutV3 imageSrc={data.tabletV3} />
                 <MunnApp />
-                <div className="min-h-screen flex justify-center items-center text-left ">
+                {/* <div className="min-h-screen flex justify-center items-center text-left ">
                   <ScrollReveal
                     baseOpacity={0}
                     enableBlur={true}
@@ -72,7 +72,7 @@ function App() {
                     Nu sunt doar o aplicație. Sunt creierul digital al clădirii
                     tale.
                   </ScrollReveal>
-                </div>
+                </div> */}
                 <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
                 {/* <SimpleShowcaseComponent /> */}

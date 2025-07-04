@@ -16,16 +16,16 @@ export default function MUNNHeaderComponent({
           alt=""
         />
       </div>
-      <div className="w-full lg:w-1/2 p-2 sm:p-4">
+      <div className="w-full lg:w-3/5 p-2 sm:p-4">
         <img
           src={imageSrc}
           alt={altText}
-          className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg object-contain mx-auto"
+          className="w-full h-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl rounded-lg object-contain mx-auto"
         />
       </div>
-      <div className="w-full lg:w-1/2 p-2 sm:p-4 space-y-4 text-left">
+      <div className="w-full lg:w-2/5 p-2 sm:p-4 space-y-4 text-left">
         <div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-4xl lg:text-4xl xl:text-6xl font-bold leading-tight mb-8">
             Orice clădire are <br /> nevoie de{" "}
             <span className="font-black text-purple-500">MUNN</span>
           </h2>
@@ -43,12 +43,12 @@ export default function MUNNHeaderComponent({
             </svg>
           </span> */}
         </div>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black max-w-md">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black max-w-md mb-10">
           {description}
         </p>
-        <div className="">
-          <img className="" src={data.appStore} alt="" />
-          <img className="" src={data.googlePlay} alt="" />
+        <div className="max-w-full flex flex-row gap-2">
+          <img className="max-w-50 w-1/2" src={data.appStore} alt="" />
+          <img className="max-w-50 w-1/2" src={data.googlePlay} alt="" />
         </div>
       </div>
     </div>

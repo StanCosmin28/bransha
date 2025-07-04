@@ -8,9 +8,9 @@ export default function MUNNCustomLayoutV1({
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center h-auto text-white p-6 relative">
       <div className="w-full lg:w-2/5 p-4 space-y-4 min-h-[400px] flex flex-col justify-between text-left lg:ml-10">
-        <h2 className="text-5xl font-bold text-white">
+        <h2 className="text-5xl font-bold text-white leading-18">
           {title}{" "}
-          <span className="bg-green-400 p-2 rounded-md text-black ml-2">
+          <span className="bg-green-400 p-2 rounded-md text-black xl:ml-2">
             Smart
           </span>
         </h2>
@@ -36,7 +36,7 @@ export default function MUNNCustomLayoutV1({
         </ul>
         <div className="w-fit relative">
           <h3 className="text-4xl font-bold text-white mb-3">{description2}</h3>
-          <div className="w-[55%] h-2 bg-green-400 absolute -right-[15%]"></div>
+          <div className="w-[55%] h-2 bg-green-400 absolute xl:-right-[15%] -right-[5%]"></div>
         </div>
       </div>
       <div className="w-full lg:w-3/5 p-4">
