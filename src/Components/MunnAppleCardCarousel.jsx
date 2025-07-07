@@ -40,9 +40,9 @@ const Card = ({ card, index, observer }) => {
             />
           </svg>
           <div className="flex flex-col">
-            <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90">
+            {/* <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90">
               {card.category}
-            </p>
+            </p> */}
             <p className="max-w-xs text-left font-sans text-lg md:text-2xl lg:text-3xl font-semibold text-white">
               {card.title}
             </p>
@@ -128,7 +128,7 @@ const AppleCardsCarousel = () => {
         {(canScroll.right || canScroll.left) && (
           <div className="flex justify-end gap-2 mt-4 pr-4 md:pr-10">
             <button
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+              className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
               onClick={() => scroll(-1)}
               disabled={!canScroll.left}
               aria-label="Scroll left"
@@ -148,7 +148,7 @@ const AppleCardsCarousel = () => {
               </svg>
             </button>
             <button
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+              className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
               onClick={() => scroll(1)}
               disabled={!canScroll.right}
               aria-label="Scroll right"
