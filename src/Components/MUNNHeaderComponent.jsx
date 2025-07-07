@@ -1,3 +1,4 @@
+import { useRef, useEffect, useCallback, useMemo } from "react";
 import data from "../Model/data";
 
 export default function MUNNHeaderComponent({
@@ -7,14 +8,146 @@ export default function MUNNHeaderComponent({
   ],
   altText = "Section image",
 }) {
+  const canvasRef = useRef(null);
+  const animationFrameId = useRef(null);
+
+  const windowWidth = window.innerWidth;
+  const PARTICLE_COUNT = windowWidth > 1024 ? 100 : 30;
+  const PARTICLE_SIZE_MIN = 1.5;
+  const PARTICLE_SIZE_MAX = 3.5;
+  const PARTICLE_SPEED = 4;
+  const LINK_DISTANCE = 120;
+  const PARTICLE_COLORS = useMemo(
+    () => ["#333333", "#CCCCCC", "#8BC34A", "#F44336"],
+    []
+  );
+  const LINE_COLOR = "#E0E0E0";
+
+  class Particle {
+    constructor(x, y, vx, vy, radius, color) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx; // velocity x
+      this.vy = vy; // velocity y
+      this.radius = radius;
+      this.color = color;
+    }
+
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    update(canvas) {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x - this.radius < 0) this.x = canvas.width + this.radius;
+      if (this.x + this.radius > canvas.width) this.x = -this.radius;
+      if (this.y - this.radius < 0) this.y = canvas.height + this.radius;
+      if (this.y + this.radius > canvas.height) this.y = -this.radius;
+    }
+  }
+
+  const particles = useMemo(() => {
+    const pArray = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const radius =
+        Math.random() * (PARTICLE_SIZE_MAX - PARTICLE_SIZE_MIN) +
+        PARTICLE_SIZE_MIN;
+      const x = Math.random() * window.innerWidth;
+      const yAdjusted =
+        window.innerHeight * 0.4 + Math.random() * window.innerHeight * 0.6;
+
+      const vx = (Math.random() - 0.5) * PARTICLE_SPEED;
+      const vy = (Math.random() - 0.5) * PARTICLE_SPEED;
+
+      let colorIndex;
+      const rand = Math.random();
+      if (rand < 0.7) {
+        colorIndex = Math.floor(Math.random() * 2);
+      } else if (rand < 0.85) {
+        colorIndex = 2;
+      } else {
+        colorIndex = 3;
+      }
+      const color = PARTICLE_COLORS[colorIndex];
+
+      pArray.push(new Particle(x, yAdjusted, vx, vy, radius, color));
+    }
+    return pArray;
+  }, [PARTICLE_COLORS]);
+
+  const draw = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((particle) => {
+      particle.update(canvas);
+      particle.draw(ctx);
+    });
+
+    ctx.strokeStyle = LINE_COLOR;
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        const distance = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+
+        if (distance < LINK_DISTANCE) {
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    animationFrameId.current = requestAnimationFrame(draw);
+  }, [particles, LINE_COLOR, LINK_DISTANCE]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles.forEach((p) => {
+        p.x = Math.random() * canvas.width;
+        p.y = canvas.height * 0.4 + Math.random() * canvas.height * 0.6;
+      });
+    };
+
+    resizeCanvas();
+
+    window.addEventListener("resize", resizeCanvas);
+
+    animationFrameId.current = requestAnimationFrame(draw);
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId.current);
+    };
+  }, [draw, particles]);
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-evenly h-screen text-black p-4 sm:p-6 md:p-8 lg:p-12 relative z-10">
       <div className="absolute w-full h-full -z-10">
-        <img
-          className="w-full h-full object-cover"
-          src={data.headerParticles}
-          alt=""
-        />
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full"
+          style={{ position: "absolute", top: 0, left: 0 }}
+        ></canvas>
       </div>
       <div className="w-full lg:w-3/5 p-2 sm:p-4">
         <img
@@ -29,26 +162,17 @@ export default function MUNNHeaderComponent({
             Orice clădire are <br /> nevoie de{" "}
             <span className="font-black text-purple-500">MUNN</span>
           </h2>
-          {/* <span className="block mt-2">
-            <svg
-              className="w-24 sm:w-28 md:w-32 lg:w-40 h-auto"
-              viewBox="0 0 100 23"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.1733 10.8582C12.1733 8.96312 11.9232 7.62081 11.4232 6.83121C10.9494 6.04161 10.1203 5.64681 8.93593 5.64681C8.56745 5.64681 8.18581 5.67313 7.79101 5.72577C7.39621 5.75209 7.01457 5.79157 6.6461 5.84421V21.873H0.763592V1.81726C1.26367 1.68567 1.84271 1.55407 2.50071 1.42247C3.18503 1.26455 3.89566 1.13295 4.63262 1.02767C5.3959 0.896067 6.17234 0.803946 6.96193 0.751307C7.75153 0.672347 8.52797 0.632867 9.29125 0.632867C10.7915 0.632867 12.0022 0.830267 12.9234 1.22507C13.8709 1.59355 14.6474 2.04098 15.2527 2.56738C16.0949 1.96202 17.0556 1.48827 18.1347 1.14611C19.2402 0.803946 20.2535 0.632867 21.1747 0.632867C22.8328 0.632867 24.1883 0.869746 25.2411 1.34351C26.3202 1.79094 27.1756 2.43578 27.8073 3.27802C28.439 4.12026 28.8733 5.12042 29.1102 6.27849C29.347 7.43657 29.4655 8.72624 29.4655 10.1475V21.873H23.583V10.8582C23.583 8.96312 23.3329 7.62081 22.8328 6.83121C22.3591 6.04161 21.53 5.64681 20.3456 5.64681C20.0298 5.64681 19.5823 5.72577 19.0033 5.88369C18.4506 6.04161 17.99 6.23901 17.6215 6.47589C17.8057 7.08125 17.9242 7.72609 17.9768 8.41041C18.0295 9.0684 18.0558 9.77904 18.0558 10.5423V21.873H12.1733V10.8582ZM52.5338 21.1624C51.5336 21.4519 50.2439 21.7151 48.6647 21.952C47.0855 22.2152 45.4274 22.3468 43.6903 22.3468C41.9268 22.3468 40.4529 22.1099 39.2685 21.6362C38.1104 21.1624 37.1892 20.5044 36.5049 19.6622C35.8206 18.7936 35.3337 17.7671 35.0442 16.5827C34.7546 15.3983 34.6099 14.0955 34.6099 12.6742V1.10663H40.4924V11.9636C40.4924 13.8586 40.7424 15.2273 41.2425 16.0695C41.7426 16.9117 42.6769 17.3329 44.0456 17.3329C44.4667 17.3329 44.9141 17.3197 45.3879 17.2934C45.8617 17.2407 46.2828 17.1881 46.6512 17.1355V1.10663H52.5338V21.1624ZM58.0557 1.81726C59.0558 1.52774 60.3455 1.26455 61.9247 1.02767C63.5039 0.764467 65.1621 0.632867 66.8992 0.632867C68.6626 0.632867 70.1234 0.869746 71.2815 1.34351C72.4658 1.79094 73.4002 2.43578 74.0845 3.27802C74.7688 4.12026 75.2558 5.12042 75.5453 6.27849C75.8348 7.43657 75.9796 8.72624 75.9796 10.1475V21.873H70.0971V10.8582C70.0971 8.96312 69.847 7.62081 69.3469 6.83121C68.8469 6.04161 67.9125 5.64681 66.5439 5.64681C66.1227 5.64681 65.6753 5.67313 65.2016 5.72577C64.7278 5.75209 64.3067 5.79157 63.9382 5.84421V21.873H58.0557V1.81726ZM81.3041 1.81726C82.3043 1.52774 83.5939 1.26455 85.1731 1.02767C86.7523 0.764467 88.4105 0.632867 90.1476 0.632867C91.911 0.632867 93.3718 0.869746 94.5299 1.34351C95.7143 1.79094 96.6486 2.43578 97.3329 3.27802C98.0173 4.12026 98.5042 5.12042 98.7937 6.27849C99.0832 7.43657 99.228 8.72624 99.228 10.1475V21.873H93.3455V10.8582C93.3455 8.96312 93.0954 7.62081 92.5954 6.83121C92.0953 6.04161 91.1609 5.64681 89.7923 5.64681C89.3712 5.64681 88.9237 5.67313 88.45 5.72577C87.9762 5.75209 87.5551 5.79157 87.1866 5.84421V21.873H81.3041V1.81726Z"
-                fill="#9747FF"
-              />
-            </svg>
-          </span> */}
         </div>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black max-w-md mb-10">
           {description}
         </p>
         <div className="max-w-full flex flex-row gap-2">
-          <img className="max-w-50 w-1/2" src={data.appStore} alt="" />
-          <img className="max-w-50 w-1/2" src={data.googlePlay} alt="" />
+          <img className="max-w-50 w-1/2" src={data.appStore} alt="App Store" />
+          <img
+            className="max-w-50 w-1/2"
+            src={data.googlePlay}
+            alt="Google Play"
+          />
         </div>
       </div>
     </div>
