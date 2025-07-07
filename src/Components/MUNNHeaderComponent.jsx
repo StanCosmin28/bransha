@@ -1,5 +1,5 @@
 import { useRef, useEffect, useCallback, useMemo } from "react";
-import data from "../Model/data";
+import data from "../Model/data"; // Assuming this path is correct for your images
 
 export default function MUNNHeaderComponent({
   imageSrc = "",

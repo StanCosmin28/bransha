@@ -6,7 +6,7 @@ export default function MUNNCustomLayoutV2({
 }) {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center h-auto  text-white p-6 relative">
-      <div className="w-full lg:w-2/3 p-10">
+      <div className="w-full lg:w-2/3 p-18">
         <img
           src={imageSrc}
           alt={altText}

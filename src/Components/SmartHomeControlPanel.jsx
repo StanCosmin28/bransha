@@ -7,7 +7,6 @@ const SmartHomeControlPanel = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const listRef = useRef(null);
-  const progressRef = useRef(null);
   const observerRef = useRef(null);
 
   const endUserFeatures = [
@@ -64,32 +63,16 @@ const SmartHomeControlPanel = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (progressRef.current) {
-  //     gsap.fromTo(
-  //       progressRef.current,
-  //       { drawSVG: "0%" },
-  //       {
-  //         drawSVG: "100%",
-  //         duration: 0.3,
-  //         ease: "ease-inOut",
-  //         onComplete: () => gsap.set(progressRef.current, { drawSVG: "0%" }),
-  //       }
-  //     );
-  //   }
-  // }, [activeTab]);
-
   return (
     <div
       ref={sectionRef}
       className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white flex flex-col items-center justify-start p-16 sm:p-18 md:p-20 relative overflow-hidden"
     >
-      {/* Background Holographic Effect */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute w-1/3 h-1/3 bg-gradient-to-br from-green-400/20 via-transparent to-blue-400/20 rounded-full blur-xl animate-shimmer" />
       </div>
       <img className="w-auto max-h-100 p-10" src={data.munn3DV2} alt="" />
-      {/* Tabs */}
+
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-10 z-10">
         <button
           className={`flex items-center px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 cursor-pointer ${
@@ -139,7 +122,6 @@ const SmartHomeControlPanel = () => {
         </button>
       </div>
 
-      {/* Title */}
       <h1
         ref={titleRef}
         className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10 px-4"
@@ -147,7 +129,6 @@ const SmartHomeControlPanel = () => {
         Tu controlezi totul - simplu și intuitiv
       </h1>
 
-      {/* Feature List */}
       <div
         ref={listRef}
         className="w-full max-w-xs sm:max-w-md md:max-w-xl space-y-3 sm:space-y-4 z-10"
@@ -155,7 +136,7 @@ const SmartHomeControlPanel = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 border-l-4 border-green-400 hover:bg-green-400/10 transition-all duration-300 hover:shadow-[0_0_15px_rgba(74,222,128,0.3)] relative overflow-hidden"
+            className="cursor-pointer bg-white/10 backdrop-blur-md rounded-lg p-3 sm:p-4 border-l-4 border-green-400 hover:bg-green-400/10 transition-all duration-300 hover:shadow-[0_0_15px_rgba(74,222,128,0.3)] relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/20 to-transparent h-1/2 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <p className="text-xs sm:text-sm md:text-base text-white leading-relaxed z-10 relative text-left">

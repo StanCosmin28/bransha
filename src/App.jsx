@@ -11,13 +11,12 @@ import BuildingShowcase from "./Components/BuildingShowcase";
 import TeamShowcase from "./Components/TeamShowcase";
 import AppleScrollHero from "./Components/AppleScrollHero";
 import SimpleBranshaComponent from "./Components/SimpleBranshaComponent";
-import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
+// import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
 import BlogCarousel from "./Components/BlogCarousel";
 import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
 import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
 import ScrollToTop from "./Components/ScrollToTop";
 import MunnApp from "./Components/MunnApp";
-import ScrollReveal from "./Components/ScrollReveal";
 import MunnDescriptionComponent from "./Components/MunnDescriptionComponent";
 import MUNNCustomLayoutV1 from "./Components/MUNNCustomLayoutV1";
 import MUNNCustomLayoutV2 from "./Components/MUNNCustomLayoutV2";
@@ -56,29 +55,14 @@ function App() {
               <>
                 <ScrollToTop />
                 <MUNNHeaderComponent imageSrc={data.munnApps} />
-                <MunnDescriptionComponent />
                 <SimpleBlockComponent />
+                <MunnDescriptionComponent />
+                <MunnApp />
+                <MunnAppleCardsCarousel />
                 <MUNNCustomLayoutV1 imageSrc={data.tabletV1} />
                 <MUNNCustomLayoutV2 imageSrc={data.tabletV2} />
                 <MUNNCustomLayoutV3 imageSrc={data.tabletV3} />
-                <MunnApp />
-                {/* <div className="min-h-screen flex justify-center items-center text-left ">
-                  <ScrollReveal
-                    baseOpacity={0}
-                    enableBlur={true}
-                    baseRotation={10}
-                    blurStrength={50}
-                  >
-                    Nu sunt doar o aplicație. Sunt creierul digital al clădirii
-                    tale.
-                  </ScrollReveal>
-                </div> */}
-                <MunnAppleCardsCarousel />
                 <SmartHomeControlPanel />
-                {/* <SimpleShowcaseComponent /> */}
-                {/* <SimpleBranshaComponent /> */}
-                {/* <BlogCarousel /> */}
-                {/* <TeamShowcase />s */}
                 <Footer />
               </>
             }
