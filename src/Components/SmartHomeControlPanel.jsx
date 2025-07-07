@@ -9,6 +9,7 @@ const SmartHomeControlPanel = () => {
   const listRef = useRef(null);
   const observerRef = useRef(null);
 
+  const baseURL = "https://stancosmin28.github.io/bransha";
   const endUserFeatures = [
     "Activate or deactivate HVAC systems, natural lighting (drapes), artificial lighting, and outlets with ease.",
     "Create personalized scenarios for daily routines or special occasions - tailored just for you.",
@@ -16,7 +17,8 @@ const SmartHomeControlPanel = () => {
     "Monitor everything via video cameras, directly from the app.",
     "Track system activity anytime in the History section - clear, chronological, and detailed.",
   ];
-
+  const userIcon = `${baseURL}/user.svg`;
+  const managerIcon = `${baseURL}/manager.svg`;
   const ownerManagerFeatures = [
     "Gestionează accesul utilizatorilor și permisiunile pe toate dispozitivele cu o singură atingere.",
     "Analizează datele privind consumul de energie și optimizează utilizarea cu ajutorul informațiilor inteligente.",
@@ -82,19 +84,7 @@ const SmartHomeControlPanel = () => {
           }`}
           onClick={() => setActiveTab("end-user")}
         >
-          <svg
-            className="w-5 h-5 sm:w-6 sm:h-6 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+          <img className="p-2" src={userIcon} alt="" />
           End-user
         </button>
         <button
@@ -105,19 +95,7 @@ const SmartHomeControlPanel = () => {
           }`}
           onClick={() => setActiveTab("owner-manager")}
         >
-          <svg
-            className="w-5 h-5 sm:w-6 sm:h-6 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-            />
-          </svg>
+          <img className="p-2" src={managerIcon} alt="" />
           Owner/Manager
         </button>
       </div>
