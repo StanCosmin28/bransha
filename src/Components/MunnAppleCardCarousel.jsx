@@ -23,23 +23,10 @@ const Card = ({ card, index, observer }) => {
         animationFillMode: "forwards",
       }}
     >
-      <div className="relative h-80 w-56 md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-96 rounded-3xl cursor-pointer overflow-hidden group flex items-end">
+      <div className="relative h-85 w-56 md:h-[40rem] md:w-80 lg:h-[40rem] lg:w-96 rounded-3xl cursor-pointer overflow-hidden group flex items-end">
         <div className="absolute rounded-3xl bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10 inset-0 min-w-full"></div>
         <div className="relative z-20 p-6 flex flex-row items-center justify-start gap-4 h-auto w-full">
-          {/* <svg
-            className="w-10 h-10 md:w-12 md:h-12 border-2 border-purple-500 p-1"
-            fill="none"
-            stroke="white"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg> */}
-          <img src={card.icon} alt="" />
+          <img className="max-w-[44px]" src={card.icon} alt="" />
           <div className="flex flex-col">
             {/* <p className="text-left font-sans text-sm md:text-base font-medium text-white opacity-90">
               {card.category}
