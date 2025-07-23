@@ -70,7 +70,7 @@ export default function Footer() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/bransha-spa%C8%9Bii-inteligente/posts/?feedView=all"
+                  href="https://www.linkedin.com/in/bransha-romania-30093725a/"
                   target="_blank"
                   className="text-black hover:text-gray-400"
                 >
