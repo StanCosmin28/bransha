@@ -1,6 +1,7 @@
 const URL = "https://stancosmin28.github.io/bransha";
 
 const data = {
+  branshaLogo: `${URL}/bramnsha-logo.svg`,
   tabletImg: `${URL}/munn-app.jpeg`,
   phoneImg: `${URL}/phone-img.jpeg`,
   munn: `${URL}/munn.svg`,
