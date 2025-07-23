@@ -14,10 +14,10 @@ export default function SimpleBranshaComponent() {
         {/* <h1 className="text-6xl md:text-8xl font-thin tracking-tight mb-4">
           BRANSHA
         </h1> */}
-        <img src={data.branshaLogo} alt="" />
-        <p className="text-xl md:text-2xl font-light opacity-80">
+        <img className="" src={data.branshaLogo} alt="" />
+        {/* <p className="text-xl md:text-2xl font-light opacity-80">
           Think Different
-        </p>
+        </p> */}
       </div>
     </section>
   );

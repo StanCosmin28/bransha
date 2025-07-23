@@ -1,7 +1,7 @@
 const URL = "https://stancosmin28.github.io/bransha";
 
 const data = {
-  branshaLogo: `${URL}/bramnsha-logo.svg`,
+  branshaLogo: `${URL}/bransha-logo.svg`,
   tabletImg: `${URL}/munn-app.jpeg`,
   phoneImg: `${URL}/phone-img.jpeg`,
   munn: `${URL}/munn.svg`,
@@ -24,6 +24,10 @@ const data = {
     building: `${URL}/building-icon.svg`,
     munn: `${URL}/munn-icon.svg`,
   },
+  munnIphone1: `${URL}/munn-iphone-1.webp`,
+  munnIphone2: `${URL}/munn-iphone-2.webp`,
+  munnIphone3: `${URL}/munn-iphone-3.webp`,
+  munnIphone4: `${URL}/munn-iphone-4.webp`,
 };
 
 export default data;
