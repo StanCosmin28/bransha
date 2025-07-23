@@ -11,20 +11,19 @@ const SmartHomeControlPanel = () => {
 
   const baseURL = "https://stancosmin28.github.io/bransha";
   const endUserFeatures = [
-    "Activate or deactivate HVAC systems, natural lighting (drapes), artificial lighting, and outlets with ease.",
-    "Create personalized scenarios for daily routines or special occasions - tailored just for you.",
-    "Receive real-time notifications from integrated sensors - always know what's happening.",
-    "Monitor everything via video cameras, directly from the app.",
-    "Track system activity anytime in the History section - clear, chronological, and detailed.",
+    "Activează sau dezactivează cu ușurință sistemele HVAC, iluminatul natural (draperii), iluminatul artificial și prizele.",
+    "Creează scenarii personalizate pentru rutine zilnice sau ocazii speciale - adaptate doar pentru tine.",
+    "Primește notificări în timp real de la senzorii integrați - fii mereu la curent cu ce se întâmplă.",
+    "Monitorizează totul prin intermediul camerelor video, direct din aplicație.",
+    "Urmărește activitatea sistemului oricând în secțiunea Istoric - clară, cronologică și detaliată.",
   ];
   const userIcon = `${baseURL}/user.svg`;
   const managerIcon = `${baseURL}/manager.svg`;
   const ownerManagerFeatures = [
-    "Gestionează accesul utilizatorilor și permisiunile pe toate dispozitivele cu o singură atingere.",
-    "Analizează datele privind consumul de energie și optimizează utilizarea cu ajutorul informațiilor inteligente.",
-    "Programează alerte de mentenanță pe baza metricilor de performanță ale sistemului.",
-    "Revizuiește jurnalele de securitate și ajustează setările de la distanță pentru un control sporit.",
-    "Generează rapoarte detaliate pentru conformitate și audit, actualizate la ora 11:04 EEST, 19 iunie 2025.",
+    "Creare conturi pentru utilizatori - rezidenți, oaspeți, angajați.",
+    " Monitorizare activitate - acces, utilizare sisteme, comportament în spațiu.",
+    "Personalizare funcționalități  setări individuale pentru fiecare spațiu.",
+    "Oferte pentru hoteluri - ca administrator, poți crea pachete speciale direct în secțiunea Rezervări.",
   ];
 
   const features =
