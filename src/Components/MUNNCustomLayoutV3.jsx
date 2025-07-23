@@ -5,7 +5,7 @@ export default function MUNNCustomLayoutV3({
   altText = "Section image",
 }) {
   return (
-    <div className="flex flex-col items-center justify-center h-auto bg-black text-white p-6 max-w-7xl mx-auto">
+    <div className="flex flex-col items-center justify-center h-auto bg-black text-white p-6 max-w-7xl mx-auto my-20">
       <div className="w-full p-4 space-y-4 flex flex-col xl:flex-row justify-between items-center mb-10">
         <h2 className="text-5xl text-left font-bold text-white leading-18">
           {title}{" "}

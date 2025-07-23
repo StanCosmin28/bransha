@@ -13,7 +13,7 @@ export default function MunnApp() {
       description:
         "Control total asupra sistemelor clădirii, scenarii, monitorizare și supraveghere.",
       icon: Building2,
-      image: `${data.munnIphoen1}`,
+      image: `${data.munnIphone1}`,
     },
     {
       id: "rezervari",
@@ -21,7 +21,7 @@ export default function MunnApp() {
       description:
         "Sistem inteligent de rezervare a spațiilor și resurselor din clădire.",
       icon: Star,
-      image: `${data.munnIphoen2}`,
+      image: `${data.munnIphone2}`,
     },
     {
       id: "marketplace",
@@ -29,7 +29,7 @@ export default function MunnApp() {
       description:
         "Platformă de servicii și produse pentru comunitatea din clădire.",
       icon: Gauge,
-      image: `${data.munnIphoen3}`,
+      image: `${data.munnIphone3}`,
     },
     {
       id: "comunitate",
@@ -37,7 +37,7 @@ export default function MunnApp() {
       description:
         "Conectează rezidenții și facilitează comunicarea în comunitate.",
       icon: Users,
-      image: `${data.munnIphoen4}`,
+      image: `${data.munnIphone4}`,
     },
   ];
 

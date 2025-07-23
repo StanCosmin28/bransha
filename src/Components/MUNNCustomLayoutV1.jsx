@@ -6,7 +6,7 @@ export default function MUNNCustomLayoutV1({
   description2 = "Totul clar și automat.",
 }) {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center h-auto text-white p-6 relative">
+    <div className="flex flex-col lg:flex-row items-center justify-center h-auto text-white p-6 relative my-20">
       <div className="w-full lg:w-2/5 p-4 space-y-4 min-h-[400px] flex flex-col justify-between text-left lg:ml-5 xl:ml-20 lg:items-start items-center">
         <h2 className="text-5xl font-bold text-white leading-18">
           {title}{" "}

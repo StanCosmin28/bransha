@@ -3,13 +3,13 @@ const URL = "https://stancosmin28.github.io/bransha";
 const data = {
   branshaLogo: `${URL}/bransha-logo.svg`,
   tabletImg: `${URL}/munn-app.jpeg`,
-  phoneImg: `${URL}/phone-img.jpeg`,
+  phoneImg: `${URL}/phone-img.png`,
   munn: `${URL}/munn.svg`,
   iPhoneSVG: `${URL}/iphone_16.svg`,
   iPhoneSVGV: `${URL}/iphone_16_vertical.svg`,
   teamSVG: `${URL}/team.svg`,
   auroraBG: `${URL}/aurora_bg.gif`,
-  munn3DV1: `${URL}/munn-3d-v1.webp`,
+  munn3DV1: `${URL}/munn-3d-v1.png`,
   munn3DV2: `${URL}/munn-3d-v2.webp`,
   tabletV1: `${URL}/tablet-v1.webp`,
   tabletV2: `${URL}/tablet-v2.webp`,
@@ -24,10 +24,10 @@ const data = {
     building: `${URL}/building-icon.svg`,
     munn: `${URL}/munn-icon.svg`,
   },
-  munnIphone1: `${URL}/munn-iphone-1.webp`,
-  munnIphone2: `${URL}/munn-iphone-2.webp`,
-  munnIphone3: `${URL}/munn-iphone-3.webp`,
-  munnIphone4: `${URL}/munn-iphone-4.webp`,
+  munnIphone1: `${URL}/munn-iphone-img-1.png`,
+  munnIphone2: `${URL}/munn-iphone-img-2.png`,
+  munnIphone3: `${URL}/munn-iphone-img-3.png`,
+  munnIphone4: `${URL}/munn-iphone-img-4.png`,
 };
 
 export default data;
