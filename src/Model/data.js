@@ -3,7 +3,7 @@ const URL = "https://stancosmin28.github.io/bransha";
 const data = {
   branshaLogo: `${URL}/bransha-logo.svg`,
   tabletImg: `${URL}/munn-app.jpeg`,
-  phoneImg: `${URL}/phone-img.png`,
+  phoneImg: `${URL}/phone-img.jpeg`,
   munn: `${URL}/munn.svg`,
   iPhoneSVG: `${URL}/iphone_16.svg`,
   iPhoneSVGV: `${URL}/iphone_16_vertical.svg`,
