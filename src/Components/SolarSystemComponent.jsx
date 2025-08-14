@@ -101,7 +101,8 @@ export default function SolarSystemComponent() {
           <div className="orbit-item-class flex items-center w-full h-full">
             {/* Icon container: Always centered (justify-center, items-center), smooth transition */}
             <div className="orbit-item-class flex-shrink-0 w-10 h-10 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-gray-700 " />
+              {/* <Icon className="w-5 h-5 text-gray-700 " /> */}
+              <img src={Icon} className="w-8 h-8 text-gray-700 " alt="" />
             </div>
             {/* Text: Initially hidden, appears on hover to the right */}
             <p className="text-xs text-gray-700 font-medium hidden group-hover:block whitespace-nowrap pr-2">
