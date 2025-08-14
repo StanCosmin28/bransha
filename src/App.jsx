@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppleCardsCarousel from "./Components/AppleCardsCarousel";
 import ContainerScroll from "./Components/ContainerScroll";
-import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
+// import ScrollAnimationComponent from "./Components/ScrollAnimationComponent";
 import SmartHomePanel from "./Components/SmartRoomComponent";
 import MUNNComponent from "./Components/MUNNComponent";
 import SimpleBlockComponent from "./Components/SimpleBlockComponent";
