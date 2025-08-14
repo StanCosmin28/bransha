@@ -126,7 +126,7 @@ export default function HeroScrollDemo() {
           draggable={false}
         />
       </ContainerScroll>
-      <h2 className="absolute lg:bottom-20 left-1/2 -translate-x-1/2 -translate-y-1/2 bottom-16 text-sm font-semibold w-[85%] max-w-[30rem] md:text-2xl lg:max-w-[75%] xl:text-3xl xl:max-w-[60%]">
+      <h2 className="absolute lg:bottom-20 left-1/2 -translate-x-1/2 -translate-y-1/2 bottom-16 text-sm font-semibold w-[85%] max-w-md md:text-2xl lg:max-w-2xl xl:text-3xl xl:max-w-4xl">
         Monitorizează și gestionează toate sistemele clădirii rapid și simplu,
         oriunde te afli, totul la un singur touch.
       </h2>
