@@ -23,6 +23,7 @@ import MUNNCustomLayoutV2 from "./Components/MUNNCustomLayoutV2";
 import MUNNCustomLayoutV3 from "./Components/MUNNCustomLayoutV3";
 import data from "./Model/data";
 import MUNNHeaderComponent from "./Components/MUNNHeaderComponent";
+import HowWeSupport from "./Components/HowWeSupport";
 // import LoadingWrapper from "./Components/LoadingWrapper";
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
                 <ContainerScroll />
                 <SimpleBranshaComponent />
                 <MUNNComponent />
-                <ScrollAnimationComponent />
+                <HowWeSupport />
+                {/* <ScrollAnimationComponent /> */}
                 <BuildingShowcase />
                 <BlogCarousel />
                 <TeamShowcase />
