@@ -20,20 +20,37 @@ export default function SolarSystemComponent() {
           icon: SVGs.iluminatAutomatizat,
           angle: 0,
           text: "Iluminat Automatizat",
+          widthSize: 180,
         },
-        { icon: SVGs.analizaTimpReal, angle: 180, text: "Analiză timp real" },
+        {
+          icon: SVGs.analizaTimpReal,
+          angle: 180,
+          text: "Analiză timp real",
+          widthSize: 160,
+        },
       ],
       duration: 20,
     },
     {
       radius: 160,
       items: [
-        { icon: SVGs.controlAcces, angle: 0, text: "Control Acces" },
-        { icon: SVGs.controlHVAC, angle: 120, text: "Control HVAC" },
+        {
+          icon: SVGs.controlAcces,
+          angle: 0,
+          text: "Control Acces",
+          widthSize: 145,
+        },
+        {
+          icon: SVGs.controlHVAC,
+          angle: 120,
+          text: "Control HVAC",
+          widthSize: 145,
+        },
         {
           icon: SVGs.optimizareEnergetica,
           angle: 240,
           text: "Optimizare Energetică",
+          widthSize: 185,
         },
       ],
       duration: 30,
@@ -44,76 +61,71 @@ export default function SolarSystemComponent() {
         {
           icon: SVGs.securitateSupraveghere,
           angle: 0,
-          text: "Securitate Supraveghere",
+          text: "Supraveghere",
+          widthSize: 145,
         },
         {
           icon: SVGs.sigurantaIncendiu,
           angle: 180,
           text: "Siguranță Incendiu",
+          widthSize: 170,
         },
         {
           icon: SVGs.sigurantaInundatie,
           angle: 280,
           text: "Siguranță Inundație",
+          widthSize: 170,
         },
       ],
       duration: 40,
     },
   ];
 
-  // const OrbitItem = ({ icon: Icon, radius, angle, duration, text }) => {
-  //   return (
-  //     <div
-  //       className="absolute w-12 h-12 flex items-center justify-center border-4 border-white rounded-full overflow-hidden"
-  //       style={{
-  //         transform: `translate(-50%, -50%)`,
-  //         left: "50%",
-  //         top: "50%",
-  //         animation: `orbit-${radius}-${angle} ${duration}s linear infinite`,
-  //       }}
-  //     >
-  //       <div className="w-12 h-12 bg-[#DCFC00] rounded-full shadow-lg flex items-center justify-center border border-gray-200 hover:shadow-xl transition-shadow cursor-pointer gap-2">
-  //         <Icon className="w-5 h-5 text-gray-700" />
-  //         {/* <p className="text-xs text-gray-700 font-medium">{text}</p> */}
-  //       </div>
-  //     </div>
-  //   );
-  // };
-  const OrbitItem = ({ icon: Icon, radius, angle, duration, text }) => {
+  const OrbitItem = ({
+    icon: Icon,
+    radius,
+    angle,
+    duration,
+    text,
+    widthSize,
+  }) => {
     return (
       <div
-        className="absolute flex items-center border-4 border-white rounded-full overflow-hidden transition-all duration-300 ease-in-out w-12 h-12 hover:w-fit group"
+        className="group absolute flex items-center border-4 border-white rounded-full overflow-hidden transition-all duration-300 ease-in-out w-12 h-12 hover:w-[var(--width-size)]"
         style={{
           transform: `translate(-50%, -50%)`,
           transformOrigin: "left",
           left: "50%",
           top: "50%",
           animation: `orbit-${radius}-${angle} ${duration}s linear infinite`,
+          "--width-size": `${widthSize}px`, // Pass widthSize as CSS custom property
         }}
       >
         <div
-          className="orbit-item-class h-full bg-[#DCFC00] rounded-full shadow-lg flex items-center border border-gray-200 hover:shadow-xl cursor-pointer transition-all duration-300 ease-in-out"
+          className="orbit-item h-full bg-[#DCFC00] rounded-full shadow-lg flex items-center border border-gray-200 hover:shadow-xl cursor-pointer transition-all duration-300 ease-in-out"
           style={{
             width: "48px",
             transitionProperty: "width, box-shadow",
           }}
         >
-          <div className="orbit-item-class flex items-center w-full h-full">
-            {/* Icon container: Always centered (justify-center, items-center), smooth transition */}
-            <div className="orbit-item-class flex-shrink-0 w-10 h-10 flex items-center justify-center">
-              {/* <Icon className="w-5 h-5 text-gray-700 " /> */}
-              <img src={Icon} className="w-8 h-8 text-gray-700 " alt="" />
-            </div>
-            {/* Text: Initially hidden, appears on hover to the right */}
-            <p className="text-xs text-gray-700 font-medium hidden group-hover:block whitespace-nowrap pr-2">
-              {text}
-            </p>
+          <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center">
+            <img src={Icon} className="w-8 h-8 text-gray-700" alt={text} />
           </div>
+          <p className="text-xs text-gray-700 font-medium hidden group-hover:block whitespace-nowrap pr-2">
+            {text}
+          </p>
         </div>
-        {/* Hover width extension */}
         <style jsx="true">{`
-          .group:hover > .orbit-item-class {
-            width: 135px !important; /* Fixed width for text + icon + padding */
+          .group {
+            z-index: 10; /* Default stacking order */
+          }
+          .group:hover {
+            z-index: 1000 !important; /* Ensure hovered item is above others */
+          }
+          .group:hover > .orbit-item {
+            width: var(
+              --width-size
+            ) !important; /* Use custom property for width */
           }
         `}</style>
       </div>
@@ -129,8 +141,6 @@ export default function SolarSystemComponent() {
         left: "50%",
         top: "50%",
         transform: "translate(-50%, -50%)",
-        // background: RGBA(174, 119, 247, 0),
-        // background: radial-gradient(circle,rgba(174, 119, 247, 1) 1%, rgba(174, 119, 247, 0.5) 50%, rgba(0, 1, 71, 0.42) 100%)
       }}
     />
   );
@@ -164,21 +174,14 @@ export default function SolarSystemComponent() {
           .join("")}
       `}</style>
       <div className="relative w-full h-full max-w-6xl max-h-6xl">
-        {/* Orbital Ring Guides */}
         {orbitalRings.map((ring, index) => (
           <OrbitRing key={index} radius={ring.radius} />
         ))}
-
-        {/* Central Sun/Logo */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="w-24 h-24 bg-gradient-to-br  rounded-full shadow-2xl flex items-center justify-center">
-            {/* from-lime-400 to-lime-500 */}
-            {/* <Rocket size={36} className="text-white" /> */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="w-24 h-24 bg-gradient-to-br rounded-full shadow-2xl flex items-center justify-center">
             <img src={data.munn} className="w-25 h-25 text-white" alt="MUNN" />
           </div>
         </div>
-
-        {/* Orbiting Items */}
         {orbitalRings.map((ring, ringIndex) =>
           ring.items.map((item, itemIndex) => (
             <OrbitItem
@@ -188,6 +191,7 @@ export default function SolarSystemComponent() {
               angle={item.angle}
               duration={ring.duration}
               text={item.text}
+              widthSize={item.widthSize}
             />
           ))
         )}
