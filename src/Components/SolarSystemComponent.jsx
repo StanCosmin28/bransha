@@ -1,40 +1,61 @@
-import {
-  Power,
-  BarChart3,
-  Settings,
-  Rocket,
-  Star,
-  Moon,
-  Globe,
-} from "lucide-react";
+// import {
+//   Power,
+//   BarChart3,
+//   Settings,
+//   Rocket,
+//   Star,
+//   Moon,
+//   Globe,
+// } from "lucide-react";
 import data from "../Model/data";
 import "../App.css";
+const SVGs = { ...data.iconsSVG };
 
 export default function SolarSystemComponent() {
   const orbitalRings = [
     {
       radius: 100,
       items: [
-        { icon: Power, angle: 0, text: "Power test" },
-        { icon: BarChart3, angle: 180, text: "Analytics test" },
+        {
+          icon: SVGs.iluminatAutomatizat,
+          angle: 0,
+          text: "Iluminat Automatizat",
+        },
+        { icon: SVGs.analizaTimpReal, angle: 180, text: "Analiză timp real" },
       ],
       duration: 20,
     },
     {
       radius: 160,
       items: [
-        { icon: Settings, angle: 0, text: "Settings test" },
-        { icon: Rocket, angle: 120, text: "Launch test" },
-        { icon: Star, angle: 240, text: "Star test" },
+        { icon: SVGs.controlAcces, angle: 0, text: "Control Acces" },
+        { icon: SVGs.controlHVAC, angle: 120, text: "Control HVAC" },
+        {
+          icon: SVGs.optimizareEnergetica,
+          angle: 240,
+          text: "Optimizare Energetică",
+        },
       ],
       duration: 30,
     },
     {
       radius: 220,
       items: [
-        { icon: Moon, angle: 0, text: "Moon test" },
-        { icon: Globe, angle: 180, text: "Globe test" },
-        { icon: BarChart3, angle: 280, text: "Analytics test" },
+        {
+          icon: SVGs.securitateSupraveghere,
+          angle: 0,
+          text: "Securitate Supraveghere",
+        },
+        {
+          icon: SVGs.sigurantaIncendiu,
+          angle: 180,
+          text: "Siguranță Incendiu",
+        },
+        {
+          icon: SVGs.sigurantaInundatie,
+          angle: 280,
+          text: "Siguranță Inundație",
+        },
       ],
       duration: 40,
     },
