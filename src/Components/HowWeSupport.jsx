@@ -1,28 +1,25 @@
-import data from "../Model/data";
-const { bransha, analytics, building, munn } = data.iconsSVG;
-
 export default function HowWeSupport() {
   const cards = [
     {
-      icon: bransha,
+      icon: "/bransha-icon.svg",
       title: "Soluții integrate, dezvoltate intern",
       description:
         "Produsele și softurile noastre sunt create și testate pentru a funcționa impecabil împreună, fără bătaie de cap.",
     },
     {
-      icon: analytics,
+      icon: "/analytics-icon.svg",
       title: "Reducere a costurilor operaționale",
       description:
         "Soluțiile noastre inteligente ajută clienții să reducă semnificativ consumul și costurile lunare.",
     },
     {
-      icon: building,
+      icon: "/building-icon.svg",
       title: "Flexibilitate pentru orice tip de proiect",
       description:
         "De la clădiri rezidențiale la spitale și parcuri industriale — soluțiile Bransha se adaptează la orice cerință.",
     },
     {
-      icon: munn,
+      icon: "/munn-icon.svg",
       title: "Control complet prin aplicația Munn",
       description:
         "Controlezi temperatura, accesul și iluminatul — direct de pe telefon sau desktop, oriunde te-ai afla.",

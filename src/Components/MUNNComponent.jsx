@@ -50,7 +50,7 @@ export default function MUNNComponent() {
             </span>
           </p>
           <Link
-            to="/bransha/munn"
+            to="/munn"
             className="cursor-pointer  px-12 py-4 border-1 border-white/50 bg-transparent text-white rounded-full text-xs sm:text-sm md:text-base lg:text-lg font-medium hover:bg-gray-100 hover:text-purple-700 hover:shadow-lg hover:scale-105 transition-all duration-300 transform-gpu"
           >
             {/* <button className="cursor-pointer mt-4 px-6 py-2 border-1 border-white/50 bg-transparent text-white rounded-full text-xs sm:text-sm md:text-base lg:text-lg font-medium hover:bg-gray-100 hover:text-black hover:shadow-lg hover:scale-105 transition-all duration-300 transform-gpu"> */}

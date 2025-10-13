@@ -8,7 +8,7 @@ const showcaseData = [
       "Apelare Soră, detecție a ferestrelor deschise, control automat al climatizării și al iluminatului natural.",
     ],
     location: "Iași",
-    image: `${URL}/spital-sf-maria.webp`,
+    image: "/spital-sf-maria.webp",
   },
   {
     title: "Trăiește Smart: Bucuria Modernă a Viitorului!",
@@ -18,7 +18,7 @@ const showcaseData = [
       "Toate integrate perfect în noul tău cămin!",
     ],
     location: "Iași",
-    image: `${URL}/poitiers-towers.webp`,
+    image: "/poitiers-towers.webp",
   },
   {
     title: "Virusafe Lab: Siguranță și Inovație",
@@ -28,7 +28,7 @@ const showcaseData = [
       "Laborator de virusologie ultramodern cu alarmă antiefracție, detecție și alarmă incendiu, control temperatură prin chiller BMS și monitorizare energie electrică.",
     ],
     location: "Iași",
-    image: `${URL}/virusafe-lab.webp`,
+    image: "/virusafe-lab.webp",
   },
   {
     title: "EduSafe: Învățământ Protejat și Modern",
@@ -38,7 +38,7 @@ const showcaseData = [
       "Plus senzori de inundație în băi, pentru un mediu educațional securizat și eficient.",
     ],
     location: "Iași",
-    image: `${URL}/edu-safe.webp`,
+    image: "/edu-safe.webp",
   },
 ];
 

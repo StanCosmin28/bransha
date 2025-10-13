@@ -1,5 +1,4 @@
 import { useRef, useEffect, useCallback, useMemo } from "react";
-import data from "../Model/data"; // Assuming this path is correct for your images
 
 export default function MUNNHeaderComponent({
   imageSrc = "",
@@ -167,10 +166,14 @@ export default function MUNNHeaderComponent({
           {description}
         </p>
         <div className="max-w-full flex flex-row gap-2">
-          <img className="max-w-50 w-1/2" src={data.appStore} alt="App Store" />
           <img
             className="max-w-50 w-1/2"
-            src={data.googlePlay}
+            src="/app_store.webp"
+            alt="App Store"
+          />
+          <img
+            className="max-w-50 w-1/2"
+            src="/google_play.webp"
             alt="Google Play"
           />
         </div>

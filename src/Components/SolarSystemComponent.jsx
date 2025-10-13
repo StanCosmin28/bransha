@@ -1,15 +1,4 @@
-// import {
-//   Power,
-//   BarChart3,
-//   Settings,
-//   Rocket,
-//   Star,
-//   Moon,
-//   Globe,
-// } from "lucide-react";
-import data from "../Model/data";
 import "../App.css";
-const SVGs = { ...data.iconsSVG };
 
 export default function SolarSystemComponent() {
   const orbitalRings = [
@@ -17,13 +6,13 @@ export default function SolarSystemComponent() {
       radius: 100,
       items: [
         {
-          icon: SVGs.iluminatAutomatizat,
+          icon: "/iluminat-automatizat.svg",
           angle: 0,
           text: "Iluminat Automatizat",
           widthSize: 180,
         },
         {
-          icon: SVGs.analizaTimpReal,
+          icon: "/analiza-timp-real.svg",
           angle: 180,
           text: "Analiză timp real",
           widthSize: 160,
@@ -35,19 +24,19 @@ export default function SolarSystemComponent() {
       radius: 160,
       items: [
         {
-          icon: SVGs.controlAcces,
+          icon: "/control-acces.svg",
           angle: 0,
           text: "Control Acces",
           widthSize: 145,
         },
         {
-          icon: SVGs.controlHVAC,
+          icon: "/control-HVAC.svg",
           angle: 120,
           text: "Control HVAC",
           widthSize: 145,
         },
         {
-          icon: SVGs.optimizareEnergetica,
+          icon: "/optimizare-energetica.svg",
           angle: 240,
           text: "Optimizare Energetică",
           widthSize: 185,
@@ -59,19 +48,19 @@ export default function SolarSystemComponent() {
       radius: 220,
       items: [
         {
-          icon: SVGs.securitateSupraveghere,
+          icon: "/securitate-supraveghere.svg",
           angle: 0,
           text: "Supraveghere",
           widthSize: 145,
         },
         {
-          icon: SVGs.sigurantaIncendiu,
+          icon: "/siguranta-incendiu.svg",
           angle: 180,
           text: "Siguranță Incendiu",
           widthSize: 170,
         },
         {
-          icon: SVGs.sigurantaInundatie,
+          icon: "/siguranta-inundatie.svg",
           angle: 280,
           text: "Siguranță Inundație",
           widthSize: 170,
@@ -179,7 +168,7 @@ export default function SolarSystemComponent() {
         ))}
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="w-24 h-24 bg-gradient-to-br rounded-full shadow-2xl flex items-center justify-center">
-            <img src={data.munn} className="w-25 h-25 text-white" alt="MUNN" />
+            <img src="/munn.svg" className="w-25 h-25 text-white" alt="MUNN" />
           </div>
         </div>
         {orbitalRings.map((ring, ringIndex) =>

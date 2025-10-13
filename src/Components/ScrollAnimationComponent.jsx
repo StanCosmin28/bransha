@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import data from "../Model/data";
 
 export default function ScrollAnimationComponent() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -10,7 +9,6 @@ export default function ScrollAnimationComponent() {
   const leftSectionRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  const { iconsSVG } = data;
   const cards = [
     {
       title: "Soluții integrate",
@@ -18,7 +16,7 @@ export default function ScrollAnimationComponent() {
         "Produse și softuri create și testate pentru a funcționa impecabil împreună, fără complicații.",
       // color: "bg-gray-800",
       color: "bg-[#EFEFEF]",
-      icon: iconsSVG.bransha,
+      icon: "/bransha-icon.svg",
       // accent: "bg-gray-700",
       accent: "bg-[#EFEFEF]",
     },
@@ -28,7 +26,7 @@ export default function ScrollAnimationComponent() {
         "Soluții inteligente care reduc semnificativ consumul și costurile operaționale lunare.",
       // color: "bg-teal-900",
       color: "bg-[#EFEFEF]",
-      icon: iconsSVG.analytics,
+      icon: "/analytics-icon.svg",
       // accent: "bg-teal-800",
       accent: "bg-[#EFEFEF]",
     },
@@ -38,7 +36,7 @@ export default function ScrollAnimationComponent() {
         "Soluții adaptabile pentru orice proiect, de la clădiri rezidențiale la parcuri industriale.",
       // color: "bg-blue-900",
       color: "bg-[#EFEFEF]",
-      icon: iconsSVG.building,
+      icon: "/building-icon.svg",
       // accent: "bg-blue-800",
       accent: "bg-[#EFEFEF]",
     },
@@ -48,7 +46,7 @@ export default function ScrollAnimationComponent() {
         "Controlezi temperatura, accesul și iluminatul direct de pe telefon sau desktop.",
       // color: "bg-[rgb(151,71,255)]",
       color: "bg-[#EFEFEF]",
-      icon: iconsSVG.munn,
+      icon: "/munn-icon.svg",
       // accent: "bg-[rgb(135,63,230)]",
       accent: "bg-[#EFEFEF]",
     },
@@ -166,7 +164,7 @@ export default function ScrollAnimationComponent() {
                 <div className="text-6xl mb-8 transition-opacity duration-300 ease-out">
                   <img
                     className="mx-auto"
-                    src={cards[activeCardIndex]?.icon || iconsSVG.bransha}
+                    src={cards[activeCardIndex]?.icon || "/bransha-icon.svg"}
                     alt=""
                   />
                 </div>

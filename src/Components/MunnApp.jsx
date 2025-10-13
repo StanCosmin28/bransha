@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ChevronDown, Star, Gauge, Building2, Users } from "lucide-react";
-import data from "../Model/data";
 
 export default function MunnApp() {
   const [activeSection, setActiveSection] = useState("smart-building");
@@ -13,7 +12,7 @@ export default function MunnApp() {
       description:
         "Control total asupra sistemelor clădirii, scenarii, monitorizare și supraveghere.",
       icon: Building2,
-      image: `${data.munnIphone1}`,
+      image: "/munn-iphone-img-1.png",
     },
     {
       id: "rezervari",
@@ -21,7 +20,7 @@ export default function MunnApp() {
       description:
         "Sistem inteligent de rezervare a spațiilor și resurselor din clădire.",
       icon: Star,
-      image: `${data.munnIphone2}`,
+      image: "/munn-iphone-img-2.png",
     },
     {
       id: "marketplace",
@@ -29,7 +28,7 @@ export default function MunnApp() {
       description:
         "Platformă de servicii și produse pentru comunitatea din clădire.",
       icon: Gauge,
-      image: `${data.munnIphone3}`,
+      image: "/munn-iphone-img-3.png",
     },
     {
       id: "comunitate",
@@ -37,7 +36,7 @@ export default function MunnApp() {
       description:
         "Conectează rezidenții și facilitează comunicarea în comunitate.",
       icon: Users,
-      image: `${data.munnIphone4}`,
+      image: "/munn-iphone-img-4.png",
     },
   ];
 
@@ -71,7 +70,7 @@ export default function MunnApp() {
             </div>
             <div className="absolute top-0 w-full h-full">
               <img
-                src={data.iPhoneSVGV}
+                src="/iphone_16_vertical.svg"
                 alt="Phone"
                 className="w-full h-full object-contain"
               />
@@ -216,7 +215,7 @@ export default function MunnApp() {
                   </div>
                   <div className="absolute top-[5%] left-[2%] w-[96%] h-[90%]">
                     <img
-                      src={data.iPhoneSVGV}
+                      src="/iphone_16_vertical.svg"
                       alt="Phone"
                       className="w-full h-full object-contain"
                     />

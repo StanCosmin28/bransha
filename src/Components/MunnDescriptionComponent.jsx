@@ -1,4 +1,3 @@
-import data from "../Model/data";
 import ScrollReveal from "./ScrollReveal";
 
 export default function MunnDescriptionComponent() {
@@ -7,7 +6,7 @@ export default function MunnDescriptionComponent() {
       <div className="flex flex-col lg:flex-row w-full h-full p-4 sm:p-6 md:p-8 lg:p-12 gap-6 justify-center items-center">
         <div className="w-full lg:w-2/5 h-full flex items-center justify-center ">
           <img
-            src={data.munn3DV1}
+            src="/munn-3d-v1.png"
             alt="Munn 3D"
             className="object-contain w-full h-full p-10"
           />

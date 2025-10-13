@@ -1,6 +1,5 @@
 import { ShootingStars } from "./ShootingStars";
 import { StarsBackground } from "./StarsBackground";
-import data from "../Model/data";
 
 export default function SimpleBranshaComponent() {
   return (
@@ -14,7 +13,7 @@ export default function SimpleBranshaComponent() {
         {/* <h1 className="text-6xl md:text-8xl font-thin tracking-tight mb-4">
           BRANSHA
         </h1> */}
-        <img className="" src={data.branshaLogo} alt="" />
+        <img className="" src="/bransha-logo.svg" alt="" />
         {/* <p className="text-xl md:text-2xl font-light opacity-80">
           Think Different
         </p> */}

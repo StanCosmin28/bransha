@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import data from "../Model/data";
 import { StarsBackground } from "./StarsBackground";
 // import Aurora from "./Aurora";
 // import Particles from "./Particles";
@@ -89,7 +88,7 @@ export default function HeroScrollDemo() {
     <div className="flex flex-col bg-gradient-to-bl from-black/10 via-gray-900 to-black overflow-hidden relative">
       <div className="absolute inset-0 w-full h-full z-[-10]">
         <img
-          src={data.auroraBG}
+          src="/aurora_bg.gif"
           alt=""
           className="w-full h-full object-cover"
           loading="eager"
@@ -118,7 +117,7 @@ export default function HeroScrollDemo() {
         }
       >
         <img
-          src={data.tabletImg}
+          src="/munn-app.jpeg"
           alt="hero"
           height={720}
           width={1400}

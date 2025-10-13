@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import data from "../Model/data";
 
 const SmartHomeControlPanel = () => {
   const [activeTab, setActiveTab] = useState("end-user");
@@ -72,7 +71,7 @@ const SmartHomeControlPanel = () => {
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute w-1/3 h-1/3 bg-gradient-to-br from-green-400/20 via-transparent to-blue-400/20 rounded-full blur-xl animate-shimmer" />
       </div>
-      <img className="w-auto max-h-100 p-10" src={data.munn3DV2} alt="" />
+      <img className="w-auto max-h-100 p-10" src="/munn-3d-v2.webp" alt="" />
 
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-10 z-10">
         <button
