@@ -2,8 +2,8 @@ import { useEffect, useRef, useCallback, useMemo } from "react";
 import { StarsBackground } from "./StarsBackground";
 
 export default function AppleScrollHero({
-  imageSrc = "https://images.unsplash.com/photo-1720415353460-957325a7267d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  // imageSrc = "/phone-img.webp",
+  // imageSrc = "https://images.unsplash.com/photo-1720415353460-957325a7267d?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  imageSrc = "/phone-img.webp",
   alt = "Premium Product",
   phoneSvg = "/iphone_16.svg",
   phoneWidth = 640,
