@@ -12,7 +12,7 @@ import TeamShowcase from "./Components/TeamShowcase";
 import AppleScrollHero from "./Components/AppleScrollHero";
 import SimpleBranshaComponent from "./Components/SimpleBranshaComponent";
 // import SimpleShowcaseComponent from "./Components/SimpleShowcaseComponent";
-import BlogCarousel from "./Components/BlogCarousel";
+// import BlogCarousel from "./Components/BlogCarousel";
 import SmartHomeControlPanel from "./Components/SmartHomeControlPanel";
 import MunnAppleCardsCarousel from "./Components/MunnAppleCardCarousel";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -44,7 +44,7 @@ function App() {
                 <HowWeSupport />
                 {/* <ScrollAnimationComponent /> */}
                 <BuildingShowcase />
-                <BlogCarousel />
+                {/* <BlogCarousel /> */}
                 <TeamShowcase />
                 <Footer />
               </>
